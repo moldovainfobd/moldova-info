@@ -10,14 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+  <!-- Safe Pre-initialization for Tailwind CDN Configuration -->
   <script>
-    tailwind.config = {
+    window.tailwind = window.tailwind || {};
+    window.tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
@@ -32,13 +28,27 @@
           }
         }
       }
-    }
+    };
   </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     body {
       font-family: 'Hind Siliguri', sans-serif;
     }
+    
+    /* Fallback color utilities in case CDN is deferred */
+    .bg-mdBlue { background-color: #0033a0; }
+    .text-mdBlue { color: #0033a0; }
+    .bg-mdYellow { background-color: #ffd100; }
+    .text-mdYellow { color: #ffd100; }
+    .bg-mdRed { background-color: #d21034; }
+    .text-mdRed { color: #d21034; }
     
     /* Moldova Flag Tricolor Stripe */
     .moldova-flag-bar {
@@ -48,20 +58,6 @@
 
     .moldova-hero-bg {
       background: linear-gradient(135deg, #07122b 0%, #0d204d 50%, #15274d 80%, #20101b 100%);
-    }
-
-    /* Live In-place Edit Mode Highlight */
-    body.is-editing [data-editable="text"] {
-      outline: 2px dashed #ffd100 !important;
-      outline-offset: 3px;
-      cursor: text;
-      border-radius: 4px;
-      transition: background-color 0.2s;
-    }
-    body.is-editing [data-editable="text"]:hover,
-    body.is-editing [data-editable="text"]:focus {
-      background-color: rgba(255, 209, 0, 0.15) !important;
-      outline-color: #ffffff !important;
     }
 
     /* Image zoom hover effect */
@@ -75,93 +71,8 @@
   <!-- TOP MOLDOVA FLAG ACCENT -->
   <div class="moldova-flag-bar"></div>
 
-  <!-- FLOATING ADMIN / LIVE EDIT TOOLBAR -->
-  <div id="admin-toolbar" class="sticky top-0 z-50 bg-slate-950/95 backdrop-blur-md text-white border-b border-amber-500/30 px-4 py-2.5 shadow-xl transition-all">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
-      <div class="flex items-center gap-3">
-        <span class="inline-flex items-center gap-1.5 font-bold tracking-wide text-yellow-400">
-          <i class="fa-solid fa-sliders"></i>
-          <span>কন্ট্রোল প্যানেল</span>
-        </span>
-        <button id="toggle-edit-btn" onclick="toggleEditMode()" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 font-semibold flex items-center gap-1.5 transition shadow-sm active:scale-95 text-white">
-          <i class="fa-solid fa-pen-to-square"></i>
-          <span id="edit-btn-text">এডিট মোড অন করুন</span>
-        </button>
-        <span id="edit-badge" class="hidden text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 animate-pulse font-medium">
-          ● এডিটিং সক্রিয়
-        </span>
-      </div>
-
-      <div class="flex items-center gap-2 flex-wrap">
-        <button onclick="openLinkModal()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium flex items-center gap-1.5 transition">
-          <i class="fa-solid fa-link text-xs text-yellow-400"></i>
-          <span>৪টি লিংক পরিবর্তন</span>
-        </button>
-
-        <button onclick="saveAllEdits()" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold flex items-center gap-1.5 transition shadow-sm active:scale-95">
-          <i class="fa-solid fa-floppy-disk"></i>
-          <span>সেভ করুন</span>
-        </button>
-
-        <button onclick="copyFullHtmlCode()" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-bold flex items-center gap-1.5 transition shadow-sm active:scale-95">
-          <i class="fa-solid fa-copy"></i>
-          <span>কোড কপি করুন</span>
-        </button>
-
-        <button onclick="resetDefaults()" title="পূর্বের আসল অবস্থায় ফিরিয়ে নিন" class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-red-900/60 text-slate-300 hover:text-red-200 border border-slate-700 text-xs transition">
-          <i class="fa-solid fa-rotate-left"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Notification Toast -->
-  <div id="toast-box" class="fixed bottom-6 right-6 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-yellow-500/40 items-center gap-3 transition-all transform translate-y-3">
-    <div id="toast-icon" class="text-emerald-400 text-lg"><i class="fa-solid fa-circle-check"></i></div>
-    <div class="text-sm font-medium" id="toast-msg">অপারেশন সফল হয়েছে!</div>
-  </div>
-
-  <!-- LINK CONFIGURATION MODAL -->
-  <div id="link-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 space-y-4">
-      <div class="flex items-center justify-between border-b pb-3">
-        <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
-          <i class="fa-solid fa-link text-blue-600"></i>
-          <span>৪টি বাটনের অফিশিয়াল লিঙ্ক পরিবর্তন</span>
-        </h3>
-        <button onclick="closeLinkModal()" class="text-slate-400 hover:text-slate-700 text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="space-y-3 text-xs sm:text-sm">
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">অপশন ০১: ইনভাইটেশন চেক লিঙ্ক</label>
-          <input id="input-link-invitation" type="url" class="w-full px-3 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-xs">
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">অপশন ০২: সাবমিশন স্লিপ চেক লিঙ্ক</label>
-          <input id="input-link-slip" type="url" class="w-full px-3 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-xs">
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">অপশন ০৩: ই-ভিসা চেক লিঙ্ক</label>
-          <input id="input-link-evisa" type="url" class="w-full px-3 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-xs">
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">অপশন ০৪: বিএমইটি (BMET) চেক লিঙ্ক</label>
-          <input id="input-link-bmet" type="url" class="w-full px-3 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 font-mono text-xs">
-        </div>
-      </div>
-
-      <div class="flex justify-end gap-2 pt-2 border-t">
-        <button onclick="closeLinkModal()" class="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-medium text-xs">বাতিল</button>
-        <button onclick="applyLinksFromModal()" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-md">লিঙ্ক আপডেট করুন</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Main Navigation / Header with Moldova Flag Emblem -->
-  <header class="bg-white border-b border-slate-200 sticky top-12 z-40 shadow-xs">
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       
       <div class="flex items-center space-x-3.5">
@@ -178,10 +89,10 @@
         </div>
 
         <div>
-          <span data-editable="text" id="site-brand-title" class="text-xl font-black tracking-tight text-slate-900 block leading-tight">
+          <span class="text-xl font-black tracking-tight text-slate-900 block leading-tight">
             MOLDOVA PORTAL
           </span>
-          <span data-editable="text" id="site-brand-sub" class="text-xs text-blue-900 font-semibold tracking-wide">
+          <span class="text-xs text-blue-900 font-semibold tracking-wide">
             তথ্য, সরকারি ভেরিফিকেশন ও গাইডলাইন গেটওয়ে
           </span>
         </div>
@@ -211,18 +122,18 @@
       <div class="max-w-4xl mx-auto space-y-3 relative z-10">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-yellow-300 text-xs sm:text-sm font-semibold border border-yellow-400/30 shadow-sm">
           <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-          <span data-editable="text" id="hero-badge-text">মলদোভা ও বাংলাদেশ সরকারি ভেরিফিকেশন গেটওয়ে</span>
+          <span>মলদোভা ও বাংলাদেশ সরকারি ভেরিফিকেশন গেটওয়ে</span>
         </div>
 
-        <h1 data-editable="text" id="hero-title" class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-sm">
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-sm">
           ওয়েলকাম টু মলদোভা
         </h1>
 
-        <p data-editable="text" id="hero-sub" class="text-lg sm:text-xl text-yellow-300 font-semibold">
+        <p class="text-lg sm:text-xl text-yellow-300 font-semibold">
           আমরা আপনাকে কীভাবে সাহায্য করতে পারি?
         </p>
 
-        <p data-editable="text" id="hero-desc" class="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
           আপনার প্রয়োজনীয় সেবার বাটনে ক্লিক করুন। সরাসরি অফিশিয়াল সরকারি ডাটাবেজ পেজ ওপেন হবে এবং সেখান থেকে আপনি যাবতীয় তথ্য যাচাই করতে পারবেন।
         </p>
       </div>
@@ -238,15 +149,15 @@
             <div class="w-14 h-14 bg-blue-50 text-mdBlue rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm border border-blue-100">
               <i class="fa-solid fa-envelope-open-text"></i>
             </div>
-            <span data-editable="text" id="card1-badge" class="text-xs uppercase font-extrabold tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">অপশন ০১</span>
-            <h3 data-editable="text" id="card1-title" class="text-xl font-bold text-slate-900 mt-3 mb-2">ইনভাইটেশন চেক</h3>
-            <p data-editable="text" id="card1-desc" class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+            <span class="text-xs uppercase font-extrabold tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">অপশন ০১</span>
+            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">ইনভাইটেশন চেক</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
               মলদোভা মাইগ্রেশন ও পররাষ্ট্র দপ্তরের ইনভাইটেশন লেটার এবং ফাইল রেজিস্ট্রেশন যাচাই করুন।
             </p>
           </div>
-          <a id="card1-link" href="https://www.evisa.gov.md/VisaFile/Inregistrare" target="_blank" rel="noopener noreferrer" 
+          <a href="https://www.evisa.gov.md/VisaFile/Inregistrare" target="_blank" rel="noopener noreferrer" 
              class="w-full bg-mdBlue hover:bg-blue-800 text-white font-bold py-3.5 px-3 rounded-xl text-center shadow-md flex items-center justify-center gap-2 group transition text-sm">
-            <span data-editable="text" id="card1-btn-text">ইনভাইটেশন চেক করুন</span>
+            <span>ইনভাইটেশন চেক করুন</span>
             <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
           </a>
         </div>
@@ -257,15 +168,15 @@
             <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm border border-amber-100">
               <i class="fa-solid fa-receipt"></i>
             </div>
-            <span data-editable="text" id="card2-badge" class="text-xs uppercase font-extrabold tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">অপশন ০২</span>
-            <h3 data-editable="text" id="card2-title" class="text-xl font-bold text-slate-900 mt-3 mb-2">সাবমিশন স্লিপ চেক</h3>
-            <p data-editable="text" id="card2-desc" class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+            <span class="text-xs uppercase font-extrabold tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">অপশন ০২</span>
+            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">সাবমিশন স্লিপ চেক</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
               মলদোভার সরকারি পেমেন্ট ও ইনভয়েস সার্চ পোর্টাল (MPay)-এ স্লিপ ও চালানের স্ট্যাটাস যাচাই করুন।
             </p>
           </div>
-          <a id="card2-link" href="https://mpay.gov.md/Invoice/SearchInvoice" target="_blank" rel="noopener noreferrer" 
+          <a href="https://mpay.gov.md/Invoice/SearchInvoice" target="_blank" rel="noopener noreferrer" 
              class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3.5 px-3 rounded-xl text-center shadow-md flex items-center justify-center gap-2 group transition text-sm">
-            <span data-editable="text" id="card2-btn-text">সাবমিশন স্লিপ চেক করুন</span>
+            <span>সাবমিশন স্লিপ চেক করুন</span>
             <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
           </a>
         </div>
@@ -276,15 +187,15 @@
             <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm border border-emerald-100">
               <i class="fa-solid fa-passport"></i>
             </div>
-            <span data-editable="text" id="card3-badge" class="text-xs uppercase font-extrabold tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">অপশন ০৩</span>
-            <h3 data-editable="text" id="card3-title" class="text-xl font-bold text-slate-900 mt-3 mb-2">ই-ভিসা চেক</h3>
-            <p data-editable="text" id="card3-desc" class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+            <span class="text-xs uppercase font-extrabold tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">অপশন ০৩</span>
+            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">ই-ভিসা চেক</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
               মলদোভা পররাষ্ট্র মন্ত্রণালয়ের অফিশিয়াল ডাটাবেজ থেকে সরাসরি আপনার ই-ভিসা স্ট্যাটাস চেক করুন।
             </p>
           </div>
-          <a id="card3-link" href="https://www.evisa.gov.md/check-my-visa/" target="_blank" rel="noopener noreferrer" 
+          <a href="https://www.evisa.gov.md/check-my-visa/" target="_blank" rel="noopener noreferrer" 
              class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-3 rounded-xl text-center shadow-md flex items-center justify-center gap-2 group transition text-sm">
-            <span data-editable="text" id="card3-btn-text">ই-ভিসা চেক করুন</span>
+            <span>ই-ভিসা চেক করুন</span>
             <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
           </a>
         </div>
@@ -295,15 +206,15 @@
             <div class="w-14 h-14 bg-red-50 text-mdRed rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm border border-red-100">
               <i class="fa-solid fa-users-gear"></i>
             </div>
-            <span data-editable="text" id="card4-badge" class="text-xs uppercase font-extrabold tracking-wider text-red-700 bg-red-50 px-2.5 py-1 rounded-full border border-red-100">অপশন ০৪</span>
-            <h3 data-editable="text" id="card4-title" class="text-xl font-bold text-slate-900 mt-3 mb-2">বিএমইটি চেক</h3>
-            <p data-editable="text" id="card4-desc" class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+            <span class="text-xs uppercase font-extrabold tracking-wider text-red-700 bg-red-50 px-2.5 py-1 rounded-full border border-red-100">অপশন ০৪</span>
+            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">বিএমইটি চেক</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
               আজকে কয়টা ম্যানপাওয়ার হয়েছে, দেশভিত্তিক ক্লিয়ারেন্স রিপোর্ট ও অনুমোদনের পরিসংখ্যান সরাসরি দেখুন।
             </p>
           </div>
-          <a id="card4-link" href="https://www.oep.gov.bd/reports/country-clearance" target="_blank" rel="noopener noreferrer" 
+          <a href="https://www.oep.gov.bd/reports/country-clearance" target="_blank" rel="noopener noreferrer" 
              class="w-full bg-mdRed hover:bg-red-700 text-white font-bold py-3.5 px-3 rounded-xl text-center shadow-md flex items-center justify-center gap-2 group transition text-sm">
-            <span data-editable="text" id="card4-btn-text">বিএমইটি চেক করুন</span>
+            <span>বিএমইটি চেক করুন</span>
             <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
           </a>
         </div>
@@ -317,13 +228,13 @@
         
         <!-- Section Title -->
         <div class="text-center max-w-2xl mx-auto space-y-2">
-          <span data-editable="text" id="guide-badge" class="text-xs font-bold text-blue-700 uppercase tracking-widest bg-blue-50 px-3.5 py-1 rounded-full border border-blue-100">
+          <span class="text-xs font-bold text-blue-700 uppercase tracking-widest bg-blue-50 px-3.5 py-1 rounded-full border border-blue-100">
             দেশ পরিচিতি ও অফিশিয়াল নির্দেশিকা
           </span>
-          <h2 data-editable="text" id="guide-title" class="text-3xl font-black text-slate-900">
+          <h2 class="text-3xl font-black text-slate-900">
             মলদোভা যেতে যা কিছু জানা প্রয়োজন
           </h2>
-          <p data-editable="text" id="guide-sub" class="text-slate-600 text-sm">
+          <p class="text-slate-600 text-sm">
             বাংলাদেশ বা অন্য যেকোনো দেশ থেকে মলদোভা যাওয়ার প্রয়োজনীয় সকল কাগজপত্র ও সঠিক নিয়মাবলী।
           </p>
         </div>
@@ -332,24 +243,24 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200/80">
             <div class="text-mdBlue text-2xl mb-3"><i class="fa-solid fa-map-location-dot"></i></div>
-            <h4 data-editable="text" id="info1-t" class="font-bold text-lg text-slate-900 mb-2">মলদোভা পরিচিতি</h4>
-            <p data-editable="text" id="info1-d" class="text-slate-600 text-sm leading-relaxed">
+            <h4 class="font-bold text-lg text-slate-900 mb-2">মলদোভা পরিচিতি</h4>
+            <p class="text-slate-600 text-sm leading-relaxed">
               মলদোভা পূর্ব ইউরোপের একটি শান্তিপ্রিয় রাষ্ট্র। রাজধানী চিশিনাউ (Chișinău)। মুদ্রা মলদোভান লিউ (MDL)। এটি ইউরোপীয় ইউনিয়নের প্রার্থী রাষ্ট্র এবং রোমানিয়া ও ইউক্রেনের সীমান্তে অবস্থিত।
             </p>
           </div>
 
           <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200/80">
             <div class="text-amber-500 text-2xl mb-3"><i class="fa-solid fa-briefcase"></i></div>
-            <h4 data-editable="text" id="info2-t" class="font-bold text-lg text-slate-900 mb-2">কাজের প্রধান খাতসমূহ</h4>
-            <p data-editable="text" id="info2-d" class="text-slate-600 text-sm leading-relaxed">
+            <h4 class="font-bold text-lg text-slate-900 mb-2">কাজের প্রধান খাতসমূহ</h4>
+            <p class="text-slate-600 text-sm leading-relaxed">
               নির্মাণ খাত (Construction), উৎপাদন ও টেক্সটাইল, খাদ্য প্রক্রিয়াজাতকরণ, ওয়্যারহাউস ও গুদামজাতকরণ এবং ড্রাইভিং সেক্টরে বর্তমানে নিয়মিত বিদেশি কর্মী নিয়োগ হচ্ছে।
             </p>
           </div>
 
           <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200/80">
             <div class="text-emerald-600 text-2xl mb-3"><i class="fa-solid fa-file-contract"></i></div>
-            <h4 data-editable="text" id="info3-t" class="font-bold text-lg text-slate-900 mb-2">ভিসার ধরন (Type D)</h4>
-            <p data-editable="text" id="info3-d" class="text-slate-600 text-sm leading-relaxed">
+            <h4 class="font-bold text-lg text-slate-900 mb-2">ভিসার ধরন (Type D)</h4>
+            <p class="text-slate-600 text-sm leading-relaxed">
               কাজের উদ্দেশ্যে যেতে হলে 'লং-স্টে ডি/এএস (Type D/AS - Work)' ভিসা প্রয়োজন হয়। এই ভিসার প্রাথমিক মেয়াদ ৯০ থেকে ৩৬০ দিন হয় এবং দেশটিতে পৌঁছানোর পর রেসিডেন্স পারমিট কার্ডে রূপান্তর করা যায়।
             </p>
           </div>
@@ -359,55 +270,55 @@
         <div class="bg-gradient-to-br from-slate-50 to-blue-50/50 rounded-3xl p-6 sm:p-8 border border-blue-100">
           <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
             <i class="fa-solid fa-clipboard-check text-blue-600"></i>
-            <span data-editable="text" id="doc-sec-title">মলদোভা ভিসার জন্য প্রয়োজনীয় ডকুমেন্টস</span>
+            <span>মলদোভা ভিসার জন্য প্রয়োজনীয় ডকুমেন্টস</span>
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             
             <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
               <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
               <div>
-                <h5 data-editable="text" id="doc1-t" class="font-bold text-slate-900 text-sm">মূল পাসপোর্ট (Original Passport)</h5>
-                <p data-editable="text" id="doc1-d" class="text-slate-600 text-xs mt-0.5">কমপক্ষে ১ বছরের মেয়াদ এবং ন্যূনতম ২টি ফাঁকা পৃষ্ঠা থাকতে হবে।</p>
+                <h5 class="font-bold text-slate-900 text-sm">মূল পাসপোর্ট (Original Passport)</h5>
+                <p class="text-slate-600 text-xs mt-0.5">কমপক্ষে ১ বছরের মেয়াদ এবং ন্যূনতম ২টি ফাঁকা পৃষ্ঠা থাকতে হবে।</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
               <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
               <div>
-                <h5 data-editable="text" id="doc2-t" class="font-bold text-slate-900 text-sm">IGM ওয়ার্ক ইনভাইটেশন লেটার</h5>
-                <p data-editable="text" id="doc2-d" class="text-slate-600 text-xs mt-0.5">মলদোভার অভিবাসন কর্তৃপক্ষ (IGM) কর্তৃক ইস্যুকৃত অনুমোদিত অফিশিয়াল ইনভাইটেশন।</p>
+                <h5 class="font-bold text-slate-900 text-sm">IGM ওয়ার্ক ইনভাইটেশন লেটার</h5>
+                <p class="text-slate-600 text-xs mt-0.5">মলদোভার অভিবাসন কর্তৃপক্ষ (IGM) কর্তৃক ইস্যুকৃত অনুমোদিত অফিশিয়াল ইনভাইটেশন।</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
               <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
               <div>
-                <h5 data-editable="text" id="doc3-t" class="font-bold text-slate-900 text-sm">পুলিশ ক্লিয়ারেন্স সার্টিফিকেট</h5>
-                <p data-editable="text" id="doc3-d" class="text-slate-600 text-xs mt-0.5">আইন মন্ত্রণালয় ও পররাষ্ট্র মন্ত্রণালয় থেকে নোটারাইজড ও সত্যায়িত কপি।</p>
+                <h5 class="font-bold text-slate-900 text-sm">পুলিশ ক্লিয়ারেন্স সার্টিফিকেট</h5>
+                <p class="text-slate-600 text-xs mt-0.5">আইন মন্ত্রণালয় ও পররাষ্ট্র মন্ত্রণালয় থেকে নোটারাইজড ও সত্যায়িত কপি।</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
               <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
               <div>
-                <h5 data-editable="text" id="doc4-t" class="font-bold text-slate-900 text-sm">চাকরির চুক্তিপত্র (Job Contract)</h5>
-                <p data-editable="text" id="doc4-d" class="text-slate-600 text-xs mt-0.5">মলদোভান নিয়োগকর্তা ও কর্মীর মধ্যে স্বাক্ষরিত দ্বিপাক্ষিক কর্মচুক্তি।</p>
+                <h5 class="font-bold text-slate-900 text-sm">চাকরির চুক্তিপত্র (Job Contract)</h5>
+                <p class="text-slate-600 text-xs mt-0.5">মলদোভান নিয়োগকর্তা ও কর্মীর মধ্যে স্বাক্ষরিত দ্বিপাক্ষিক কর্মচুক্তি।</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
               <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
               <div>
-                <h5 data-editable="text" id="doc5-t" class="font-bold text-slate-900 text-sm">মেডিকেল ফিটনেস সার্টিফিকেট</h5>
-                <p data-editable="text" id="doc5-d" class="text-slate-600 text-xs mt-0.5">অনুমোদিত ডায়াগনস্টিক সেন্টার থেকে রক্ত ও স্বাস্থ্য পরীক্ষার সার্টিফিকেট।</p>
+                <h5 class="font-bold text-slate-900 text-sm">মেডিকেল ফিটনেস সার্টিফিকেট</h5>
+                <p class="text-slate-600 text-xs mt-0.5">অনুমোদিত ডায়াগনস্টিক সেন্টার থেকে রক্ত ও স্বাস্থ্য পরীক্ষার সার্টিফিকেট।</p>
               </div>
             </div>
 
             <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
               <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
               <div>
-                <h5 data-editable="text" id="doc6-t" class="font-bold text-slate-900 text-sm">ট্রাভেল ইন্স্যুরেন্স ও এয়ার টিকিট</h5>
-                <p data-editable="text" id="doc6-d" class="text-slate-600 text-xs mt-0.5">ন্যূনতম ৩০,০০০ ইউরো কাভারেজযুক্ত আন্তর্জাতিক স্বাস্থ্যবীমা ও টিকিট বুকিং।</p>
+                <h5 class="font-bold text-slate-900 text-sm">ট্রাভেল ইন্স্যুরেন্স ও এয়ার টিকিট</h5>
+                <p class="text-slate-600 text-xs mt-0.5">ন্যূনতম ৩০,০০০ ইউরো কাভারেজযুক্ত আন্তর্জাতিক স্বাস্থ্যবীমা ও টিকিট বুকিং।</p>
               </div>
             </div>
 
@@ -416,7 +327,7 @@
 
         <!-- 5 Steps of Processing -->
         <div>
-          <h3 data-editable="text" id="steps-header" class="text-2xl font-bold text-slate-900 mb-6 text-center">
+          <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">
             বাংলাদেশ থেকে মলদোভা যাওয়ার ধারাবাহিক ৫টি ধাপ
           </h3>
           <div class="space-y-3.5">
@@ -424,40 +335,40 @@
             <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
               <div class="w-10 h-10 rounded-xl bg-mdBlue text-white font-bold flex items-center justify-center shrink-0">১</div>
               <div>
-                <h5 data-editable="text" id="step1-t" class="font-bold text-slate-900 text-sm">কোম্পানি সিলেকশন ও অফার লেটার</h5>
-                <p data-editable="text" id="step1-d" class="text-slate-600 text-xs mt-0.5">মলদোভার অনুমোদিত কোনো প্রতিষ্ঠান থেকে চাকরির প্রস্তাব ও প্রাথমিক চুক্তি গ্রহণ করা।</p>
+                <h5 class="font-bold text-slate-900 text-sm">কোম্পানি সিলেকশন ও অফার লেটার</h5>
+                <p class="text-slate-600 text-xs mt-0.5">মলদোভার অনুমোদিত কোনো প্রতিষ্ঠান থেকে চাকরির প্রস্তাব ও প্রাথমিক চুক্তি গ্রহণ করা।</p>
               </div>
             </div>
 
             <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
               <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-bold flex items-center justify-center shrink-0">২</div>
               <div>
-                <h5 data-editable="text" id="step2-t" class="font-bold text-slate-900 text-sm">IGM ওয়ার্ক পারমিট / ইনভাইটেশন অনুমোদন</h5>
-                <p data-editable="text" id="step2-d" class="text-slate-600 text-xs mt-0.5">নিয়োগকর্তা মলদোভা মাইগ্রেশন অফিসে আবেদন করে মূল ইনভাইটেশন লেটার সংগ্রহ করবেন।</p>
+                <h5 class="font-bold text-slate-900 text-sm">IGM ওয়ার্ক পারমিট / ইনভাইটেশন অনুমোদন</h5>
+                <p class="text-slate-600 text-xs mt-0.5">নিয়োগকর্তা মলদোভা মাইগ্রেশন অফিসে আবেদন করে মূল ইনভাইটেশন লেটার সংগ্রহ করবেন।</p>
               </div>
             </div>
 
             <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
               <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0">৩</div>
               <div>
-                <h5 data-editable="text" id="step3-t" class="font-bold text-slate-900 text-sm">অনলাইনে ই-ভিসা (eVisa) আবেদন</h5>
-                <p data-editable="text" id="step3-d" class="text-slate-600 text-xs mt-0.5">মলদোভা পররাষ্ট্র মন্ত্রণালয়ের অফিশিয়াল পোর্টালে টাইপ-ডি ভিসার জন্য যাবতীয় ফাইল সাবমিট ও সরকারি ফি জমা দেওয়া।</p>
+                <h5 class="font-bold text-slate-900 text-sm">অনলাইনে ই-ভিসা (eVisa) আবেদন</h5>
+                <p class="text-slate-600 text-xs mt-0.5">মলদোভা পররাষ্ট্র মন্ত্রণালয়ের অফিশিয়াল পোর্টালে টাইপ-ডি ভিসার জন্য যাবতীয় ফাইল সাবমিট ও সরকারি ফি জমা দেওয়া।</p>
               </div>
             </div>
 
             <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
               <div class="w-10 h-10 rounded-xl bg-mdRed text-white font-bold flex items-center justify-center shrink-0">৪</div>
               <div>
-                <h5 data-editable="text" id="step4-t" class="font-bold text-slate-900 text-sm">ভিসা স্ট্যাম্পিং ও অনুমোদন সংগ্রহ</h5>
-                <p data-editable="text" id="step4-d" class="text-slate-600 text-xs mt-0.5">ই-ভিসা অনুমোদন শেষে নির্ধারিত কনস্যুলার বা ইলেকট্রনিক অনুমোদন কপি ও বারকোড পেজ সংগ্রহ।</p>
+                <h5 class="font-bold text-slate-900 text-sm">ভিসা স্ট্যাম্পিং ও অনুমোদন সংগ্রহ</h5>
+                <p class="text-slate-600 text-xs mt-0.5">ই-ভিসা অনুমোদন শেষে নির্ধারিত কনস্যুলার বা ইলেকট্রনিক অনুমোদন কপি ও বারকোড পেজ সংগ্রহ।</p>
               </div>
             </div>
 
             <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
               <div class="w-10 h-10 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center shrink-0">৫</div>
               <div>
-                <h5 data-editable="text" id="step5-t" class="font-bold text-slate-900 text-sm">BMET ম্যানপাওয়ার কার্ড ও ফ্লাইট</h5>
-                <p data-editable="text" id="step5-d" class="text-slate-600 text-xs mt-0.5">বাংলাদেশ জনশক্তি ব্যুরো (BMET) থেকে ইমিগ্রেশন ছাড়পত্র সংগ্রহ করে মলদোভার উদ্দেশ্যে যাত্রা।</p>
+                <h5 class="font-bold text-slate-900 text-sm">BMET ম্যানপাওয়ার কার্ড ও ফ্লাইট</h5>
+                <p class="text-slate-600 text-xs mt-0.5">বাংলাদেশ জনশক্তি ব্যুরো (BMET) থেকে ইমিগ্রেশন ছাড়পত্র সংগ্রহ করে মলদোভার উদ্দেশ্যে যাত্রা।</p>
               </div>
             </div>
 
@@ -480,10 +391,10 @@
               <i class="fa-solid fa-camera"></i>
               <span>মলদোভা হেরিটেজ ও ট্যুরিজম গ্যালারি</span>
             </div>
-            <h2 data-editable="text" id="places-main-heading" class="text-3xl sm:text-4xl font-black text-white">
+            <h2 class="text-3xl sm:text-4xl font-black text-white">
               মলদোভার বিখ্যাত দর্শনীয় ও ঐতিহাসিক স্থানসমূহ
             </h2>
-            <p data-editable="text" id="places-main-desc" class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+            <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
               মলদোভা পূর্ব ইউরোপের অপরূপ প্রাকৃতিক দৃশ্য ও প্রাচীন ইতিহাসের এক অনন্য মিলনমেলা। চুনাপাথরের পাহাড়ি গুহা আশ্রম, মধ্যযুগীয় দুর্গ এবং বিশ্বের সর্ববৃহৎ ভূগর্ভস্থ ওয়াইন নগরীসহ শীর্ষ দর্শনীয় স্থানসমূহ নিচে ছবির সাথে বিস্তারিত দেওয়া হলো:
             </p>
           </div>
@@ -495,7 +406,6 @@
           <!-- Place 1: Orheiul Vechi -->
           <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <!-- Photo Container -->
               <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=700&q=80" 
                      alt="অর্হেইউল ভেচি (Orheiul Vechi)" 
@@ -503,26 +413,23 @@
                      loading="lazy"
                      onerror="this.onerror=null; this.src='https://placehold.co/700x500/0033a0/ffffff?text=Orheiul+Vechi';">
                 
-                <!-- Number Badge Overlay (Top Left) -->
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
                   <i class="fa-solid fa-location-pin text-[10px]"></i>
                   <span>০১ নম্বর স্থান</span>
                 </div>
-                <!-- Category Tag (Top Right) -->
                 <div class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full shadow uppercase">
                   ইউনেস্কো হেরিটেজ
                 </div>
               </div>
 
-              <!-- Content -->
               <div class="p-5">
-                <h3 data-editable="text" id="plc1-title" class="text-lg font-bold text-slate-900 mb-1">
+                <h3 class="text-lg font-bold text-slate-900 mb-1">
                   ১. অর্হেইউল ভেচি (Orheiul Vechi)
                 </h3>
-                <p data-editable="text" id="plc1-sub" class="text-xs font-bold text-blue-700 mb-2">
+                <p class="text-xs font-bold text-blue-700 mb-2">
                   প্রাচীন গুহা মনেস্ট্রি ও পাহাড়ি উপত্যকা
                 </p>
-                <p data-editable="text" id="plc1-desc" class="text-slate-600 text-xs leading-relaxed">
+                <p class="text-slate-600 text-xs leading-relaxed">
                   রাউত (Răut) নদীর গভীর বাঁক ও চুনপাথরের খাড়া পাহাড় কেটে খ্রিস্টীয় ত্রয়োদশ শতকে তৈরি এই গুহা মনেস্ট্রিটি মলদোভার প্রধান পরিচয় ও বিশ্বের অন্যতম অনন্য প্রত্নতাত্ত্বিক ল্যান্ডমার্ক।
                 </p>
               </div>
@@ -536,7 +443,6 @@
           <!-- Place 2: Cricova Underground City -->
           <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <!-- Photo Container -->
               <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=700&q=80" 
                      alt="ক্রিকোভা ওয়াইন সিটি (Cricova)" 
@@ -544,7 +450,6 @@
                      loading="lazy"
                      onerror="this.onerror=null; this.src='https://placehold.co/700x500/d21034/ffffff?text=Cricova+Winery';">
                 
-                <!-- Number Badge Overlay -->
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
                   <i class="fa-solid fa-location-pin text-[10px]"></i>
                   <span>০২ নম্বর স্থান</span>
@@ -554,15 +459,14 @@
                 </div>
               </div>
 
-              <!-- Content -->
               <div class="p-5">
-                <h3 data-editable="text" id="plc2-title" class="text-lg font-bold text-slate-900 mb-1">
+                <h3 class="text-lg font-bold text-slate-900 mb-1">
                   ২. ক্রিকোভা ওয়াইন সেলার (Cricova)
                 </h3>
-                <p data-editable="text" id="plc2-sub" class="text-xs font-bold text-blue-700 mb-2">
+                <p class="text-xs font-bold text-blue-700 mb-2">
                   ১২০ কিমি দীর্ঘ ভূগর্ভস্থ ওয়াইন সাম্রাজ্য
                 </p>
-                <p data-editable="text" id="plc2-desc" class="text-slate-600 text-xs leading-relaxed">
+                <p class="text-slate-600 text-xs leading-relaxed">
                   মাটির ৮০ থেকে ১০০ মিটার গভীরে অবস্থিত আস্ত এক শহর। এর সুড়ঙ্গগুলোতে গাড়ি চলাচলের সড়ক, ট্রাফিক সিগন্যাল ও বিশ্বের শীর্ষ নেতাদের সংগৃহীত প্রাচীন পানীয় সংরক্ষিত রয়েছে।
                 </p>
               </div>
@@ -576,7 +480,6 @@
           <!-- Place 3: Soroca Fortress -->
           <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <!-- Photo Container -->
               <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=700&q=80" 
                      alt="সোরোকা দুর্গ (Soroca Fortress)" 
@@ -584,7 +487,6 @@
                      loading="lazy"
                      onerror="this.onerror=null; this.src='https://placehold.co/700x500/0033a0/ffffff?text=Soroca+Fortress';">
                 
-                <!-- Number Badge Overlay -->
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
                   <i class="fa-solid fa-location-pin text-[10px]"></i>
                   <span>০৩ নম্বর স্থান</span>
@@ -594,15 +496,14 @@
                 </div>
               </div>
 
-              <!-- Content -->
               <div class="p-5">
-                <h3 data-editable="text" id="plc3-title" class="text-lg font-bold text-slate-900 mb-1">
+                <h3 class="text-lg font-bold text-slate-900 mb-1">
                   ৩. সোরোকা দুর্গ (Soroca Fortress)
                 </h3>
-                <p data-editable="text" id="plc3-sub" class="text-xs font-bold text-blue-700 mb-2">
+                <p class="text-xs font-bold text-blue-700 mb-2">
                   দিনিস্তার নদীর তীরে অবস্থিত মধ্যযুগীয় কেল্লা
                 </p>
-                <p data-editable="text" id="plc3-desc" class="text-slate-600 text-xs leading-relaxed">
+                <p class="text-slate-600 text-xs leading-relaxed">
                   পঞ্চদশ শতকে স্টিফেন দ্য গ্রেট কর্তৃক নির্মিত অনন্য নিখুঁত গোলাকার সামরিক দুর্গ। উসমানীয় সাম্রাজ্য ও তাতারদের হামলা প্রতিহত করার জন্য এটি মলদোভার মূল প্রতিরক্ষা স্তম্ভ ছিল।
                 </p>
               </div>
@@ -616,7 +517,6 @@
           <!-- Place 4: Mileștii Mici -->
           <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <!-- Photo Container -->
               <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=700&q=80" 
                      alt="মিলিয়েস্তিমিকি (Mileștii Mici)" 
@@ -624,7 +524,6 @@
                      loading="lazy"
                      onerror="this.onerror=null; this.src='https://placehold.co/700x500/7c3aed/ffffff?text=Milestii+Mici';">
                 
-                <!-- Number Badge Overlay -->
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
                   <i class="fa-solid fa-location-pin text-[10px]"></i>
                   <span>০৪ নম্বর স্থান</span>
@@ -634,15 +533,14 @@
                 </div>
               </div>
 
-              <!-- Content -->
               <div class="p-5">
-                <h3 data-editable="text" id="plc4-title" class="text-lg font-bold text-slate-900 mb-1">
+                <h3 class="text-lg font-bold text-slate-900 mb-1">
                   ৪. মিলিয়েস্তিমিকি (Mileștii Mici)
                 </h3>
-                <p data-editable="text" id="plc4-sub" class="text-xs font-bold text-blue-700 mb-2">
+                <p class="text-xs font-bold text-blue-700 mb-2">
                   বিশ্বের সর্ববৃহৎ ভূগর্ভস্থ ওয়াইন সংরক্ষণাগার
                 </p>
-                <p data-editable="text" id="plc4-desc" class="text-slate-600 text-xs leading-relaxed">
+                <p class="text-slate-600 text-xs leading-relaxed">
                   প্রায় ২০ লক্ষ বোতল ওয়াইনের সংগ্রহ নিয়ে এটি বিশ্বের বৃহত্তম ওয়াইন সেলার হিসেবে গিনেস বুকে স্থান পেয়েছে। এর দীর্ঘ ২০০ কিলোমিটার টানেল পর্যটকদের জন্য আকর্ষণীয়।
                 </p>
               </div>
@@ -656,7 +554,6 @@
           <!-- Place 5: Chișinău Triumphal Arch -->
           <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <!-- Photo Container -->
               <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1549144511-f099e773c147?auto=format&fit=crop&w=700&q=80" 
                      alt="ট্রায়াম্ফাল আর্চ (Arcul de Triumf)" 
@@ -664,7 +561,6 @@
                      loading="lazy"
                      onerror="this.onerror=null; this.src='https://placehold.co/700x500/059669/ffffff?text=Triumphal+Arch';">
                 
-                <!-- Number Badge Overlay -->
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
                   <i class="fa-solid fa-location-pin text-[10px]"></i>
                   <span>০৫ নম্বর স্থান</span>
@@ -674,15 +570,14 @@
                 </div>
               </div>
 
-              <!-- Content -->
               <div class="p-5">
-                <h3 data-editable="text" id="plc5-title" class="text-lg font-bold text-slate-900 mb-1">
+                <h3 class="text-lg font-bold text-slate-900 mb-1">
                   ৫. ট্রায়াম্ফাল আর্চ (Arcul de Triumf)
                 </h3>
-                <p data-editable="text" id="plc5-sub" class="text-xs font-bold text-blue-700 mb-2">
+                <p class="text-xs font-bold text-blue-700 mb-2">
                   চিশিনাউ সেন্ট্রাল পার্ক ও ভিক্টোরি আর্চ
                 </p>
-                <p data-editable="text" id="plc5-desc" class="text-slate-600 text-xs leading-relaxed">
+                <p class="text-slate-600 text-xs leading-relaxed">
                   ১৮৪০ সালে নির্মিত ১৩ মিটার উঁচু এই ঐতিহাসিক বিজয় তোরণ এবং পেছনে অবস্থিত ক্যাথেড্রাল পার্ক মলদোভার জাতীয় পরিচয় ও শহরের মূল নান্দনিক কেন্দ্রস্থল।
                 </p>
               </div>
@@ -696,7 +591,6 @@
           <!-- Place 6: Saharna Waterfall & Monastery -->
           <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <!-- Photo Container -->
               <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" 
                      alt="সাহারনা মনেস্ট্রি ও ঝর্ণাধারা" 
@@ -704,7 +598,6 @@
                      loading="lazy"
                      onerror="this.onerror=null; this.src='https://placehold.co/700x500/0891b2/ffffff?text=Saharna+Waterfalls';">
                 
-                <!-- Number Badge Overlay -->
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
                   <i class="fa-solid fa-location-pin text-[10px]"></i>
                   <span>০৬ নম্বর স্থান</span>
@@ -714,15 +607,14 @@
                 </div>
               </div>
 
-              <!-- Content -->
               <div class="p-5">
-                <h3 data-editable="text" id="plc6-title" class="text-lg font-bold text-slate-900 mb-1">
+                <h3 class="text-lg font-bold text-slate-900 mb-1">
                   ৬. সাহারনা মনেস্ট্রি ও ঝর্ণাধারা
                 </h3>
-                <p data-editable="text" id="plc6-sub" class="text-xs font-bold text-blue-700 mb-2">
+                <p class="text-xs font-bold text-blue-700 mb-2">
                   ২২টি প্রাকৃতিক ঝর্ণা ও শান্ত পাহাড়ি উপত্যকা
                 </p>
-                <p data-editable="text" id="plc6-desc" class="text-slate-600 text-xs leading-relaxed">
+                <p class="text-slate-600 text-xs leading-relaxed">
                   পাহাড় আর বনের কোলে গড়ে ওঠা পবিত্র তীর্থস্থান। এখানে রয়েছে 'জিপসি হোল' নামের চোখজুড়ানো জলপ্রপাত এবং পাহাড়ি ট্রেকিংয়ের অসাধারণ মনোরম প্রাকৃতিক দৃশ্য।
                 </p>
               </div>
@@ -736,7 +628,6 @@
           <!-- Place 7: Tipova Monastery -->
           <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <!-- Photo Container -->
               <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80" 
                      alt="টিপোভা গুহা কমপ্লেক্স (Țîpova)" 
@@ -744,7 +635,6 @@
                      loading="lazy"
                      onerror="this.onerror=null; this.src='https://placehold.co/700x500/0d9488/ffffff?text=Tipova+Caves';">
                 
-                <!-- Number Badge Overlay -->
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
                   <i class="fa-solid fa-location-pin text-[10px]"></i>
                   <span>০৭ নম্বর স্থান</span>
@@ -754,15 +644,14 @@
                 </div>
               </div>
 
-              <!-- Content -->
               <div class="p-5">
-                <h3 data-editable="text" id="plc7-title" class="text-lg font-bold text-slate-900 mb-1">
+                <h3 class="text-lg font-bold text-slate-900 mb-1">
                   ৭. টিপোভা গুহা কমপ্লেক্স (Țîpova)
                 </h3>
-                <p data-editable="text" id="plc7-sub" class="text-xs font-bold text-blue-700 mb-2">
+                <p class="text-xs font-bold text-blue-700 mb-2">
                   ইউরোপের প্রাচীনতম পাথুরে গুহা আশ্রম
                 </p>
-                <p data-editable="text" id="plc7-desc" class="text-slate-600 text-xs leading-relaxed">
+                <p class="text-slate-600 text-xs leading-relaxed">
                   দিনিস্তার নদীর খাড়া পাহাড়ের খাজে খোদাই করা এই প্রাচীন মনেস্ট্রিতে রয়েছে তিনটি অংশ ও ১৮টি প্রকোষ্ঠ। এর রহস্যময় ইতিহাস ও ট্রেকিং অ্যাডভেঞ্চার দেশি-বিদেশি পর্যটকদের আকর্ষণ করে।
                 </p>
               </div>
@@ -776,7 +665,6 @@
           <!-- Place 8: Dendrarium Park -->
           <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <!-- Photo Container -->
               <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
                 <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=700&q=80" 
                      alt="দেন্দ্রারিয়াম পার্ক (Dendrarium)" 
@@ -784,7 +672,6 @@
                      loading="lazy"
                      onerror="this.onerror=null; this.src='https://placehold.co/700x500/15803d/ffffff?text=Dendrarium+Park';">
                 
-                <!-- Number Badge Overlay -->
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
                   <i class="fa-solid fa-location-pin text-[10px]"></i>
                   <span>০৮ নম্বর স্থান</span>
@@ -794,15 +681,14 @@
                 </div>
               </div>
 
-              <!-- Content -->
               <div class="p-5">
-                <h3 data-editable="text" id="plc8-title" class="text-lg font-bold text-slate-900 mb-1">
+                <h3 class="text-lg font-bold text-slate-900 mb-1">
                   ৮. দেন্দ্রারিয়াম পার্ক (Dendrarium)
                 </h3>
-                <p data-editable="text" id="plc8-sub" class="text-xs font-bold text-blue-700 mb-2">
+                <p class="text-xs font-bold text-blue-700 mb-2">
                   চিশিনাউয়ের ৮৩ হেক্টর আয়তনের সবুজ পার্ক
                 </p>
-                <p data-editable="text" id="plc8-desc" class="text-slate-600 text-xs leading-relaxed">
+                <p class="text-slate-600 text-xs leading-relaxed">
                   রাজধানীর প্রাণকেন্দ্রে অবস্থিত বিশাল প্রাকৃতিক বোটানিক্যাল গার্ডেন। শত প্রজাতির গোলাপ বাগান, শান্ত লেক ও পাইন বনের মনোরম হাঁটার পথ নিয়ে এটি মলদোভার অন্যতম শান্ত সুন্দর স্থান।
                 </p>
               </div>
@@ -831,195 +717,15 @@
         <span>🇲🇩 REPUBLIC OF MOLDOVA OFFICIAL INFORMATION PORTAL</span>
       </div>
       
-      <p data-editable="text" id="footer-note" class="text-slate-400 max-w-2xl mx-auto">
+      <p class="text-slate-400 max-w-2xl mx-auto">
         এই পোর্টালটি সরকারি নির্দেশিকা, পর্যটন তথ্য ও মলদোভা এবং বাংলাদেশ সরকারের অফিশিয়াল ডাটাবেজে সরাসরি প্রবেশের গেটওয়ে সরবরাহ করে।
       </p>
       
-      <div data-editable="text" id="footer-copy" class="text-slate-500 pt-2 border-t border-slate-900">
+      <div class="text-slate-500 pt-2 border-t border-slate-900">
         © ২০২৬ Moldova Information & Verification Portal. All rights reserved.
       </div>
     </div>
   </footer>
 
-  <!-- JAVASCRIPT: LIVE EDITING, LINK MODAL, STORAGE SAVE, & INSTANT CODE COPY -->
-  <script>
-    let isEditing = false;
-    const STORAGE_KEY = 'MOLDOVA_PORTAL_CUSTOM_DATA_V4';
-
-    // Show Notification Toast
-    function showToast(message, isSuccess = true) {
-      const toast = document.getElementById('toast-box');
-      const msg = document.getElementById('toast-msg');
-      const icon = document.getElementById('toast-icon');
-
-      msg.innerText = message;
-      icon.innerHTML = isSuccess 
-        ? '<i class="fa-solid fa-circle-check text-emerald-400"></i>' 
-        : '<i class="fa-solid fa-circle-exclamation text-amber-400"></i>';
-
-      toast.classList.remove('hidden');
-      toast.classList.remove('translate-y-3');
-      toast.classList.add('flex');
-
-      setTimeout(() => {
-        toast.classList.add('translate-y-3');
-        setTimeout(() => toast.classList.add('hidden'), 300);
-      }, 3500);
-    }
-
-    // Toggle live editable state
-    function toggleEditMode() {
-      isEditing = !isEditing;
-      const body = document.body;
-      const btnText = document.getElementById('edit-btn-text');
-      const badge = document.getElementById('edit-badge');
-      const editables = document.querySelectorAll('[data-editable="text"]');
-
-      if (isEditing) {
-        body.classList.add('is-editing');
-        btnText.innerText = 'এডিট মোড অফ করুন';
-        badge.classList.remove('hidden');
-        editables.forEach(el => el.setAttribute('contenteditable', 'true'));
-        showToast('এডিট মোড চালু হয়েছে! এখন সরাসরি যেকোনো টেক্সটে ক্লিক করে পরিবর্তন করুন।');
-      } else {
-        body.classList.remove('is-editing');
-        btnText.innerText = 'এডিট মোড অন করুন';
-        badge.classList.add('hidden');
-        editables.forEach(el => el.removeAttribute('contenteditable'));
-        showToast('এডিট মোড বন্ধ করা হয়েছে।');
-      }
-    }
-
-    // Modal for URL links
-    function openLinkModal() {
-      document.getElementById('input-link-invitation').value = document.getElementById('card1-link').href;
-      document.getElementById('input-link-slip').value = document.getElementById('card2-link').href;
-      document.getElementById('input-link-evisa').value = document.getElementById('card3-link').href;
-      document.getElementById('input-link-bmet').value = document.getElementById('card4-link').href;
-
-      const modal = document.getElementById('link-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeLinkModal() {
-      const modal = document.getElementById('link-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function applyLinksFromModal() {
-      const invLink = document.getElementById('input-link-invitation').value.trim();
-      const slipLink = document.getElementById('input-link-slip').value.trim();
-      const evisaLink = document.getElementById('input-link-evisa').value.trim();
-      const bmetLink = document.getElementById('input-link-bmet').value.trim();
-
-      if (invLink) document.getElementById('card1-link').href = invLink;
-      if (slipLink) document.getElementById('card2-link').href = slipLink;
-      if (evisaLink) document.getElementById('card3-link').href = evisaLink;
-      if (bmetLink) document.getElementById('card4-link').href = bmetLink;
-
-      closeLinkModal();
-      saveAllEdits();
-      showToast('সকল লিঙ্ক সফলভাবে আপডেট ও সেভ হয়েছে!');
-    }
-
-    // Save all current texts and links to localStorage
-    function saveAllEdits() {
-      const data = {
-        texts: {},
-        links: {
-          invitation: document.getElementById('card1-link').href,
-          slip: document.getElementById('card2-link').href,
-          evisa: document.getElementById('card3-link').href,
-          bmet: document.getElementById('card4-link').href,
-        }
-      };
-
-      document.querySelectorAll('[data-editable="text"]').forEach(el => {
-        if (el.id) {
-          data.texts[el.id] = el.innerHTML;
-        }
-      });
-
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        showToast('আপনার সকল পরিবর্তন ব্রাউজারে সফলভাবে সেভ হয়েছে!');
-      } catch (e) {
-        showToast('সেভ করার সময় কোনো সমস্যা হয়েছে!', false);
-      }
-    }
-
-    // Load saved edits from localStorage
-    function loadSavedEdits() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return;
-        const data = JSON.parse(raw);
-
-        if (data.texts) {
-          for (let id in data.texts) {
-            const el = document.getElementById(id);
-            if (el) el.innerHTML = data.texts[id];
-          }
-        }
-
-        if (data.links) {
-          if (data.links.invitation) document.getElementById('card1-link').href = data.links.invitation;
-          if (data.links.slip) document.getElementById('card2-link').href = data.links.slip;
-          if (data.links.evisa) document.getElementById('card3-link').href = data.links.evisa;
-          if (data.links.bmet) document.getElementById('card4-link').href = data.links.bmet;
-        }
-      } catch (e) {
-        console.error("Could not load stored portal customizations", e);
-      }
-    }
-
-    // Copy full HTML code to clipboard
-    function copyFullHtmlCode() {
-      const editables = document.querySelectorAll('[data-editable="text"]');
-      editables.forEach(el => el.removeAttribute('contenteditable'));
-      document.body.classList.remove('is-editing');
-      document.getElementById('edit-badge').classList.add('hidden');
-      document.getElementById('edit-btn-text').innerText = 'এডিট মোড অন করুন';
-      isEditing = false;
-
-      const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-
-      const tempArea = document.createElement('textarea');
-      tempArea.value = fullHtml;
-      tempArea.style.position = 'fixed';
-      tempArea.style.left = '-9999px';
-      document.body.appendChild(tempArea);
-      tempArea.focus();
-      tempArea.select();
-
-      let success = false;
-      try {
-        success = document.execCommand('copy');
-      } catch (err) {
-        success = false;
-      }
-      document.body.removeChild(tempArea);
-
-      if (success) {
-        showToast('সম্পূর্ণ HTML কোড সফলভাবে কপি হয়েছে! এখন আপনি যেকোনো ফাইলে সরাসরি পেস্ট করতে পারেন।');
-      } else {
-        showToast('কোড কপি করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।', false);
-      }
-    }
-
-    // Reset customizations
-    function resetDefaults() {
-      localStorage.removeItem(STORAGE_KEY);
-      showToast('সবকিছু ডিফল্ট অবস্থায় ফিরিয়ে আনা হচ্ছে...');
-      setTimeout(() => location.reload(), 800);
-    }
-
-    // On page load
-    window.addEventListener('DOMContentLoaded', () => {
-      loadSavedEdits();
-    });
-  </script>
 </body>
 </html>
