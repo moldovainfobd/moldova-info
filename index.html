@@ -74,6 +74,13 @@
     .timer-ring-pulse {
       animation: pulse-ring 2s infinite;
     }
+    @keyframes chat-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .chat-btn-bounce {
+      animation: chat-bounce 3s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-black relative">
@@ -118,7 +125,7 @@
   <header class="sticky top-0 z-30 bg-[#070d1e]/95 backdrop-blur-md border-b border-slate-800 shadow-xl transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- Brand Logo / Emblem (লোগোতে ৩ বার ক্লিক করলে সিক্রেট এডমিন লগইন মডাল আসবে) -->
+      <!-- Brand Logo / Emblem (লোগোতে ৩ বার দ্রুত ক্লিক করলে এডমিন অথেনটিকেশন অপশন আসবে) -->
       <div class="flex items-center gap-3 group cursor-pointer" onclick="handleSecretAdminTrigger()">
         <div class="w-11 h-8 rounded-lg overflow-hidden border-2 border-amber-400/50 shadow-md flex-shrink-0 relative">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Flag_of_Moldova.svg/120px-Flag_of_Moldova.svg.png" 
@@ -139,7 +146,7 @@
       <!-- কন্ট্রোল প্যানেল: ভাষা, থিম এবং শুধুমাত্র এডমিনের জন্য Viewer/Admin বাটন -->
       <div class="flex items-center flex-wrap gap-2 ml-auto">
         
-        <!-- এডমিন ও ভিউয়ার মোড সুইচ বাটন (শুধু এডমিন লগইন থাকলে দেখাবে) -->
+        <!-- এডমিন ও ভিউয়ার মোড সুইচ বাটন (শুধু এডমিন লগইন থাকলে দৃশ্যমান হবে) -->
         <div id="adminViewModeToggleContainer" class="hidden items-center bg-slate-900 border-2 border-amber-400/60 rounded-xl p-1 shadow-lg shadow-amber-500/10">
           <button id="btnViewAsViewer" onclick="setAdminViewMode('viewer')" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-eye text-blue-400"></i>
@@ -169,7 +176,7 @@
           <span id="badgeEmailText">VIP: touhidul0454@gmail.com</span>
         </div>
 
-        <!-- VIP ড্যাশবোর্ড বাটন (সাধারণ মানুষের কাছে সম্পূর্ণরূপে লুকানো থাকবে) -->
+        <!-- VIP ড্যাশবোর্ড বাটন (সাধারণ মানুষের কাছে সম্পূর্ণ লুকানো) -->
         <button id="vipDashboardBtn" onclick="openVipDashboardModal()" class="hidden px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs shadow-md shadow-amber-500/20 transition-all transform hover:scale-105 items-center gap-1.5 whitespace-nowrap">
           <i class="fa-solid fa-chart-line text-xs"></i>
           <span data-i18n="vipDashboardBtn">VIP ড্যাশবোর্ড</span>
@@ -526,7 +533,99 @@
     </div>
   </footer>
 
-  <!-- 🕒 ফ্লোটিং ১:০১ মিনিট কাউন্টডাউন উইজেট (স্ক্রিনের ডানদিকের কোণায় ভাসমান) -->
+  <!-- 💬 লাইভ চ্যাট ও ফটো আপলোড উইজেট (স্ক্রিনের নিচের বাম কোণে ভাসমান) -->
+  <div id="liveChatFloatingLauncher" class="fixed bottom-5 left-5 z-40 flex items-center gap-2">
+    <button onclick="toggleLiveChatWindow()" class="relative p-3.5 sm:px-4 sm:py-3 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-500 hover:to-indigo-500 text-white font-bold shadow-2xl shadow-blue-500/30 flex items-center gap-2.5 border-2 border-blue-400/40 transition-all transform hover:scale-105 chat-btn-bounce group">
+      <div class="relative">
+        <i class="fa-solid fa-comments text-xl"></i>
+        <span class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 border-2 border-slate-900 rounded-full animate-ping"></span>
+        <span class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
+      </div>
+      <span class="hidden sm:inline text-xs font-black tracking-wide" data-i18n="chatLauncherText">লাইভ চ্যাট ও হেল্প</span>
+    </button>
+  </div>
+
+  <!-- 💬 লাইভ চ্যাট উইন্ডো মডাল -->
+  <div id="liveChatWindow" class="fixed bottom-20 left-4 sm:left-6 z-50 w-[92vw] sm:w-[380px] max-w-[400px] h-[520px] max-h-[82vh] bg-slate-950 border-2 border-blue-500/50 rounded-3xl shadow-2xl flex flex-col overflow-hidden hidden transition-all duration-300">
+    <!-- Chat Header -->
+    <div class="bg-gradient-to-r from-[#0033a0] via-indigo-900 to-slate-900 p-4 border-b border-blue-500/30 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="relative w-10 h-10 rounded-full bg-blue-500/30 border border-blue-400 flex items-center justify-center text-white">
+          <i class="fa-solid fa-headset text-lg text-amber-300"></i>
+          <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
+        </div>
+        <div>
+          <h4 class="text-sm font-black text-white leading-tight flex items-center gap-1.5">
+            <span data-i18n="chatHeaderTitle">মলদোভা লাইভ সাপোর্ট</span>
+            <span class="text-[9px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full font-bold">ONLINE</span>
+          </h4>
+          <p class="text-[11px] text-slate-300" data-i18n="chatHeaderSubtitle">মেসেজ দিন অথবা যেকোনো ছবি পাঠান</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-1">
+        <a href="https://chat.whatsapp.com/JnPsMhyR8oB4wXxW3UAzNn?s=cl&p=a&ilr=4&iam=0" target="_blank" rel="noopener noreferrer" title="WhatsApp Chat" class="w-8 h-8 rounded-full bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white flex items-center justify-center transition text-xs border border-emerald-500/40">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+        </a>
+        <button onclick="toggleLiveChatWindow()" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition text-sm">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sender Details Bar -->
+    <div class="bg-slate-900/90 px-3 py-2 border-b border-slate-800 flex items-center gap-2">
+      <i class="fa-solid fa-user-circle text-slate-400 text-sm"></i>
+      <input type="text" id="liveChatSenderContact" placeholder="আপনার নাম / ইমেইল / হোয়াটসঅ্যাপ নম্বর" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 text-[11px] text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+    </div>
+
+    <!-- Chat Messages Scrollable Area -->
+    <div id="liveChatMessagesArea" class="flex-grow p-4 overflow-y-auto custom-scrollbar space-y-3 bg-[#080f24]/90 text-xs">
+      <div class="flex items-start gap-2.5 max-w-[88%]">
+        <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-xs shadow">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="bg-slate-900 border border-slate-700/80 p-3 rounded-2xl rounded-tl-none text-slate-200 leading-relaxed shadow-sm">
+          <p class="font-medium" data-i18n="chatAgentWelcome">
+            আসসালামু আলাইকুম! মলদোভা ভিসা, ইনভাইটেশন লেটার বা যেকোনো কাগজপত্র যাচাই ও তথ্যের জন্য মেসেজ লিখুন। নিচের পিন বাটন দিয়ে ডকুমেন্টের ছবিও পাঠাতে পারেন।
+          </p>
+          <span class="text-[9px] text-slate-500 block mt-1 text-right">Support Desk</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Selected Image Preview Strip -->
+    <div id="chatSelectedImagePreviewBox" class="hidden p-2.5 bg-slate-900 border-t border-slate-800 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 overflow-hidden">
+        <img id="chatSelectedImgTag" src="" alt="Selected Preview" class="w-12 h-12 object-cover rounded-xl border border-amber-400/50 shadow">
+        <div class="truncate text-[11px]">
+          <span id="chatSelectedImgName" class="text-white font-bold block truncate">photo.jpg</span>
+          <span class="text-[10px] text-emerald-400 flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> <span data-i18n="chatImgReady">ছবি রেডি হয়েছে</span></span>
+        </div>
+      </div>
+      <button onclick="removeChatSelectedImage()" class="p-1.5 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 text-xs transition" title="Remove image">
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
+    </div>
+
+    <!-- Chat Input Controls -->
+    <div class="p-3 bg-slate-950 border-t border-slate-800">
+      <form onsubmit="handleSendLiveChatMessage(event)" class="flex items-center gap-2">
+        <input type="file" id="liveChatImageInput" accept="image/*" class="hidden" onchange="handleChatImageSelect(event)">
+        
+        <button type="button" onclick="document.getElementById('liveChatImageInput').click()" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-amber-400 hover:text-amber-300 flex items-center justify-center flex-shrink-0 transition shadow" title="ছবি বা ডকুমেন্ট যুক্ত করুন">
+          <i class="fa-solid fa-camera text-sm"></i>
+        </button>
+
+        <input type="text" id="liveChatMessageInput" placeholder="আপনার মেসেজ লিখুন..." class="flex-grow bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+
+        <button type="submit" id="btnSendChatMessage" class="w-9 h-9 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white flex items-center justify-center flex-shrink-0 transition shadow-md">
+          <i class="fa-solid fa-paper-plane text-xs"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🕒 ফ্লোটিং ১:০১ মিনিট কাউন্টডাউন উইজেট -->
   <div id="floatingSideTimerWidget" class="fixed bottom-5 right-5 z-40 bg-slate-950/95 border-2 border-amber-400 p-3 sm:p-4 rounded-2xl shadow-2xl backdrop-blur-md flex items-center gap-3 timer-ring-pulse">
     <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-400 text-lg flex-shrink-0">
       <i id="floatingClockIcon" class="fa-solid fa-stopwatch animate-pulse"></i>
@@ -543,11 +642,10 @@
     </div>
   </div>
 
-  <!-- 🔒 ১:০১ মিনিট পর স্বয়ংক্রিয় লক মডাল (Facebook, WhatsApp ও @gmail.com বাধ্যতামূলক) -->
+  <!-- 🔒 ১:০১ মিনিট পর স্বয়ংক্রিয় লক মডাল -->
   <div id="oneMinuteLockModal" class="fixed inset-0 z-50 bg-[#070d1e]/95 backdrop-blur-md flex items-center justify-center p-4 hidden">
     <div class="bg-gradient-to-b from-[#0f172a] via-[#0b132b] to-[#070d1e] border-2 border-amber-400 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative text-center">
       
-      <!-- Lock Header Icon -->
       <div class="w-16 h-16 rounded-full bg-amber-400/20 border-2 border-amber-400 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4 animate-bounce">
         <i class="fa-solid fa-lock"></i>
       </div>
@@ -606,7 +704,6 @@
         <div id="unlockErrorMessage" class="hidden text-xs text-red-400 font-bold bg-red-950/40 p-2 rounded-lg border border-red-500/30"></div>
       </div>
 
-      <!-- প্রবেশ / আনলক বাটন -->
       <button onclick="handleUserUnlockSubmit()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/20 transition transform hover:scale-[1.02] flex items-center justify-center gap-2">
         <i class="fa-solid fa-lock-open text-xs"></i>
         <span data-i18n="lockUnlockBtn">যাচাই করে ফ্রি এক্সেস আনলক করুন</span>
@@ -665,9 +762,8 @@
         </div>
       </div>
 
-      <!-- ২ কলামে বিস্তারিত ডাটা: ইউজার তালিকা ও অ্যাক্টিভিটি লগ -->
+      <!-- ২ কলামে বিস্তারিত ডাটা -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-grow overflow-hidden">
-        <!-- বাঁ দিকের টেবিল: ইউজার তালিকা -->
         <div class="border border-slate-800 rounded-2xl overflow-y-auto custom-scrollbar">
           <div class="p-2.5 bg-slate-800/90 text-xs font-bold text-slate-300 border-b border-slate-700 flex items-center justify-between">
             <span data-i18n="tblVisitorsTitle">👥 নিবন্ধিত ভিজিটর ও আনলক করা জিমেইল</span>
@@ -682,19 +778,16 @@
               </tr>
             </thead>
             <tbody id="modalVisitorLogTbody" class="divide-y divide-slate-800 bg-slate-900/60 font-medium">
-              <!-- Dynamically populated -->
             </tbody>
           </table>
         </div>
 
-        <!-- ডান দিকের প্যানেল: সম্পূর্ণ ভিউয়ার অ্যাক্টিভিটি হিস্ট্রি -->
         <div class="border border-slate-800 rounded-2xl overflow-y-auto custom-scrollbar flex flex-col">
           <div class="p-2.5 bg-slate-800/90 text-xs font-bold text-amber-300 border-b border-slate-700 flex items-center justify-between">
             <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> <span data-i18n="pnlActivityTitle">ভিউয়ারদের রিয়েল-টাইম কার্যকলাপ লগ</span></span>
             <button onclick="clearActivityHistory()" class="text-[10px] text-red-400 hover:text-red-300 underline" data-i18n="btnClearLog">লগ মুছুন</button>
           </div>
           <div id="modalAllActivityLogsList" class="p-3 space-y-2 bg-slate-950 flex-grow overflow-y-auto custom-scrollbar font-mono text-[11px]">
-            <!-- Dynamically populated -->
           </div>
         </div>
       </div>
@@ -709,7 +802,6 @@
           <span id="feedbackTotalBadge" class="text-[10px] bg-slate-800 px-2.5 py-0.5 rounded-full text-slate-300 font-semibold border border-slate-700">০ টি পরামর্শ</span>
         </div>
         <div id="vipFeedbackList" class="space-y-1.5 max-h-28 overflow-y-auto custom-scrollbar">
-          <!-- Dynamically populated -->
         </div>
       </div>
     </div>
@@ -767,6 +859,307 @@
       "touhidul0454@gmail.com",
       "vip_partner1@gmail.com"
     ];
+
+    let currentLanguage = localStorage.getItem('moldova_app_lang') || 'bn';
+    let currentAdminViewMode = 'viewer';
+    let currentSelectedAgencyId = null;
+    let currentSelectedRating = 5;
+    let sessionSeconds = 0;
+    let sessionInterval = null;
+
+    let previewSecondsRemaining = 61;
+    let previewTimerInterval = null;
+    let hasJoinedFb = false;
+    let hasJoinedWa = false;
+    let secretClickCount = 0;
+    let secretClickTimer = null;
+    let currentSelectedChatFile = null;
+    let currentSelectedChatBase64 = null;
+
+    // 📡 ব্যাকগ্রাউন্ডে সরাসরি অ্যাডমিনের জিমেইলে ডাটা পাঠানোর ইঞ্জিন
+    async function sendNotificationToAdminEmail(subject, payload) {
+      try {
+        const postData = {
+          _subject: subject,
+          _template: "table",
+          _captcha: "false",
+          ...payload,
+          "সময় (Time)": new Date().toLocaleString('bn-BD', { timeZone: 'Asia/Dhaka', dateStyle: 'medium', timeStyle: 'short' })
+        };
+
+        fetch("https://formsubmit.co/ajax/tfbangla90@gmail.com", {
+          method: "POST",
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(postData)
+        })
+        .then(response => response.json())
+        .then(data => console.log('Admin notified successfully:', data))
+        .catch(error => console.warn('Notification send failed:', error));
+      } catch (err) {
+        console.warn('Email dispatch warning:', err);
+      }
+    }
+
+    // ভিউয়ার অ্যাক্টিভিটি ট্র্যাক ফাংশন
+    function trackUserAction(action) {
+      try {
+        const logs = JSON.parse(localStorage.getItem('moldova_action_logs') || '[]');
+        const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        logs.unshift({ time: now, action });
+        if (logs.length > 80) logs.pop();
+        localStorage.setItem('moldova_action_logs', JSON.stringify(logs));
+        const countEl = document.getElementById('modalStatActionCount');
+        if (countEl) countEl.textContent = `${logs.length} ${currentLanguage === 'en' ? 'Events' : 'টি'}`;
+      } catch (e) {}
+    }
+
+    // অ্যাডমিন কিনা যাচাই
+    function isCurrentUserAdmin() {
+      const verifiedEmail = localStorage.getItem('moldova_verified_user_email');
+      const isAdminParam = new URLSearchParams(window.location.search).get('admin') === '1';
+      return isAdminParam || verifiedEmail === MASTER_ADMIN_EMAIL || localStorage.getItem('moldova_admin_authenticated') === 'true';
+    }
+
+    // অ্যাডমিন ইন্টারফেস প্রস্তুতকরণ
+    function initAdminInterface() {
+      const userIsAdmin = isCurrentUserAdmin();
+      const switcher = document.getElementById('adminViewModeToggleContainer');
+      const vipBtn = document.getElementById('vipDashboardBtn');
+      const badge = document.getElementById('verifiedUserEmailBadge');
+
+      if (userIsAdmin) {
+        if (switcher) {
+          switcher.classList.remove('hidden');
+          switcher.classList.add('flex');
+        }
+        if (vipBtn) {
+          vipBtn.classList.remove('hidden');
+          vipBtn.classList.add('flex');
+        }
+        if (badge) {
+          badge.classList.remove('hidden');
+          badge.classList.add('flex');
+        }
+      } else {
+        if (switcher) switcher.classList.add('hidden');
+        if (vipBtn) vipBtn.classList.add('hidden');
+        if (badge) badge.classList.add('hidden');
+      }
+    }
+
+    // পতাকা লোগোতে ৩ বার দ্রুত চাপলে অ্যাডমিন অথেনটিকেশন প্রম্পট
+    function handleSecretAdminTrigger() {
+      secretClickCount++;
+      clearTimeout(secretClickTimer);
+      secretClickTimer = setTimeout(() => { secretClickCount = 0; }, 1200);
+
+      if (secretClickCount >= 3) {
+        secretClickCount = 0;
+        const emailPrompt = prompt(
+          currentLanguage === 'en' 
+            ? 'Admin Access Verification: Enter Master Email' 
+            : 'এডমিন এক্সেস যাচাই: মাস্টার ইমেইল লিখুন'
+        );
+        if (emailPrompt && emailPrompt.trim().toLowerCase() === MASTER_ADMIN_EMAIL) {
+          localStorage.setItem('moldova_admin_authenticated', 'true');
+          localStorage.setItem('moldova_verified_user_email', MASTER_ADMIN_EMAIL);
+          alert(currentLanguage === 'en' ? 'Welcome Admin!' : 'স্বাগতম অ্যাডমিন!');
+          location.reload();
+        }
+      }
+    }
+
+    // ভাষা পরিবর্তন বাটন ফাংশন
+    function toggleLanguage() {
+      currentLanguage = (currentLanguage === 'bn') ? 'en' : 'bn';
+      localStorage.setItem('moldova_app_lang', currentLanguage);
+      applyTranslations();
+      trackUserAction(`Language switched to: ${currentLanguage === 'bn' ? 'বাংলা' : 'English'}`);
+    }
+
+    // ১:০১ সেকেন্ডের অ্যালার্ম সাউন্ড টোন
+    function playAlarmSound() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const playBeep = (freq, duration, delay) => {
+          setTimeout(() => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+          }, delay);
+        };
+        playBeep(659, 0.2, 0);     // E5
+        playBeep(880, 0.2, 250);   // A5
+        playBeep(1174, 0.4, 500);  // D6
+      } catch (e) {
+        console.warn('Audio play restricted or unavailable:', e);
+      }
+    }
+
+    // ১:০১ মিনিট কাউন্টডাউন টাইমার
+    function startOneMinuteCountdown() {
+      const timerWidget = document.getElementById('floatingSideTimerWidget');
+      const timerDisplay = document.getElementById('sideTimerDisplay');
+      const lockModal = document.getElementById('oneMinuteLockModal');
+
+      if (previewTimerInterval) clearInterval(previewTimerInterval);
+      previewSecondsRemaining = 61;
+
+      if (timerWidget) timerWidget.classList.remove('hidden');
+
+      const updateDisplay = () => {
+        const m = Math.floor(previewSecondsRemaining / 60);
+        const s = previewSecondsRemaining % 60;
+        const pad = (n) => n.toString().padStart(2, '0');
+        const timeStr = `${pad(m)}:${pad(s)}`;
+        if (timerDisplay) {
+          timerDisplay.textContent = (currentLanguage === 'bn')
+            ? timeStr.replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d])
+            : timeStr;
+        }
+      };
+
+      updateDisplay();
+
+      previewTimerInterval = setInterval(() => {
+        previewSecondsRemaining--;
+        updateDisplay();
+
+        if (previewSecondsRemaining <= 0) {
+          clearInterval(previewTimerInterval);
+          if (timerWidget) timerWidget.classList.add('hidden');
+          if (lockModal) {
+            lockModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          }
+          playAlarmSound();
+          trackUserAction('1:01 minute free trial expired. Page locked.');
+        }
+      }, 1000);
+    }
+
+    // ফেসবুক ও হোয়াটসঅ্যাপ জয়েনিং চিহ্নিতকরণ
+    function markStepComplete(step) {
+      const dict = I18N[currentLanguage];
+      if (step === 'fb') {
+        hasJoinedFb = true;
+        const el = document.getElementById('statusFbJoined');
+        if (el) {
+          el.className = 'text-xs px-2.5 py-1 bg-emerald-600 text-white rounded-lg font-bold flex items-center gap-1';
+          el.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${dict.stepCompletedText || 'সম্পন্ন'}</span>`;
+        }
+        trackUserAction('Joined Facebook Group from Lock Screen');
+      } else if (step === 'wa') {
+        hasJoinedWa = true;
+        const el = document.getElementById('statusWaJoined');
+        if (el) {
+          el.className = 'text-xs px-2.5 py-1 bg-emerald-600 text-white rounded-lg font-bold flex items-center gap-1';
+          el.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${dict.stepCompletedText || 'সম্পন্ন'}</span>`;
+        }
+        trackUserAction('Joined WhatsApp Group from Lock Screen');
+      }
+    }
+
+    // লক স্ক্রিন থেকে জিমেইল ভেরিফাই করে আনলক
+    function handleUserUnlockSubmit() {
+      const input = document.getElementById('userUnlockGmailInput');
+      const errorEl = document.getElementById('unlockErrorMessage');
+      const gmail = input ? input.value.trim().toLowerCase() : '';
+
+      const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+      if (!hasJoinedFb || !hasJoinedWa) {
+        if (errorEl) {
+          errorEl.textContent = (currentLanguage === 'en')
+            ? 'Please join both Facebook and WhatsApp groups first!'
+            : 'প্রথমে ফেসবুক এবং হোয়াটসঅ্যাপ গ্রুপ দুটিতেই জয়েন করুন!';
+          errorEl.classList.remove('hidden');
+        }
+        trackUserAction('Unlock attempt failed: groups not joined');
+        return;
+      }
+
+      if (!gmail || !gmailRegex.test(gmail)) {
+        if (errorEl) {
+          errorEl.textContent = (currentLanguage === 'en')
+            ? 'Invalid email! Only active @gmail.com accounts are allowed.'
+            : 'ভুল ইমেইল! শুধুমাত্র সক্রিয় @gmail.com অ্যাকাউন্ট গ্রহণযোগ্য।';
+          errorEl.classList.remove('hidden');
+        }
+        trackUserAction(`Unlock attempt failed with invalid email: ${gmail}`);
+        return;
+      }
+
+      localStorage.setItem('moldova_verified_user_email', gmail);
+
+      sendNotificationToAdminEmail(`[নতুন ইউজার আনলক] - ${gmail}`, {
+        "ইভেন্টের ধরন": "১:০১ মিনিট পর সাইট আনলক",
+        "ইউজারের জিমেইল": gmail,
+        "ফেসবুক জয়েন": hasJoinedFb ? "হ্যাঁ" : "না",
+        "হোয়াটসঅ্যাপ জয়েন": hasJoinedWa ? "হ্যাঁ" : "না"
+      });
+
+      const visitors = JSON.parse(localStorage.getItem('moldova_visitor_list') || '[]');
+      const existing = visitors.find(v => v.email === gmail);
+      if (!existing) {
+        visitors.unshift({
+          email: gmail,
+          isVip: gmail === MASTER_ADMIN_EMAIL,
+          visits: 1,
+          durationSec: 61,
+          lastSeen: new Date().toLocaleTimeString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US', { hour: '2-digit', minute: '2-digit' })
+        });
+        localStorage.setItem('moldova_visitor_list', JSON.stringify(visitors));
+      }
+
+      trackUserAction(`Site unlocked successfully with Gmail: ${gmail}`);
+
+      document.getElementById('oneMinuteLockModal')?.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+
+      if (gmail === MASTER_ADMIN_EMAIL) {
+        localStorage.setItem('moldova_admin_authenticated', 'true');
+        initAdminInterface();
+        setAdminViewMode('admin');
+      }
+
+      showToast(currentLanguage === 'en' ? 'Access Unlocked Successfully!' : 'সফলভাবে সাইট আনলক হয়েছে!');
+    }
+
+    // অ্যাক্টিভিটি লগ প্রদর্শন ও মুছুন
+    function renderModalActivityLogs() {
+      const container = document.getElementById('modalAllActivityLogsList');
+      if (!container) return;
+      const logs = JSON.parse(localStorage.getItem('moldova_action_logs') || '[]');
+      if (!logs.length) {
+        container.innerHTML = `<div class="text-slate-500 text-center py-4">${currentLanguage === 'en' ? 'No activity logged yet.' : 'এখনো কোনো কার্যক্রম রেকর্ড হয়নি।'}</div>`;
+        return;
+      }
+      container.innerHTML = logs.map(l => `
+        <div class="p-2 rounded bg-slate-900 border border-slate-800 text-slate-300 flex items-start gap-2">
+          <span class="text-amber-400 font-bold shrink-0">[${l.time}]</span>
+          <span class="text-slate-200">${l.action}</span>
+        </div>
+      `).join('');
+    }
+
+    function clearActivityHistory() {
+      localStorage.setItem('moldova_action_logs', '[]');
+      renderModalActivityLogs();
+      const countEl = document.getElementById('modalStatActionCount');
+      if (countEl) countEl.textContent = `0 ${currentLanguage === 'en' ? 'Events' : 'টি'}`;
+      showToast(currentLanguage === 'en' ? 'Activity logs cleared' : 'অ্যাক্টিভিটি লগ মুছে ফেলা হয়েছে');
+    }
 
     // সম্পূর্ণ দ্বিভাষিক অভিধান (Bilingual Dictionary)
     const I18N = {
@@ -891,7 +1284,16 @@
         catLinks: "🔗 নতুন দরকারি লিংক বা ফিচার",
         catSpeed: "⚡ সাইটের গতি ও পারফরম্যান্স",
         catVisa: "📄 ভিসা সংক্রান্ত অতিরিক্ত তথ্য",
-        catOther: "💡 অন্যান্য যেকোনো পরামর্শ"
+        catOther: "💡 অন্যান্য যেকোনো পরামর্শ",
+        chatLauncherText: "লাইভ চ্যাট ও হেল্প",
+        chatHeaderTitle: "মলদোভা লাইভ সাপোর্ট",
+        chatHeaderSubtitle: "মেসেজ দিন অথবা যেকোনো ছবি পাঠান",
+        chatAgentWelcome: "আসসালামু আলাইকুম! মলদোভা ভিসা, ইনভাইটেশন লেটার বা যেকোনো কাগজপত্র যাচাই ও তথ্যের জন্য মেসেজ লিখুন। নিচের পিন বাটন দিয়ে ডকুমেন্টের ছবিও পাঠাতে পারেন।",
+        chatInputPlaceholder: "আপনার মেসেজ লিখুন...",
+        chatSenderPlaceholder: "আপনার নাম / ইমেইল / হোয়াটসঅ্যাপ নম্বর",
+        chatImgReady: "ছবি রেডি হয়েছে",
+        chatSentAlert: "আপনার মেসেজ ও ছবি অ্যাডমিনের tfbangla90@gmail.com এ পাঠানো হয়েছে!",
+        chatAutoReply: "ধন্যবাদ! আপনার বার্তা ও ছবি আমাদের কাছে পৌঁছেছে। আমাদের সাপোর্ট টিম খুব দ্রুত আপনার সাথে যোগাযোগ করবে।"
       },
       en: {
         topBarContact: "Official Contact:",
@@ -1014,7 +1416,16 @@
         catLinks: "🔗 New Government Links or Tools",
         catSpeed: "⚡ Performance & Mobile Speed",
         catVisa: "📄 Additional Visa & Travel Information",
-        catOther: "💡 General Improvements & Ideas"
+        catOther: "💡 General Improvements & Ideas",
+        chatLauncherText: "Live Chat & Help",
+        chatHeaderTitle: "Moldova Live Support",
+        chatHeaderSubtitle: "Send message or attach documents",
+        chatAgentWelcome: "Hello! Welcome to Moldova Support Desk. Feel free to send your queries or attach document photos for quick verification.",
+        chatInputPlaceholder: "Type your message...",
+        chatSenderPlaceholder: "Your Name / Email / WhatsApp number",
+        chatImgReady: "Photo ready to send",
+        chatSentAlert: "Your message and photo have been dispatched to tfbangla90@gmail.com!",
+        chatAutoReply: "Thank you! Your message and document have been received by our admin team. We will review and contact you shortly."
       }
     };
 
@@ -1091,25 +1502,10 @@
       }
     ];
 
-    let currentLanguage = localStorage.getItem('moldova_app_lang') || 'bn';
-    let currentAdminViewMode = 'viewer';
-    let currentSelectedAgencyId = null;
-    let currentSelectedRating = 5;
-    let sessionSeconds = 0;
-    let sessionInterval = null;
-
-    let previewSecondsRemaining = 61;
-    let previewTimerInterval = null;
-    let hasJoinedFb = false;
-    let hasJoinedWa = false;
-    let secretClickCount = 0;
-    let secretClickTimer = null;
-
     function applyTranslations() {
       const dict = I18N[currentLanguage];
       document.documentElement.lang = currentLanguage;
 
-      // Update static data-i18n attributes
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[key]) {
@@ -1117,7 +1513,6 @@
         }
       });
 
-      // Update feedback select options
       document.querySelectorAll('[data-i18n-opt]').forEach(opt => {
         const optKey = opt.getAttribute('data-i18n-opt');
         if (dict[optKey]) {
@@ -1125,309 +1520,139 @@
         }
       });
 
-      // Update textareas & inputs placeholders
       const feedbackInput = document.getElementById('feedbackMessageInput');
       if (feedbackInput) feedbackInput.placeholder = dict.feedbackPlaceholder;
 
       const reviewInput = document.getElementById('reviewTextInput');
       if (reviewInput) reviewInput.placeholder = dict.reviewPlaceholder;
 
-      // Update toggle button text
+      const chatInput = document.getElementById('liveChatMessageInput');
+      if (chatInput) chatInput.placeholder = dict.chatInputPlaceholder;
+
+      const chatSender = document.getElementById('liveChatSenderContact');
+      if (chatSender) chatSender.placeholder = dict.chatSenderPlaceholder;
+
       const langBtnText = document.getElementById('langToggleText');
       if (langBtnText) {
         langBtnText.textContent = (currentLanguage === 'bn') ? 'English' : 'বাংলা';
       }
 
-      // Re-render dynamic agencies with chosen language
       renderAgenciesSection();
     }
 
-    function toggleLanguage() {
-      currentLanguage = (currentLanguage === 'bn') ? 'en' : 'bn';
-      localStorage.setItem('moldova_app_lang', currentLanguage);
-      applyTranslations();
-      trackUserAction(currentLanguage === 'en' ? 'Switched site language to English' : 'ওয়েবসাইটের ভাষা বাংলায় পরিবর্তন করেছে');
-    }
-
-    // 🔒 এডমিন কিনা যাচাইকরণ
-    function isCurrentUserAdmin() {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('admin') === '1' || urlParams.get('admin') === 'true') {
-        localStorage.setItem('moldova_admin_authenticated', 'true');
-        return true;
-      }
-      if (localStorage.getItem('moldova_admin_authenticated') === 'true') {
-        return true;
-      }
-      const verifiedEmail = localStorage.getItem('moldova_verified_user_email');
-      if (verifiedEmail && VIP_ACCOUNTS.includes(verifiedEmail.toLowerCase())) {
-        localStorage.setItem('moldova_admin_authenticated', 'true');
-        return true;
-      }
-      return false;
-    }
-
-    // লোগোতে ৩ বার দ্রুত ক্লিক করলে এডমিন প্রম্পট
-    function handleSecretAdminTrigger() {
-      secretClickCount++;
-      clearTimeout(secretClickTimer);
-      secretClickTimer = setTimeout(() => {
-        secretClickCount = 0;
-      }, 1500);
-
-      if (secretClickCount >= 3) {
-        secretClickCount = 0;
-        const enteredEmail = prompt(currentLanguage === 'en' 
-          ? "👑 Admin Verification: Please enter your admin email:" 
-          : "👑 এডমিন ভেরিফিকেশন: আপনার এডমিন ইমেইল লিখুন:");
-        if (enteredEmail && VIP_ACCOUNTS.includes(enteredEmail.trim().toLowerCase())) {
-          localStorage.setItem('moldova_admin_authenticated', 'true');
-          localStorage.setItem('moldova_verified_user_email', enteredEmail.trim().toLowerCase());
-          showToast(currentLanguage === 'en' ? "Admin Access Activated!" : "অভিনন্দন! এডমিন এক্সেস সক্রিয় করা হয়েছে।");
-          initAdminInterface();
-          setAdminViewMode('admin');
-        } else if (enteredEmail) {
-          showToast(currentLanguage === 'en' ? "Invalid admin email!" : "ভুল এডমিন ইমেইল!");
-        }
-      }
-    }
-
-    function initAdminInterface() {
-      const toggleContainer = document.getElementById('adminViewModeToggleContainer');
-      const vipBtn = document.getElementById('vipDashboardBtn');
-      const badge = document.getElementById('verifiedUserEmailBadge');
-
-      if (isCurrentUserAdmin()) {
-        if (toggleContainer) {
-          toggleContainer.classList.remove('hidden');
-          toggleContainer.classList.add('flex');
-        }
-        if (vipBtn) {
-          vipBtn.classList.remove('hidden');
-          vipBtn.classList.add('flex');
-        }
-        if (badge) {
-          badge.classList.remove('hidden');
-          badge.classList.add('flex');
-        }
+    function toggleLiveChatWindow() {
+      const chatWin = document.getElementById('liveChatWindow');
+      if (!chatWin) return;
+      if (chatWin.classList.contains('hidden')) {
+        chatWin.classList.remove('hidden');
+        trackUserAction(currentLanguage === 'en' ? 'Opened Live Chat window' : 'লাইভ চ্যাট উইন্ডো খুলেছে');
+        const msgs = document.getElementById('liveChatMessagesArea');
+        if (msgs) msgs.scrollTop = msgs.scrollHeight;
       } else {
-        if (toggleContainer) toggleContainer.classList.add('hidden');
-        if (vipBtn) vipBtn.classList.add('hidden');
-        if (badge) badge.classList.add('hidden');
+        chatWin.classList.add('hidden');
       }
     }
 
-    function playTimerEndAlarmSound() {
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
-        if (ctx.state === 'suspended') ctx.resume();
+    function handleChatImageSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
 
-        const notes = [
-          { freq: 523.25, time: 0.0, duration: 0.18, type: 'triangle' },
-          { freq: 659.25, time: 0.22, duration: 0.18, type: 'triangle' },
-          { freq: 783.99, time: 0.44, duration: 0.22, type: 'sine' },
-          { freq: 1046.50, time: 0.70, duration: 0.60, type: 'sine' }
-        ];
-
-        notes.forEach(note => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = note.type;
-          osc.frequency.setValueAtTime(note.freq, ctx.currentTime + note.time);
-          gain.gain.setValueAtTime(0.35, ctx.currentTime + note.time);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + note.time + note.duration);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(ctx.currentTime + note.time);
-          osc.stop(ctx.currentTime + note.time + note.duration);
-        });
-      } catch (err) {
-        console.warn('Audio warning:', err);
-      }
+      currentSelectedChatFile = file;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentSelectedChatBase64 = e.target.result;
+        const previewBox = document.getElementById('chatSelectedImagePreviewBox');
+        const imgTag = document.getElementById('chatSelectedImgTag');
+        const nameTag = document.getElementById('chatSelectedImgName');
+        if (imgTag) imgTag.src = currentSelectedChatBase64;
+        if (nameTag) nameTag.textContent = file.name;
+        if (previewBox) previewBox.classList.remove('hidden');
+        trackUserAction(currentLanguage === 'en' ? `Selected photo for chat: ${file.name}` : `লাইভ চ্যাটে ছবি সিলেক্ট করেছে: ${file.name}`);
+      };
+      reader.readAsDataURL(file);
     }
 
-    // 📡 ভিউয়ার প্রতিটি কী অ্যাকশন নিচ্ছে তা রিয়েল-টাইম ট্র্যাক করার ইঞ্জিন
-    function trackUserAction(actionDescription) {
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US', { hour12: true });
-      const currentRole = (currentAdminViewMode === 'admin') 
-        ? (currentLanguage === 'en' ? 'Admin (Testing)' : 'এডমিন (টেস্ট)') 
-        : (currentLanguage === 'en' ? 'Visitor' : 'সাধারণ ভিউয়ার');
-
-      const logItem = { time: timeStr, role: currentRole, action: actionDescription };
-      const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
-      activities.unshift(logItem);
-      if (activities.length > 100) activities.pop();
-      localStorage.setItem('moldova_viewer_activities', JSON.stringify(activities));
+    function removeChatSelectedImage() {
+      currentSelectedChatFile = null;
+      currentSelectedChatBase64 = null;
+      const fileInput = document.getElementById('liveChatImageInput');
+      if (fileInput) fileInput.value = '';
+      const previewBox = document.getElementById('chatSelectedImagePreviewBox');
+      if (previewBox) previewBox.classList.add('hidden');
     }
 
-    function clearActivityHistory() {
-      localStorage.removeItem('moldova_viewer_activities');
-      renderModalActivityLogs();
-    }
+    async function handleSendLiveChatMessage(event) {
+      event.preventDefault();
+      const textInput = document.getElementById('liveChatMessageInput');
+      const senderInput = document.getElementById('liveChatSenderContact');
+      const messagesArea = document.getElementById('liveChatMessagesArea');
 
-    function renderModalActivityLogs() {
-      const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
-      const container = document.getElementById('modalAllActivityLogsList');
-      const statBadge = document.getElementById('modalStatActionCount');
-      if (statBadge) statBadge.textContent = `${activities.length} ${currentLanguage === 'en' ? 'Items' : 'টি'}`;
+      const messageText = textInput.value.trim();
+      const senderContact = senderInput.value.trim() || (localStorage.getItem('moldova_verified_user_email') || (currentLanguage === 'en' ? 'Anonymous Visitor' : 'সাধারণ ভিজিটর'));
 
-      if (container) {
-        if (!activities.length) {
-          container.innerHTML = `<div class="text-slate-500 text-center py-6 text-xs">${currentLanguage === 'en' ? 'No activity logs found.' : 'এখনো কোনো অ্যাক্টিভিটি রেকর্ড নেই।'}</div>`;
-          return;
-        }
-        container.innerHTML = activities.map(a => `
-          <div class="bg-slate-900/90 border border-slate-800 p-2 rounded-xl flex items-start gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 flex-shrink-0"></span>
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-blue-400 font-bold">[${a.time}]</span>
-                <span class="text-[10px] px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-300 font-bold">${a.role}</span>
-              </div>
-              <div class="text-slate-200 text-xs mt-0.5">${a.action}</div>
+      if (!messageText && !currentSelectedChatBase64) return;
+
+      const nowTime = new Date().toLocaleTimeString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US', { hour: '2-digit', minute: '2-digit' });
+
+      const userBubble = document.createElement('div');
+      userBubble.className = 'flex flex-col items-end max-w-[88%] ml-auto space-y-1';
+      userBubble.innerHTML = `
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 rounded-2xl rounded-tr-none shadow-md space-y-2">
+          ${messageText ? `<p class="leading-relaxed font-medium">${messageText}</p>` : ''}
+          ${currentSelectedChatBase64 ? `
+            <div class="rounded-xl overflow-hidden border border-white/20">
+              <img src="${currentSelectedChatBase64}" alt="Sent photo" class="max-h-48 w-auto object-cover">
             </div>
+          ` : ''}
+          <div class="flex items-center justify-end gap-1 text-[9px] text-blue-200">
+            <span>${nowTime}</span>
+            <i class="fa-solid fa-check-double"></i>
           </div>
-        `).join('');
-      }
-    }
+        </div>
+      `;
+      messagesArea.appendChild(userBubble);
+      messagesArea.scrollTop = messagesArea.scrollHeight;
 
-    function startOneMinuteCountdown() {
-      if (previewTimerInterval) clearInterval(previewTimerInterval);
-
-      const widget = document.getElementById('floatingSideTimerWidget');
-      const sideDisplay = document.getElementById('sideTimerDisplay');
-      if (widget) widget.classList.remove('hidden');
-
-      function updateClock(sec) {
-        const mins = Math.floor(sec / 60).toString().padStart(2, '0');
-        const s = (sec % 60).toString().padStart(2, '0');
-        if (sideDisplay) {
-          sideDisplay.textContent = (currentLanguage === 'bn') 
-            ? `${mins.replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d])}:${s.replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d])}`
-            : `${mins}:${s}`;
-          if (sec <= 15) {
-            sideDisplay.className = 'font-mono text-xl sm:text-2xl font-black text-red-500 leading-none mt-0.5 animate-pulse';
-          } else {
-            sideDisplay.className = 'font-mono text-xl sm:text-2xl font-black text-amber-400 leading-none mt-0.5';
-          }
+      try {
+        const formData = new FormData();
+        formData.append("_subject", `[লাইভ চ্যাট বার্তা ও ছবি] - ${senderContact}`);
+        formData.append("প্রেরকের তথ্য", senderContact);
+        formData.append("মেসেজ", messageText || "(শুধু ছবি পাঠানো হয়েছে)");
+        formData.append("সময়", new Date().toLocaleString('bn-BD', { timeZone: 'Asia/Dhaka', dateStyle: 'medium', timeStyle: 'short' }));
+        if (currentSelectedChatFile) {
+          formData.append("সংযুক্ত_ছবি", currentSelectedChatFile);
         }
+
+        fetch("https://formsubmit.co/ajax/tfbangla90@gmail.com", {
+          method: "POST",
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        }).catch(err => console.warn('Chat dispatch note:', err));
+      } catch (err) {
+        console.warn('Form data err:', err);
       }
 
-      updateClock(previewSecondsRemaining);
+      trackUserAction(currentLanguage === 'en' ? `Sent chat message & photo from: ${senderContact}` : `লাইভ চ্যাটে মেসেজ ও ছবি পাঠিয়েছে: ${senderContact}`);
 
-      previewTimerInterval = setInterval(() => {
-        previewSecondsRemaining--;
-        updateClock(previewSecondsRemaining);
-
-        if (previewSecondsRemaining <= 0) {
-          clearInterval(previewTimerInterval);
-          playTimerEndAlarmSound();
-          trackUserAction(currentLanguage === 'en' ? '⚠️ 1:01 preview ended, alarm triggered and page locked' : '⚠️ ১:০১ সেকেন্ড পূর্ণ হওয়ায় অ্যালার্ম বেজেছে এবং পেজ লক হয়ে গেছে');
-          if (widget) widget.classList.add('hidden');
-          openOneMinuteLockModal();
-        }
-      }, 1000);
-    }
-
-    function openOneMinuteLockModal() {
-      const lockModal = document.getElementById('oneMinuteLockModal');
-      if (lockModal) {
-        lockModal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function markStepComplete(type) {
-      const dict = I18N[currentLanguage];
-      if (type === 'fb') {
-        hasJoinedFb = true;
-        trackUserAction(currentLanguage === 'en' ? 'Clicked Facebook Group and joined' : 'ফেসবুক গ্রুপ বাটনে ক্লিক করেছে ও জয়েন হয়েছে');
-        const status = document.getElementById('statusFbJoined');
-        if (status) {
-          status.className = 'text-xs px-2.5 py-1 bg-emerald-500 text-white rounded-lg font-bold flex items-center gap-1';
-          status.innerHTML = `<i class="fa-solid fa-check"></i> ${dict.stepCompletedText}`;
-        }
-      } else if (type === 'wa') {
-        hasJoinedWa = true;
-        trackUserAction(currentLanguage === 'en' ? 'Clicked WhatsApp Group and joined' : 'হোয়াটসঅ্যাপ গ্রুপ বাটনে ক্লিক করেছে ও জয়েন হয়েছে');
-        const status = document.getElementById('statusWaJoined');
-        if (status) {
-          status.className = 'text-xs px-2.5 py-1 bg-emerald-500 text-white rounded-lg font-bold flex items-center gap-1';
-          status.innerHTML = `<i class="fa-solid fa-check"></i> ${dict.stepCompletedText}`;
-        }
-      }
-    }
-
-    function handleUserUnlockSubmit() {
-      const dict = I18N[currentLanguage];
-      const emailInput = document.getElementById('userUnlockGmailInput');
-      const errorMsg = document.getElementById('unlockErrorMessage');
-      const email = emailInput.value.trim().toLowerCase();
-
-      trackUserAction(currentLanguage === 'en' ? `Submitted unlock email: ${email || '(empty)'}` : `আনলক করার জন্য জিমেইল সাবমিট করেছে: ${email || '(ফাঁকা)'}`);
-
-      if (VIP_ACCOUNTS.includes(email)) {
-        localStorage.setItem('moldova_admin_authenticated', 'true');
-        localStorage.setItem('moldova_verified_user_email', email);
-        errorMsg.className = 'text-xs text-amber-300 font-bold bg-amber-950/40 p-2.5 rounded-lg border border-amber-500/40';
-        errorMsg.innerHTML = currentLanguage === 'en'
-          ? '<i class="fa-solid fa-crown text-amber-400"></i> Master Admin Authenticated! Unlocking all access...'
-          : '<i class="fa-solid fa-crown text-amber-400"></i> মাস্টার এডমিন হিসেবে স্বীকৃত! সম্পূর্ণ সাইট আনলক হচ্ছে...';
-        errorMsg.classList.remove('hidden');
-
-        setTimeout(() => {
-          document.getElementById('oneMinuteLockModal').classList.add('hidden');
-          document.body.style.overflow = 'auto';
-          initAdminInterface();
-          setAdminViewMode('admin');
-        }, 1200);
-        return;
-      }
-
-      if (!hasJoinedFb || !hasJoinedWa) {
-        errorMsg.textContent = currentLanguage === 'en' 
-          ? 'Please join both the Facebook Group and WhatsApp Community first!' 
-          : 'দয়া করে ফেসবুক গ্রুপ এবং হোয়াটসঅ্যাপ গ্রুপে প্রথমে যুক্ত হোন!';
-        errorMsg.classList.remove('hidden');
-        trackUserAction(currentLanguage === 'en' ? '❌ Attempted unlock without completing FB/WA steps' : '❌ শর্ত পূরণ না করে আনলক করার চেষ্টা করেছে (FB/WA বাকি)');
-        return;
-      }
-
-      const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-      if (!gmailRegex.test(email)) {
-        errorMsg.textContent = currentLanguage === 'en'
-          ? 'Invalid email! Only active @gmail.com accounts are accepted (no other domains).'
-          : 'ভুল ইমেইল! শুধুমাত্র সক্রিয় @gmail.com ইমেইল গ্রহণযোগ্য (অন্য কোনো ডোমেন নয়)।';
-        errorMsg.classList.remove('hidden');
-        trackUserAction(currentLanguage === 'en' ? `❌ Invalid or non-gmail address attempted: ${email}` : `❌ ভুল বা অন্য ডোমেনের ইমেইল দিয়ে আনলক করার চেষ্টা করেছে: ${email}`);
-        return;
-      }
-
-      localStorage.setItem('moldova_verified_user_email', email);
-      trackUserAction(currentLanguage === 'en' ? `✅ Gmail verified and portal unlocked: ${email}` : `✅ জিমেইল ভেরিফাই হয়েছে এবং সাইট সম্পূর্ণ আনলক হয়েছে: ${email}`);
-
-      errorMsg.className = 'text-xs text-emerald-400 font-bold bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-500/30';
-      errorMsg.innerHTML = currentLanguage === 'en'
-        ? '<i class="fa-solid fa-circle-check"></i> Your Gmail is verified! Unlocking portal...'
-        : '<i class="fa-solid fa-circle-check"></i> আপনার জিমেইল সফলভাবে ভেরিফাই হয়েছে! আনলক হচ্ছে...';
-      errorMsg.classList.remove('hidden');
+      textInput.value = '';
+      removeChatSelectedImage();
 
       setTimeout(() => {
-        document.getElementById('oneMinuteLockModal').classList.add('hidden');
-        document.body.style.overflow = 'auto';
-
-        const visitors = JSON.parse(localStorage.getItem('moldova_visitor_list') || '[]');
-        visitors.unshift({
-          email: email,
-          isVip: false,
-          visits: 1,
-          durationSec: 61,
-          lastSeen: currentLanguage === 'en' ? 'Just now' : 'এইমাত্র'
-        });
-        localStorage.setItem('moldova_visitor_list', JSON.stringify(visitors));
+        const botBubble = document.createElement('div');
+        botBubble.className = 'flex items-start gap-2.5 max-w-[88%]';
+        botBubble.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center flex-shrink-0 text-xs shadow">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div class="bg-slate-900 border border-slate-700/80 p-3 rounded-2xl rounded-tl-none text-slate-200 leading-relaxed shadow-sm">
+            <p class="font-medium text-emerald-400">
+              <i class="fa-solid fa-circle-check"></i> ${I18N[currentLanguage].chatAutoReply}
+            </p>
+            <span class="text-[9px] text-slate-500 block mt-1 text-right">Support Desk • ${nowTime}</span>
+          </div>
+        `;
+        messagesArea.appendChild(botBubble);
+        messagesArea.scrollTop = messagesArea.scrollHeight;
       }, 1200);
     }
 
@@ -1608,7 +1833,6 @@
           <div class="relative pt-8 flex flex-col h-full">
             <div class="bg-white text-slate-900 rounded-[28px] p-5 pt-8 shadow-xl border border-slate-100 relative flex flex-col justify-between h-full hover:shadow-2xl hover:-translate-y-1 transition duration-200">
               
-              <!-- ছবির ওপরের গোলাকার লাল বর্ডারযুক্ত লোগো ফ্রেম -->
               <div class="absolute -top-8 left-1/2 -translate-x-1/2 z-20">
                 <div class="w-16 h-16 rounded-full p-1 bg-gradient-to-b from-red-500 to-rose-600 shadow-lg shadow-red-500/30">
                   <div class="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-white shadow-inner">
@@ -1658,7 +1882,6 @@
                 </div>
               </div>
 
-              <!-- কার্ড তথ্য -->
               <div class="text-center mt-3 flex-grow flex flex-col justify-between">
                 <div>
                   <h4 class="text-base sm:text-lg font-black text-slate-900 tracking-tight mb-1 leading-snug">
@@ -1698,7 +1921,6 @@
                   </div>
                 </div>
 
-                <!-- লাইভ ৫-স্টার পিল -->
                 <div class="my-2">
                   <div class="inline-flex items-center justify-center px-4 py-1.5 rounded-full border-2 border-red-500 bg-white shadow-md gap-2">
                     <div class="flex items-center gap-1 text-sm">
@@ -1720,7 +1942,6 @@
                 </div>
               </div>
 
-              <!-- পাবলিক রিভিউ তালিকা (ব্যবহারকারীর পরিচয় সম্পূর্ণ গোপন) -->
               <div class="pt-3 border-t border-slate-100">
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-[11px] font-bold text-slate-700 flex items-center gap-1">
@@ -1812,9 +2033,16 @@
       localStorage.setItem('moldova_site_feedbacks', JSON.stringify(feedbacks));
       trackUserAction(`💡 Successfully submitted website suggestion (${category}): "${message.substring(0, 30)}..."`);
 
+      sendNotificationToAdminEmail(`[ওয়েবসাইট পরামর্শ] - ${category}`, {
+        "ইভেন্টের ধরন": "ওয়েবসাইট উন্নয়নমূলক পরামর্শ",
+        "প্রেরকের জিমেইল": senderEmail,
+        "পরামর্শের ক্যাটাগরি": category,
+        "পরামর্শের বিবরণ": message
+      });
+
       alertBox.textContent = (currentLanguage === 'en') 
-        ? 'Thank you! Your feedback has been safely recorded in the Admin panel.' 
-        : 'ধন্যবাদ! আপনার মূল্যবান পরামর্শটি এডমিন প্যানেলে সংরক্ষিত হয়েছে।';
+        ? 'Thank you! Your feedback has been sent directly to the Admin.' 
+        : 'ধন্যবাদ! আপনার মূল্যবান পরামর্শটি সরাসরি অ্যাডমিনের কাছে পাঠানো হয়েছে।';
       alertBox.className = 'text-xs py-2 px-3 rounded-xl font-bold text-center bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 block';
       emailInput.value = '';
       msgInput.value = '';
@@ -1879,6 +2107,9 @@
       const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || '{}');
       if (!allReviews[currentSelectedAgencyId]) allReviews[currentSelectedAgencyId] = [];
 
+      const targetAgency = AGENCIES_DATA.find(a => a.id === currentSelectedAgencyId);
+      const agencyName = targetAgency ? targetAgency.name_bn : currentSelectedAgencyId;
+
       allReviews[currentSelectedAgencyId].unshift({
         userEmail: verifiedEmail,
         rating: currentSelectedRating,
@@ -1888,6 +2119,14 @@
 
       localStorage.setItem('moldova_agencies_reviews', JSON.stringify(allReviews));
       trackUserAction(`⭐ Submitted ${currentSelectedRating}-star review: "${text.substring(0, 25)}..."`);
+
+      sendNotificationToAdminEmail(`[নতুন এজেন্সি রিভিউ] - ${agencyName}`, {
+        "ইভেন্টের ধরন": "এজেন্সির জন্য নতুন রিভিউ প্রদান",
+        "এজেন্সির নাম": agencyName,
+        "রেটিং": `${currentSelectedRating} স্টার`,
+        "রিভিউ মন্তব্য": text,
+        "রিভিউকারীর ইমেইল": verifiedEmail
+      });
 
       closeReviewModal();
       renderAgenciesSection();
@@ -1951,10 +2190,8 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      // 1. ভাষা ও কনটেন্ট ইনিশিয়ালাইজেশন
       applyTranslations();
 
-      // 2. অ্যাডমিন স্ট্যাটাস যাচাই
       const userIsAdmin = isCurrentUserAdmin();
 
       if (userIsAdmin) {
@@ -1970,7 +2207,6 @@
         }
       }
 
-      // সেশন টাইমার
       sessionInterval = setInterval(() => {
         sessionSeconds++;
         const stat = document.getElementById('modalStatCurrentSession');
