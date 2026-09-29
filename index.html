@@ -89,12 +89,12 @@
   <div class="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 border-b border-slate-800 text-xs py-1.5 px-4 text-center flex flex-wrap items-center justify-center gap-2 text-slate-300">
     <span class="flex items-center gap-1.5">
       <i class="fa-solid fa-headset text-amber-400"></i>
-      <span>অফিসিয়াল যোগাযোগ:</span>
+      <span data-i18n="topBarContact">অফিসিয়াল যোগাযোগ:</span>
       <a href="mailto:tfbangla90@gmail.com" class="font-mono text-amber-300 font-bold hover:underline">tfbangla90@gmail.com</a>
     </span>
     <button onclick="copyToClipboard('tfbangla90@gmail.com', this)" class="px-2 py-0.5 rounded-md bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 border border-amber-400/40 text-[10px] font-bold flex items-center gap-1 transition">
       <i class="fa-regular fa-copy"></i>
-      <span class="copy-label">কপি</span>
+      <span class="copy-label" data-i18n="copyBtn">কপি</span>
     </button>
   </div>
 
@@ -102,14 +102,14 @@
   <div id="viewerModeNoticeBar" class="hidden bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white px-4 py-2 text-xs font-semibold text-center border-b border-blue-400/40 flex flex-wrap items-center justify-center gap-3 shadow-md z-50 sticky top-0">
     <span class="flex items-center gap-1.5">
       <i class="fa-solid fa-eye text-amber-300"></i>
-      <span><strong>এডমিন টেস্ট মোড:</strong> সাধারণ মানুষ ১:০১ সেকেন্ড যেভাবে দেখে ও লক হয়, আপনি তা লাইভ দেখছেন।</span>
+      <span data-i18n="viewerNotice"><strong>এডমিন টেস্ট মোড:</strong> সাধারণ মানুষ ১:০১ সেকেন্ড যেভাবে দেখে ও লক হয়, আপনি তা লাইভ দেখছেন।</span>
     </span>
     <div class="flex items-center gap-2">
       <button onclick="simulateFreshViewerTrial()" class="px-2.5 py-1 bg-blue-900 hover:bg-blue-950 text-white rounded-lg text-[11px] font-bold border border-blue-400/50 flex items-center gap-1">
-        <i class="fa-solid fa-arrows-rotate"></i> ১:০১ ট্রায়াল রিসেট
+        <i class="fa-solid fa-arrows-rotate"></i> <span data-i18n="resetTrialBtn">১:০১ ট্রায়াল রিসেট</span>
       </button>
       <button onclick="setAdminViewMode('admin')" class="px-3 py-1 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black rounded-lg text-[11px] shadow transition">
-        👑 এডমিন ভিউতে ফিরুন
+        <span data-i18n="backToAdminBtn">👑 এডমিন ভিউতে ফিরুন</span>
       </button>
     </div>
   </div>
@@ -118,7 +118,7 @@
   <header class="sticky top-0 z-30 bg-[#070d1e]/95 backdrop-blur-md border-b border-slate-800 shadow-xl transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- Brand Logo / Emblem (লোগোতে ৩ বার ক্লিক করলে সিক্রেট এডমিন লগইন প্রম্পট আসবে) -->
+      <!-- Brand Logo / Emblem (লোগোতে ৩ বার ক্লিক করলে সিক্রেট এডমিন লগইন মডাল আসবে) -->
       <div class="flex items-center gap-3 group cursor-pointer" onclick="handleSecretAdminTrigger()">
         <div class="w-11 h-8 rounded-lg overflow-hidden border-2 border-amber-400/50 shadow-md flex-shrink-0 relative">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Flag_of_Moldova.svg/120px-Flag_of_Moldova.svg.png" 
@@ -132,14 +132,14 @@
             </h1>
             <span class="text-[9px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full font-bold">VERIFIED</span>
           </div>
-          <p class="text-[11px] text-slate-400 hidden sm:block">তথ্য, সরকারি ভেরিফিকেশন ও ট্রাভেল সাপোর্ট</p>
+          <p class="text-[11px] text-slate-400 hidden sm:block" data-i18n="headerSubtitle">তথ্য, সরকারি ভেরিফিকেশন ও ট্রাভেল সাপোর্ট</p>
         </div>
       </div>
 
       <!-- কন্ট্রোল প্যানেল: ভাষা, থিম এবং শুধুমাত্র এডমিনের জন্য Viewer/Admin বাটন -->
       <div class="flex items-center flex-wrap gap-2 ml-auto">
         
-        <!-- 🔥 এডমিন ও ভিউয়ার মোড সুইচ বাটন (ডিফল্টভাবে সবার জন্য হিডেন থাকবে; শুধু এডমিন লগইন থাকলে দেখাবে) -->
+        <!-- এডমিন ও ভিউয়ার মোড সুইচ বাটন (শুধু এডমিন লগইন থাকলে দেখাবে) -->
         <div id="adminViewModeToggleContainer" class="hidden items-center bg-slate-900 border-2 border-amber-400/60 rounded-xl p-1 shadow-lg shadow-amber-500/10">
           <button id="btnViewAsViewer" onclick="setAdminViewMode('viewer')" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-eye text-blue-400"></i>
@@ -152,18 +152,18 @@
         </div>
 
         <!-- ডার্ক / লাইট মোড টগল বাটন -->
-        <button id="themeToggleBtn" onclick="toggleTheme()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-bold transition shadow-sm" title="ডার্ক / লাইট মোড পরিবর্তন">
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-bold transition shadow-sm" title="Theme Toggle">
           <span id="themeToggleIcon"><i class="fa-solid fa-moon text-amber-300"></i></span>
-          <span id="themeToggleText" class="hidden sm:inline text-[11px]">ডার্ক</span>
+          <span id="themeToggleText" class="hidden sm:inline text-[11px]" data-i18n="themeMode">ডার্ক</span>
         </button>
 
         <!-- ভাষা পরিবর্তন বাটন (বাংলা / EN) -->
-        <button id="langToggleBtn" onclick="toggleLanguage()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-bold transition shadow-sm" title="ভাষা পরিবর্তন">
-          <i class="fa-solid fa-language text-blue-400"></i>
-          <span id="langToggleText" class="text-[11px]">বাং | EN</span>
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border-2 border-amber-400/80 bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 text-xs font-black transition shadow-sm" title="Language Switcher">
+          <i class="fa-solid fa-globe text-amber-400"></i>
+          <span id="langToggleText" class="text-[11px]">English</span>
         </button>
 
-        <!-- Verified User / Admin Email Badge (সাধারণ ইউজারের কাছে হাইড থাকবে বা আনলকড ইমেইল দেখাবে) -->
+        <!-- Verified User / Admin Email Badge -->
         <div id="verifiedUserEmailBadge" class="hidden text-xs bg-amber-950/80 border border-amber-400 text-amber-300 px-3 py-1.5 rounded-xl font-bold items-center shadow-md whitespace-nowrap">
           <i class="fa-solid fa-crown text-amber-400 mr-1.5"></i>
           <span id="badgeEmailText">VIP: touhidul0454@gmail.com</span>
@@ -172,7 +172,7 @@
         <!-- VIP ড্যাশবোর্ড বাটন (সাধারণ মানুষের কাছে সম্পূর্ণরূপে লুকানো থাকবে) -->
         <button id="vipDashboardBtn" onclick="openVipDashboardModal()" class="hidden px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs shadow-md shadow-amber-500/20 transition-all transform hover:scale-105 items-center gap-1.5 whitespace-nowrap">
           <i class="fa-solid fa-chart-line text-xs"></i>
-          <span>VIP ড্যাশবোর্ড</span>
+          <span data-i18n="vipDashboardBtn">VIP ড্যাশবোর্ড</span>
         </button>
       </div>
 
@@ -185,12 +185,12 @@
       <div class="max-w-4xl mx-auto space-y-4">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0033a0]/30 border border-[#ffd100]/30 text-[#ffd100] text-xs font-semibold">
           <i class="fa-solid fa-passport"></i>
-          <span id="txtHeroBadge">অফিসিয়াল সার্ভিসেস ও ডেটাবেজ লিংক</span>
+          <span data-i18n="heroBadge">অফিসিয়াল সার্ভিসেস ও ডেটাবেজ লিংক</span>
         </div>
         <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-snug">
-          <span class="text-amber-400">Moldova Work Visa Bangladesh</span> <span id="txtHeroTitle">পরিবারে আপনাকে স্বাগত</span>
+          <span class="text-amber-400">Moldova Work Visa Bangladesh</span> <span data-i18n="heroTitle">পরিবারে আপনাকে স্বাগত</span>
         </h2>
-        <p id="txtHeroSubtitle" class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-medium">
+        <p data-i18n="heroSubtitle" class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-medium">
           আমরা আপনাকে কীভাবে সাহায্য করতে পারি?
         </p>
       </div>
@@ -206,16 +206,16 @@
             <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0033a0] flex items-center justify-center text-xl mb-4 shadow-sm">
               <i class="fa-solid fa-envelope-open-text"></i>
             </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#0033a0] text-xs font-bold mb-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#0033a0] text-xs font-bold mb-3" data-i18n="opt1Badge">
               অপশন ০১
             </span>
-            <h3 class="text-xl font-black text-slate-900 mb-2">ইনভাইটেশন চেক</h3>
-            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium">
+            <h3 class="text-xl font-black text-slate-900 mb-2" data-i18n="opt1Title">ইনভাইটেশন চেক</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium" data-i18n="opt1Desc">
               মলদোভা মাইগ্রেশন ও পররাষ্ট্র দপ্তরের ইনভাইটেশন লেটার এবং ফাইল রেজিস্ট্রেশন যাচাই করুন।
             </p>
           </div>
           <a href="https://evisa.gov.md/VisaFile/Inregistrare" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('অপশন ০১ (ইনভাইটেশন চেক) লিঙ্কে ক্লিক করেছে')" class="w-full py-3.5 px-4 rounded-xl bg-[#0033a0] hover:bg-[#002677] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-blue-900/20 transition">
-            <span>ইনভাইটেশন চেক করুন</span>
+            <span data-i18n="opt1Btn">ইনভাইটেশন চেক করুন</span>
             <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -226,16 +226,16 @@
             <div class="w-12 h-12 rounded-2xl bg-amber-50 text-[#e68a00] flex items-center justify-center text-xl mb-4 shadow-sm">
               <i class="fa-solid fa-receipt"></i>
             </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-amber-50 text-[#d97706] text-xs font-bold mb-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-amber-50 text-[#d97706] text-xs font-bold mb-3" data-i18n="opt2Badge">
               অপশন ০২
             </span>
-            <h3 class="text-xl font-black text-slate-900 mb-2">সাবমিশন স্লিপ চেক</h3>
-            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium">
+            <h3 class="text-xl font-black text-slate-900 mb-2" data-i18n="opt2Title">সাবমিশন স্লিপ চেক</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium" data-i18n="opt2Desc">
               মলদোভার সরকারি পেমেন্ট ও ইনভয়েস সার্চ পোর্টাল (MPay)-এ স্লিপ ও চালানের স্ট্যাটাস যাচাই করুন।
             </p>
           </div>
           <a href="https://mpay.gov.md/Invoice/SearchInvoice" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('অপশন ০২ (সাবমিশন স্লিপ চেক) লিঙ্কে ক্লিক করেছে')" class="w-full py-3.5 px-4 rounded-xl bg-[#e68a00] hover:bg-[#c97500] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-amber-900/20 transition">
-            <span>সাবমিশন স্লিপ চেক করুন</span>
+            <span data-i18n="opt2Btn">সাবমিশন স্লিপ চেক করুন</span>
             <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -246,16 +246,16 @@
             <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#00875a] flex items-center justify-center text-xl mb-4 shadow-sm">
               <i class="fa-solid fa-passport"></i>
             </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-[#00875a] text-xs font-bold mb-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-[#00875a] text-xs font-bold mb-3" data-i18n="opt3Badge">
               অপশন ০৩
             </span>
-            <h3 class="text-xl font-black text-slate-900 mb-2">ই-ভিসা চেক</h3>
-            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium">
+            <h3 class="text-xl font-black text-slate-900 mb-2" data-i18n="opt3Title">ই-ভিসা চেক</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium" data-i18n="opt3Desc">
               মলদোভা পররাষ্ট্র মন্ত্রণালয়ের অফিসিয়াল ডাটাবেজ থেকে সরাসরি আপনার ই-ভিসা স্ট্যাটাস চেক করুন।
             </p>
           </div>
           <a href="https://evisa.gov.md/check-my-visa/" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('অপশন ০৩ (ই-ভিসা চেক) লিঙ্কে ক্লিক করেছে')" class="w-full py-3.5 px-4 rounded-xl bg-[#00875a] hover:bg-[#006e49] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/20 transition">
-            <span>ই-ভিসা চেক করুন</span>
+            <span data-i18n="opt3Btn">ই-ভিসা চেক করুন</span>
             <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -266,16 +266,16 @@
             <div class="w-12 h-12 rounded-2xl bg-rose-50 text-[#c8102e] flex items-center justify-center text-xl mb-4 shadow-sm">
               <i class="fa-solid fa-users-gear"></i>
             </div>
-            <span class="inline-block px-3 py-1 rounded-full bg-rose-50 text-[#c8102e] text-xs font-bold mb-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-rose-50 text-[#c8102e] text-xs font-bold mb-3" data-i18n="opt4Badge">
               অপশন ০৪
             </span>
-            <h3 class="text-xl font-black text-slate-900 mb-2">বিএমইটি চেক</h3>
-            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium">
+            <h3 class="text-xl font-black text-slate-900 mb-2" data-i18n="opt4Title">বিএমইটি চেক</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium" data-i18n="opt4Desc">
               আজকে কয়টা ম্যানপাওয়ার হয়েছে, দেশভিত্তিক ক্লিয়ারেন্স রিপোর্ট ও অনুমোদনের পরিসংখ্যান সরাসরি দেখুন।
             </p>
           </div>
           <a href="https://www.oep.gov.bd/reports/country-clearance" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('অপশন ০৪ (বিএমইটি ক্লিয়ারেন্স) লিঙ্কে ক্লিক করেছে')" class="w-full py-3.5 px-4 rounded-xl bg-[#c8102e] hover:bg-[#a60b24] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-rose-900/20 transition">
-            <span>বিএমইটি চেক করুন</span>
+            <span data-i18n="opt4Btn">বিএমইটি চেক করুন</span>
             <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -286,13 +286,13 @@
     <!-- মলদোভা যেতে যা কিছু জানা প্রয়োজন -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
       <div class="text-center max-w-3xl mx-auto mb-10">
-        <span class="px-4 py-1.5 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-full text-xs font-bold uppercase tracking-wider">
+        <span class="px-4 py-1.5 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-full text-xs font-bold uppercase tracking-wider" data-i18n="guideBadge">
           দেশ পরিচিতি ও অফিশিয়াল নির্দেশিকা
         </span>
-        <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mt-4 tracking-tight">
+        <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mt-4 tracking-tight" data-i18n="guideHeading">
           মলদোভা যেতে যা কিছু জানা প্রয়োজন
         </h3>
-        <p class="text-sm text-slate-400 mt-2 font-medium">
+        <p class="text-sm text-slate-400 mt-2 font-medium" data-i18n="guideSubheading">
           বাংলাদেশ বা অন্য যেকোনো দেশ থেকে মলদোভা যাওয়ার প্রয়োজনীয় সকল কাগজপত্র ও সঠিক নিয়মাবলী।
         </p>
       </div>
@@ -304,8 +304,8 @@
             <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0033a0] flex items-center justify-center text-xl mb-5 shadow-sm">
               <i class="fa-solid fa-map-location-dot"></i>
             </div>
-            <h4 class="text-lg font-black text-slate-900 mb-2.5">মলদোভা পরিচিতি</h4>
-            <p class="text-xs text-slate-600 leading-relaxed font-medium">
+            <h4 class="text-lg font-black text-slate-900 mb-2.5" data-i18n="infoCard1Title">মলদোভা পরিচিতি</h4>
+            <p class="text-xs text-slate-600 leading-relaxed font-medium" data-i18n="infoCard1Desc">
               মলদোভা পূর্ব ইউরোপের একটি শান্তিময় রাষ্ট্র। রাজধানী চিশিনাউ (Chișinău)। মুদ্রা মলদোভান লিউ (MDL)। এটি ইউরোপীয় ইউনিয়নের প্রার্থী রাষ্ট্র এবং রোমানিয়া ও ইউক্রেনের সীমান্তে অবস্থিত।
             </p>
           </div>
@@ -316,8 +316,8 @@
             <div class="w-12 h-12 rounded-2xl bg-amber-50 text-[#d97706] flex items-center justify-center text-xl mb-5 shadow-sm">
               <i class="fa-solid fa-briefcase"></i>
             </div>
-            <h4 class="text-lg font-black text-slate-900 mb-2.5">কাজের প্রধান খাতসমূহ</h4>
-            <p class="text-xs text-slate-600 leading-relaxed font-medium">
+            <h4 class="text-lg font-black text-slate-900 mb-2.5" data-i18n="infoCard2Title">কাজের প্রধান খাতসমূহ</h4>
+            <p class="text-xs text-slate-600 leading-relaxed font-medium" data-i18n="infoCard2Desc">
               নির্মাণ খাত (Construction), উৎপাদন ও টেক্সটাইল, খাদ্য প্রক্রিয়াজাতকরণ, ওয়্যারহাউস ও গুদামজাতকরণ এবং ড্রাইভিং সেক্টরে বর্তমানে নিয়মিত বিদেশি কর্মী নিয়োগ হচ্ছে।
             </p>
           </div>
@@ -328,8 +328,8 @@
             <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#00875a] flex items-center justify-center text-xl mb-5 shadow-sm">
               <i class="fa-solid fa-file-lines"></i>
             </div>
-            <h4 class="text-lg font-black text-slate-900 mb-2.5">ভিসার ধরন (Type D)</h4>
-            <p class="text-xs text-slate-600 leading-relaxed font-medium">
+            <h4 class="text-lg font-black text-slate-900 mb-2.5" data-i18n="infoCard3Title">ভিসার ধরন (Type D)</h4>
+            <p class="text-xs text-slate-600 leading-relaxed font-medium" data-i18n="infoCard3Desc">
               কাজের উদ্দেশ্যে যেতে হলে 'লং-স্টে ডি/এস (Type D/AS - Work)' ভিসা প্রয়োজন হয়। এই ভিসার প্রাথমিক মেয়াদ ৯০ থেকে ৩৬০ দিন হয় এবং দেশটিতে পৌঁছানোর পর রেসিডেন্স পারমিট কার্ডে রূপান্তর করা যায়।
             </p>
           </div>
@@ -342,7 +342,7 @@
           <span class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-sm shadow">
             <i class="fa-solid fa-clipboard-check"></i>
           </span>
-          <span>মলদোভা ভিসার জন্য প্রয়োজনীয় ডকুমেন্টস</span>
+          <span data-i18n="docsHeading">মলদোভা ভিসার জন্য প্রয়োজনীয় ডকুমেন্টস</span>
         </h4>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -351,8 +351,8 @@
               <i class="fa-solid fa-check"></i>
             </div>
             <div>
-              <h5 class="text-xs sm:text-sm font-black text-slate-900">মূল পাসপোর্ট (Original Passport)</h5>
-              <p class="text-[11px] text-slate-600 mt-0.5">কমপক্ষে ৬ মাসের মেয়াদ এবং ন্যূনতম ২টি ফাঁকা পৃষ্ঠা থাকতে হবে।</p>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900" data-i18n="doc1Title">মূল পাসপোর্ট (Original Passport)</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5" data-i18n="doc1Desc">কমপক্ষে ৬ মাসের মেয়াদ এবং ন্যূনতম ২টি ফাঁকা পৃষ্ঠা থাকতে হবে।</p>
             </div>
           </div>
 
@@ -361,8 +361,8 @@
               <i class="fa-solid fa-check"></i>
             </div>
             <div>
-              <h5 class="text-xs sm:text-sm font-black text-slate-900">IGM ওয়ার্ক ইনভাইটেশন লেটার</h5>
-              <p class="text-[11px] text-slate-600 mt-0.5">মলদোভার অভিবাসন কর্তৃপক্ষ (IGM) কর্তৃক ইস্যুকৃত অনুমোদিত অফিশিয়াল ইনভাইটেশন।</p>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900" data-i18n="doc2Title">IGM ওয়ার্ক ইনভাইটেশন লেটার</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5" data-i18n="doc2Desc">মলদোভার অভিবাসন কর্তৃপক্ষ (IGM) কর্তৃক ইস্যুকৃত অনুমোদিত অফিশিয়াল ইনভাইটেশন।</p>
             </div>
           </div>
 
@@ -371,8 +371,8 @@
               <i class="fa-solid fa-check"></i>
             </div>
             <div>
-              <h5 class="text-xs sm:text-sm font-black text-slate-900">পুলিশ ক্লিয়ারেন্স সার্টিফিকেট</h5>
-              <p class="text-[11px] text-slate-600 mt-0.5">আইন মন্ত্রণালয় ও পররাষ্ট্র মন্ত্রণালয় থেকে নোটারাইজড ও সত্যায়িত কপি।</p>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900" data-i18n="doc3Title">পুলিশ ক্লিয়ারেন্স সার্টিফিকেট</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5" data-i18n="doc3Desc">আইন মন্ত্রণালয় ও পররাষ্ট্র মন্ত্রণালয় থেকে নোটারাইজড ও সত্যায়িত কপি।</p>
             </div>
           </div>
 
@@ -381,8 +381,8 @@
               <i class="fa-solid fa-check"></i>
             </div>
             <div>
-              <h5 class="text-xs sm:text-sm font-black text-slate-900">চাকরির চুক্তিপত্র (Job Contract)</h5>
-              <p class="text-[11px] text-slate-600 mt-0.5">মলদোভান নিয়োগকর্তা ও কর্মীর মধ্যে স্বাক্ষরিত দ্বিপাক্ষিক কর্মচুক্তি।</p>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900" data-i18n="doc4Title">চাকরির চুক্তিপত্র (Job Contract)</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5" data-i18n="doc4Desc">মলদোভান নিয়োগকর্তা ও কর্মীর মধ্যে স্বাক্ষরিত দ্বিপাক্ষিক কর্মচুক্তি।</p>
             </div>
           </div>
 
@@ -391,8 +391,8 @@
               <i class="fa-solid fa-check"></i>
             </div>
             <div>
-              <h5 class="text-xs sm:text-sm font-black text-slate-900">মেডিকেল ফিটনেস সার্টিফিকেট</h5>
-              <p class="text-[11px] text-slate-600 mt-0.5">অনুমোদিত ডায়াগনস্টিক সেন্টার থেকে রক্ত ও স্বাস্থ্য পরীক্ষার সার্টিফিকেট।</p>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900" data-i18n="doc5Title">মেডিকেল ফিটনেস সার্টিফিকেট</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5" data-i18n="doc5Desc">অনুমোদিত ডায়াগনস্টিক সেন্টার থেকে রক্ত ও স্বাস্থ্য পরীক্ষার সার্টিফিকেট।</p>
             </div>
           </div>
 
@@ -401,8 +401,8 @@
               <i class="fa-solid fa-check"></i>
             </div>
             <div>
-              <h5 class="text-xs sm:text-sm font-black text-slate-900">ট্রাভেল ইন্স্যুরেন্স ও টিকিট</h5>
-              <p class="text-[11px] text-slate-600 mt-0.5">ন্যূনতম ৩০,০০০ ইউরো কাভারেজযুক্ত আন্তর্জাতিক স্বাস্থ্যবীমা ও টিকিট বুকিং।</p>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900" data-i18n="doc6Title">ট্রাভেল ইন্স্যুরেন্স ও টিকিট</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5" data-i18n="doc6Desc">ন্যূনতম ৩০,০০০ ইউরো কাভারেজযুক্ত আন্তর্জাতিক স্বাস্থ্যবীমা ও টিকিট বুকিং।</p>
             </div>
           </div>
         </div>
@@ -415,14 +415,14 @@
         <div class="inline-block mb-3">
           <span class="px-6 py-2.5 bg-gradient-to-r from-blue-600/20 via-amber-500/20 to-blue-600/20 text-amber-300 border-2 border-amber-400/50 rounded-2xl text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-wider shadow-lg inline-flex items-center gap-2.5">
             <i class="fa-solid fa-crown text-amber-400"></i>
-            <span>TOP 5 Agency in Bangladesh</span>
+            <span data-i18n="top5AgencyCrown">TOP 5 Agency in Bangladesh</span>
             <i class="fa-solid fa-crown text-amber-400"></i>
           </span>
         </div>
-        <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mt-3">
+        <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mt-3" data-i18n="top5AgencyHeading">
           বাংলাদেশের শীর্ষ ৫টি এজেন্সি ও ইউজার রিভিউ
         </h3>
-        <p class="text-sm text-slate-300 mt-2 font-medium">
+        <p class="text-sm text-slate-300 mt-2 font-medium" data-i18n="top5AgencySubheading">
           এজেন্সি সম্পর্কে অভিজ্ঞতা পর্যালোচনা করুন। আপনার জিমেইল দিয়ে সর্বোচ্চ ১০০ শব্দের রিভিউ ও রেটিং দিতে পারবেন।
         </p>
       </div>
@@ -439,20 +439,20 @@
         <div class="text-center md:text-left space-y-1">
           <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold">
             <i class="fa-solid fa-users"></i>
-            <span>আমাদের কমিউনিটিতে যুক্ত থাকুন</span>
+            <span data-i18n="communityBadge">আমাদের কমিউনিটিতে যুক্ত থাকুন</span>
           </div>
-          <h4 class="text-xl font-black text-white">মলদোভা ভিসা ও ট্রাভেল হেল্পডেস্ক</h4>
-          <p class="text-xs sm:text-sm text-slate-400">যেকোনো প্রশ্ন, তথ্য আপডেট এবং সরাসরি আলোচনার জন্য আমাদের অফিসিয়াল গ্রুপগুলোতে যোগ দিন।</p>
+          <h4 class="text-xl font-black text-white" data-i18n="communityHeading">মলদোভা ভিসা ও ট্রাভেল হেল্পডেস্ক</h4>
+          <p class="text-xs sm:text-sm text-slate-400" data-i18n="communitySubheading">যেকোনো প্রশ্ন, তথ্য আপডেট এবং সরাসরি আলোচনার জন্য আমাদের অফিসিয়াল গ্রুপগুলোতে যোগ দিন।</p>
         </div>
 
         <div class="flex flex-wrap items-center justify-center gap-3">
           <a href="https://www.facebook.com/groups/1275931528076368" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('কমিউনিটি সেকশন থেকে ফেসবুক গ্রুপে যোগ দিয়েছে')" class="px-5 py-3 rounded-2xl bg-[#0033a0] hover:bg-blue-600 text-white font-bold text-xs sm:text-sm flex items-center gap-2.5 shadow-lg transition transform hover:scale-105">
             <i class="fa-brands fa-facebook text-lg text-blue-200"></i>
-            <span>ফেসবুক গ্রুপে জয়েন করুন</span>
+            <span data-i18n="joinFbBtn">ফেসবুক গ্রুপে জয়েন করুন</span>
           </a>
           <a href="https://chat.whatsapp.com/JnPsMhyR8oB4wXxW3UAzNn?s=cl&p=a&ilr=4&iam=0" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('কমিউনিটি সেকশন থেকে হোয়াটসঅ্যাপ গ্রুপে যুক্ত হয়েছে')" class="px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center gap-2.5 shadow-lg transition transform hover:scale-105">
             <i class="fa-brands fa-whatsapp text-lg text-emerald-100"></i>
-            <span>হোয়াটসঅ্যাপ গ্রুপে যুক্ত হন</span>
+            <span data-i18n="joinWaBtn">হোয়াটসঅ্যাপ গ্রুপে যুক্ত হন</span>
           </a>
         </div>
       </div>
@@ -464,12 +464,12 @@
         <div class="max-w-3xl mx-auto text-center space-y-3 mb-6">
           <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
             <i class="fa-regular fa-lightbulb"></i>
-            <span>পরামর্শ ও মতামত বক্স</span>
+            <span data-i18n="feedbackBadge">পরামর্শ ও মতামত বক্স</span>
           </span>
-          <h4 class="text-xl sm:text-2xl font-black text-white">
+          <h4 class="text-xl sm:text-2xl font-black text-white" data-i18n="feedbackHeading">
             আমাদের ওয়েবসাইটটি আরও সুন্দর ও তথ্যবহুল করতে আপনার পরামর্শ দিন
           </h4>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" data-i18n="feedbackSubheading">
             কোন নতুন ফিচার যোগ করা প্রয়োজন বা সাইটের ডিজাইন কীভাবে আরও সহজ করা যায়? আপনার মতামত সরাসরি অ্যাডমিন এবং ভিআইপি প্যানেলে সংরক্ষিত হবে।
           </p>
         </div>
@@ -479,25 +479,25 @@
             <div>
               <label class="block text-xs font-bold text-slate-300 mb-1.5 flex items-center gap-1.5">
                 <i class="fa-regular fa-envelope text-amber-400"></i>
-                <span>আপনার ইমেইল অ্যাড্রেস:</span>
+                <span data-i18n="feedbackEmailLabel">আপনার ইমেইল অ্যাড্রেস:</span>
               </label>
-              <input type="email" id="feedbackSenderInput" placeholder="যেমন: yourname@gmail.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+              <input type="email" id="feedbackSenderInput" placeholder="yourname@gmail.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">পরামর্শের ধরন:</label>
+              <label class="block text-xs font-bold text-slate-300 mb-1.5" data-i18n="feedbackCategoryLabel">পরামর্শের ধরন:</label>
               <select id="feedbackCategoryInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400 font-sans">
-                <option value="ডিজাইন ও লুক">🎨 ডিজাইন ও লুক উন্নত করা</option>
-                <option value="নতুন সরকারি লিংক">🔗 নতুন দরকারি লিংক বা ফিচার</option>
-                <option value="মোবাইল স্পিড">⚡ সাইটের গতি ও পারফরম্যান্স</option>
-                <option value="ভিসা তথ্য ও আপডেট">📄 ভিসা সংক্রান্ত অতিরিক্ত তথ্য</option>
-                <option value="অন্যান্য পরামর্শ">💡 অন্যান্য যেকোনো পরামর্শ</option>
+                <option value="ডিজাইন ও লুক" data-i18n-opt="catDesign">🎨 ডিজাইন ও লুক উন্নত করা</option>
+                <option value="নতুন সরকারি লিংক" data-i18n-opt="catLinks">🔗 নতুন দরকারি লিংক বা ফিচার</option>
+                <option value="মোবাইল স্পিড" data-i18n-opt="catSpeed">⚡ সাইটের গতি ও পারফরম্যান্স</option>
+                <option value="ভিসা তথ্য ও আপডেট" data-i18n-opt="catVisa">📄 ভিসা সংক্রান্ত অতিরিক্ত তথ্য</option>
+                <option value="অন্যান্য পরামর্শ" data-i18n-opt="catOther">💡 অন্যান্য যেকোনো পরামর্শ</option>
               </select>
             </div>
           </div>
 
           <div>
             <div class="flex items-center justify-between mb-1.5">
-              <label class="text-xs font-bold text-slate-300">আপনার মূল্যবান পরামর্শ:</label>
+              <label class="text-xs font-bold text-slate-300" data-i18n="feedbackMsgLabel">আপনার মূল্যবান পরামর্শ:</label>
               <span id="feedbackCharCount" class="text-[10px] text-slate-400 font-mono">০/৩০০ অক্ষর</span>
             </div>
             <textarea id="feedbackMessageInput" oninput="handleFeedbackCharCount(this)" rows="3" placeholder="ওয়েবসাইটে কী পরিবর্তন বা সুবিধা আনলে এটি সবার জন্য আরও উপকারী হবে তা সংক্ষেপে লিখুন..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-sans"></textarea>
@@ -507,7 +507,7 @@
 
           <button onclick="submitWebsiteFeedback()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition transform hover:scale-[1.01]">
             <i class="fa-solid fa-paper-plane"></i>
-            <span>পরামর্শ পাঠান</span>
+            <span data-i18n="feedbackSubmitBtn">পরামর্শ পাঠান</span>
           </button>
         </div>
       </div>
@@ -519,10 +519,10 @@
     <div class="max-w-7xl mx-auto space-y-3">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300">
         <i class="fa-regular fa-envelope text-amber-400"></i>
-        <span>আমাদের সাথে যোগাযোগ করুন: <a href="mailto:tfbangla90@gmail.com" class="text-amber-400 font-bold hover:underline">tfbangla90@gmail.com</a></span>
+        <span><span data-i18n="footerContact">আমাদের সাথে যোগাযোগ করুন:</span> <a href="mailto:tfbangla90@gmail.com" class="text-amber-400 font-bold hover:underline">tfbangla90@gmail.com</a></span>
       </div>
-      <p class="text-slate-400">Moldova Work Visa Bangladesh — সকল তথ্য মলদোভা সরকারের অফিসিয়াল ডেটাবেজ দ্বারা যাচাইকৃত।</p>
-      <p>© ২০২৬ সর্বস্বত্ব সংরক্ষিত। ভিসা প্রতারণা থেকে সতর্ক থাকুন এবং সবসময় সঠিক চ্যানেল ব্যবহার করুন।</p>
+      <p class="text-slate-400" data-i18n="footerNote1">Moldova Work Visa Bangladesh — সকল তথ্য মলদোভা সরকারের অফিসিয়াল ডেটাবেজ দ্বারা যাচাইকৃত।</p>
+      <p data-i18n="footerNote2">© ২০২৬ সর্বস্বত্ব সংরক্ষিত। ভিসা প্রতারণা থেকে সতর্ক থাকুন এবং সবসময় সঠিক চ্যানেল ব্যবহার করুন।</p>
     </div>
   </footer>
 
@@ -534,26 +534,12 @@
     <div>
       <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
         <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-        <span>ফ্রি ট্রায়াল বাকি:</span>
+        <span data-i18n="timerRemainingLabel">ফ্রি ট্রায়াল বাকি:</span>
       </div>
       <div id="sideTimerDisplay" class="font-mono text-xl sm:text-2xl font-black text-amber-400 leading-none mt-0.5">
         ০১:০১
       </div>
-      <div class="text-[9px] text-slate-400 mt-0.5">এরপর পেজ সম্পূর্ণ লক হবে</div>
-    </div>
-  </div>
-
-  <!-- 📡 এডমিন লাইভ ভিউয়ার ট্র্যাকার বার (Viewer Mode-এ এডমিন ইউজার অ্যাক্টিভিটি লাইভ দেখার মনিটর) -->
-  <div id="adminLiveActivityMonitor" class="hidden fixed bottom-5 left-5 z-40 max-w-sm w-full bg-slate-950/95 border-2 border-blue-500 p-3 rounded-2xl shadow-2xl backdrop-blur-md text-xs">
-    <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
-      <div class="flex items-center gap-2 font-bold text-blue-400">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>লাইভ ভিউয়ার ট্র্যাকার (Admin HUD)</span>
-      </div>
-      <span id="trackerTotalActionBadge" class="text-[10px] px-2 py-0.5 bg-blue-950 text-blue-300 rounded-full font-mono">০ টি অ্যাকশন</span>
-    </div>
-    <div id="liveActivityFeedList" class="space-y-1.5 max-h-36 overflow-y-auto custom-scrollbar font-mono text-[11px] text-slate-300">
-      <div class="text-slate-500 italic text-[10px]">ভিউয়ার অ্যাক্টিভিটি ট্র্যাক হচ্ছে... বাটনে ক্লিক বা স্ক্রোল করলে এখানে দেখতে পাবেন।</div>
+      <div class="text-[9px] text-slate-400 mt-0.5" data-i18n="timerLockWarn">এরপর পেজ সম্পূর্ণ লক হবে</div>
     </div>
   </div>
 
@@ -566,10 +552,10 @@
         <i class="fa-solid fa-lock"></i>
       </div>
 
-      <h3 class="text-xl sm:text-2xl font-black text-white mb-2">
+      <h3 class="text-xl sm:text-2xl font-black text-white mb-2" data-i18n="lockModalHeading">
         ১:০১ সেকেন্ডের ফ্রি ভিজিট সময় শেষ!
       </h3>
-      <p class="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
+      <p class="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed" data-i18n="lockModalDesc">
         ওয়েবসাইটের সকল লিংক, ম্যানপাওয়ার ও এজেন্সি তথ্য ফ্রিতে নিয়মিত দেখতে আমাদের ফেসবুক ও হোয়াটসঅ্যাপ কমিউনিটিতে জয়েন করে আপনার <strong>@gmail.com</strong> দিয়ে প্রবেশ করুন।
       </p>
 
@@ -582,12 +568,12 @@
               <i class="fa-brands fa-facebook-f"></i>
             </span>
             <div>
-              <span class="text-xs font-bold text-white block">১. ফেসবুক গ্রুপে জয়েন করুন</span>
-              <span class="text-[10px] text-blue-300">অফিসিয়াল আপডেট ও আলোচনার জন্য</span>
+              <span class="text-xs font-bold text-white block" data-i18n="lockStep1Title">১. ফেসবুক গ্রুপে জয়েন করুন</span>
+              <span class="text-[10px] text-blue-300" data-i18n="lockStep1Desc">অফিসিয়াল আপডেট ও আলোচনার জন্য</span>
             </div>
           </div>
           <span id="statusFbJoined" class="text-xs px-2.5 py-1 bg-blue-600 text-white rounded-lg font-bold group-hover:bg-blue-500 flex items-center gap-1">
-            <span>জয়েন করুন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            <span data-i18n="joinBtnText">জয়েন করুন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
           </span>
         </a>
 
@@ -598,12 +584,12 @@
               <i class="fa-brands fa-whatsapp"></i>
             </span>
             <div>
-              <span class="text-xs font-bold text-white block">২. হোয়াটসঅ্যাপ গ্রুপে জয়েন করুন</span>
-              <span class="text-[10px] text-emerald-300">সরাসরি নোটিফিকেশন ও সহায়তার জন্য</span>
+              <span class="text-xs font-bold text-white block" data-i18n="lockStep2Title">২. হোয়াটসঅ্যাপ গ্রুপে জয়েন করুন</span>
+              <span class="text-[10px] text-emerald-300" data-i18n="lockStep2Desc">সরাসরি নোটিফিকেশন ও সহায়তার জন্য</span>
             </div>
           </div>
           <span id="statusWaJoined" class="text-xs px-2.5 py-1 bg-emerald-600 text-white rounded-lg font-bold group-hover:bg-emerald-500 flex items-center gap-1">
-            <span>যুক্ত হন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            <span data-i18n="connectBtnText">যুক্ত হন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
           </span>
         </a>
       </div>
@@ -611,11 +597,11 @@
       <!-- ধাপ ৩: শুধুমাত্র @gmail.com ইনপুট বক্স -->
       <div class="bg-slate-900/90 border border-slate-700/80 p-4 rounded-2xl text-left space-y-3 mb-4">
         <label class="block text-xs font-bold text-slate-200 flex items-center justify-between">
-          <span>৩. আপনার জিমেইল অ্যাকাউন্ট লিখুন:</span>
-          <span class="text-[10px] text-amber-400 font-mono">শুধুমাত্র @gmail.com</span>
+          <span data-i18n="lockStep3Label">৩. আপনার জিমেইল অ্যাকাউন্ট লিখুন:</span>
+          <span class="text-[10px] text-amber-400 font-mono" data-i18n="gmailOnlyBadge">শুধুমাত্র @gmail.com</span>
         </label>
         <div class="relative">
-          <input type="email" id="userUnlockGmailInput" placeholder="যেমন: yourname@gmail.com" oninput="trackUserAction('লক স্ক্রিনে জিমেইল টাইপ করছে: ' + this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+          <input type="email" id="userUnlockGmailInput" placeholder="yourname@gmail.com" oninput="trackUserAction('লক স্ক্রিনে জিমেইল টাইপ করছে: ' + this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
         </div>
         <div id="unlockErrorMessage" class="hidden text-xs text-red-400 font-bold bg-red-950/40 p-2 rounded-lg border border-red-500/30"></div>
       </div>
@@ -623,10 +609,10 @@
       <!-- প্রবেশ / আনলক বাটন -->
       <button onclick="handleUserUnlockSubmit()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/20 transition transform hover:scale-[1.02] flex items-center justify-center gap-2">
         <i class="fa-solid fa-lock-open text-xs"></i>
-        <span>যাচাই করে ফ্রি এক্সেস আনলক করুন</span>
+        <span data-i18n="lockUnlockBtn">যাচাই করে ফ্রি এক্সেস আনলক করুন</span>
       </button>
 
-      <p class="text-[10px] text-slate-400 mt-3">
+      <p class="text-[10px] text-slate-400 mt-3" data-i18n="lockWarningFoot">
         * অন্য কোনো ডোমেন যেমন yahoo, hotmail বা ভুয়া ইমেইল দিলে প্রবেশ করা যাবে না।
       </p>
     </div>
@@ -643,39 +629,39 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="text-2xl">👑</span>
-            <h3 class="text-xl sm:text-2xl font-black text-white">VIP ড্যাশবোর্ড ও বিস্তারিত ভিজিটর অ্যাক্টিভিটি</h3>
+            <h3 class="text-xl sm:text-2xl font-black text-white" data-i18n="vipModalTitle">VIP ড্যাশবোর্ড ও বিস্তারিত ভিজিটর অ্যাক্টিভিটি</h3>
             <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/40 flex items-center gap-1 font-semibold">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> লাইভ
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live
             </span>
           </div>
-          <p class="text-xs text-slate-400 mt-1">ভিউয়ারদের প্রতিটি ক্লিক, কাটানো সময়, আনলক স্ট্যাটাস ও গোপন পরামর্শের রেকর্ড।</p>
+          <p class="text-xs text-slate-400 mt-1" data-i18n="vipModalSubtitle">ভিউয়ারদের প্রতিটি ক্লিক, কাটানো সময়, আনলক স্ট্যাটাস ও গোপন পরামর্শের রেকর্ড।</p>
         </div>
         <button onclick="refreshVisitorTables()" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-xs font-bold text-slate-200 transition flex items-center gap-1.5 self-start sm:self-auto">
-          <i class="fa-solid fa-arrows-rotate"></i> ডাটা রিফ্রেশ
+          <i class="fa-solid fa-arrows-rotate"></i> <span data-i18n="dataRefreshBtn">ডাটা রিফ্রেশ</span>
         </button>
       </div>
 
       <!-- Stats Grid Inside Modal -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
-          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-eye text-blue-400"></i> মোট পেজ ভিউ</span>
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-eye text-blue-400"></i> <span data-i18n="statViews">মোট পেজ ভিউ</span></span>
           <div id="modalStatViews" class="text-2xl font-black text-white mt-1">১,০২৫</div>
-          <span class="text-[10px] text-slate-500">শুরু থেকে ভিউ</span>
+          <span class="text-[10px] text-slate-500" data-i18n="statViewsSub">শুরু থেকে ভিউ</span>
         </div>
         <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
-          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-users text-amber-400"></i> মোট ইউজার</span>
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-users text-amber-400"></i> <span data-i18n="statUsers">মোট ইউজার</span></span>
           <div id="modalStatUsers" class="text-2xl font-black text-amber-400 mt-1">১</div>
-          <span class="text-[10px] text-slate-500">ইউনিক ভিজিটর</span>
+          <span class="text-[10px] text-slate-500" data-i18n="statUsersSub">ইউনিক ভিজিটর</span>
         </div>
         <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
-          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-hourglass-half text-emerald-400"></i> বর্তমান সেশন</span>
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-hourglass-half text-emerald-400"></i> <span data-i18n="statSession">বর্তমান সেশন</span></span>
           <div id="modalStatCurrentSession" class="text-2xl font-black text-emerald-400 mt-1">০ মিনিট ০২ সে.</div>
-          <span class="text-[10px] text-slate-500">কাটানো সময়</span>
+          <span class="text-[10px] text-slate-500" data-i18n="statSessionSub">কাটানো সময়</span>
         </div>
         <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
-          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-shield-halved text-purple-400"></i> ভিউয়ার অ্যাকশন</span>
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-shield-halved text-purple-400"></i> <span data-i18n="statActions">ভিউয়ার অ্যাকশন</span></span>
           <div id="modalStatActionCount" class="text-2xl font-black text-purple-400 mt-1">০ টি</div>
-          <span class="text-[10px] text-slate-500">লগ করা অ্যাক্টিভিটি</span>
+          <span class="text-[10px] text-slate-500" data-i18n="statActionsSub">লগ করা অ্যাক্টিভিটি</span>
         </div>
       </div>
 
@@ -684,15 +670,15 @@
         <!-- বাঁ দিকের টেবিল: ইউজার তালিকা -->
         <div class="border border-slate-800 rounded-2xl overflow-y-auto custom-scrollbar">
           <div class="p-2.5 bg-slate-800/90 text-xs font-bold text-slate-300 border-b border-slate-700 flex items-center justify-between">
-            <span>👥 নিবন্ধিত ভিজিটর ও আনলক করা জিমেইল</span>
+            <span data-i18n="tblVisitorsTitle">👥 নিবন্ধিত ভিজিটর ও আনলক করা জিমেইল</span>
           </div>
           <table class="w-full text-left text-xs text-slate-300">
             <thead class="bg-slate-900 text-slate-400 uppercase font-bold sticky top-0 text-[10px]">
               <tr>
-                <th class="py-2.5 px-3">জিমেইল</th>
-                <th class="py-2.5 px-3">স্ট্যাটাস</th>
-                <th class="py-2.5 px-3">কাটানো সময়</th>
-                <th class="py-2.5 px-3">সর্বশেষ</th>
+                <th class="py-2.5 px-3" data-i18n="thEmail">জিমেইল</th>
+                <th class="py-2.5 px-3" data-i18n="thStatus">স্ট্যাটাস</th>
+                <th class="py-2.5 px-3" data-i18n="thDuration">কাটানো সময়</th>
+                <th class="py-2.5 px-3" data-i18n="thLast">সর্বশেষ</th>
               </tr>
             </thead>
             <tbody id="modalVisitorLogTbody" class="divide-y divide-slate-800 bg-slate-900/60 font-medium">
@@ -704,8 +690,8 @@
         <!-- ডান দিকের প্যানেল: সম্পূর্ণ ভিউয়ার অ্যাক্টিভিটি হিস্ট্রি -->
         <div class="border border-slate-800 rounded-2xl overflow-y-auto custom-scrollbar flex flex-col">
           <div class="p-2.5 bg-slate-800/90 text-xs font-bold text-amber-300 border-b border-slate-700 flex items-center justify-between">
-            <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> ভিউয়ারদের রিয়েল-টাইম কার্যকলাপ লগ</span>
-            <button onclick="clearActivityHistory()" class="text-[10px] text-red-400 hover:text-red-300 underline">লগ মুছুন</button>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> <span data-i18n="pnlActivityTitle">ভিউয়ারদের রিয়েল-টাইম কার্যকলাপ লগ</span></span>
+            <button onclick="clearActivityHistory()" class="text-[10px] text-red-400 hover:text-red-300 underline" data-i18n="btnClearLog">লগ মুছুন</button>
           </div>
           <div id="modalAllActivityLogsList" class="p-3 space-y-2 bg-slate-950 flex-grow overflow-y-auto custom-scrollbar font-mono text-[11px]">
             <!-- Dynamically populated -->
@@ -718,7 +704,7 @@
         <div class="flex items-center justify-between mb-2">
           <h4 class="text-xs font-bold text-amber-300 flex items-center gap-2">
             <i class="fa-solid fa-envelopes-bulk"></i>
-            <span>ইউজারদের পাঠানো ওয়েবসাইটের উন্নতিমূলক পরামর্শ</span>
+            <span data-i18n="vipFeedbackHeading">ইউজারদের পাঠানো ওয়েবসাইটের উন্নতিমূলক পরামর্শ</span>
           </h4>
           <span id="feedbackTotalBadge" class="text-[10px] bg-slate-800 px-2.5 py-0.5 rounded-full text-slate-300 font-semibold border border-slate-700">০ টি পরামর্শ</span>
         </div>
@@ -738,12 +724,12 @@
 
       <h3 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
         <i class="fa-solid fa-star text-amber-400"></i>
-        <span>রিভিউ ও মতামত প্রদান</span>
+        <span data-i18n="reviewModalTitle">রিভিউ ও মতামত প্রদান</span>
       </h3>
       <p id="reviewTargetAgencyName" class="text-xs text-amber-400 font-semibold mb-4">এজেন্সির নাম</p>
 
       <div class="mb-4">
-        <label class="block text-xs font-semibold text-slate-300 mb-2">রেটিং নির্বাচন করুন (১ - ৫ স্টার):</label>
+        <label class="block text-xs font-semibold text-slate-300 mb-2" data-i18n="reviewRatingLabel">রেটিং নির্বাচন করুন (১ - ৫ স্টার):</label>
         <div class="flex items-center gap-2 text-2xl" id="starRatingSelector">
           <button type="button" onclick="setSelectRating(1)" class="star-btn text-amber-400"><i class="fa-solid fa-star"></i></button>
           <button type="button" onclick="setSelectRating(2)" class="star-btn text-amber-400"><i class="fa-solid fa-star"></i></button>
@@ -755,7 +741,7 @@
 
       <div class="mb-4">
         <div class="flex items-center justify-between mb-1">
-          <label class="text-xs font-semibold text-slate-300">আপনার মন্তব্য (সর্বোচ্চ ১০০ শব্দ):</label>
+          <label class="text-xs font-semibold text-slate-300" data-i18n="reviewCommentLabel">আপনার মন্তব্য (সর্বোচ্চ ১০০ শব্দ):</label>
           <span id="reviewWordCountBadge" class="text-[11px] font-bold text-slate-400">০/১০০ শব্দ</span>
         </div>
         <textarea id="reviewTextInput" oninput="handleReviewWordCount(this)" rows="4" placeholder="এজেন্সির সার্ভিস, প্রসেসিং সময় ও ব্যবহার সম্পর্কে আপনার সত্য মতামত লিখুন..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-sans"></textarea>
@@ -764,7 +750,7 @@
       <div id="reviewErrorNotice" class="text-xs text-red-400 font-semibold mb-3 hidden"></div>
 
       <button onclick="submitAgencyReview()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-sm transition">
-        রিভিউ সাবমিট করুন
+        <span data-i18n="btnSubmitReview">রিভিউ সাবমিট করুন</span>
       </button>
     </div>
   </div>
@@ -782,77 +768,386 @@
       "vip_partner1@gmail.com"
     ];
 
+    // সম্পূর্ণ দ্বিভাষিক অভিধান (Bilingual Dictionary)
+    const I18N = {
+      bn: {
+        topBarContact: "অফিসিয়াল যোগাযোগ:",
+        copyBtn: "কপি",
+        copiedBtn: "কপি হয়েছে!",
+        viewerNotice: "<strong>এডমিন টেস্ট মোড:</strong> সাধারণ মানুষ ১:০১ সেকেন্ড যেভাবে দেখে ও লক হয়, আপনি তা লাইভ দেখছেন।",
+        resetTrialBtn: "১:০১ ট্রায়াল রিসেট",
+        backToAdminBtn: "👑 এডমিন ভিউতে ফিরুন",
+        headerSubtitle: "তথ্য, সরকারি ভেরিফিকেশন ও ট্রাভেল সাপোর্ট",
+        themeMode: "ডার্ক",
+        langToggle: "English",
+        vipDashboardBtn: "VIP ড্যাশবোর্ড",
+        heroBadge: "অফিসিয়াল সার্ভিসেস ও ডেটাবেজ লিংক",
+        heroTitle: "পরিবারে আপনাকে স্বাগত",
+        heroSubtitle: "আমরা আপনাকে কীভাবে সাহায্য করতে পারি?",
+        opt1Badge: "অপশন ০১",
+        opt1Title: "ইনভাইটেশন চেক",
+        opt1Desc: "মলদোভা মাইগ্রেশন ও পররাষ্ট্র দপ্তরের ইনভাইটেশন লেটার এবং ফাইল রেজিস্ট্রেশন যাচাই করুন।",
+        opt1Btn: "ইনভাইটেশন চেক করুন",
+        opt2Badge: "অপশন ০২",
+        opt2Title: "সাবমিশন স্লিপ চেক",
+        opt2Desc: "মলদোভার সরকারি পেমেন্ট ও ইনভয়েস সার্চ পোর্টাল (MPay)-এ স্লিপ ও চালানের স্ট্যাটাস যাচাই করুন।",
+        opt2Btn: "সাবমিশন স্লিপ চেক করুন",
+        opt3Badge: "অপশন ০৩",
+        opt3Title: "ই-ভিসা চেক",
+        opt3Desc: "মলদোভা পররাষ্ট্র মন্ত্রণালয়ের অফিসিয়াল ডাটাবেজ থেকে সরাসরি আপনার ই-ভিসা স্ট্যাটাস চেক করুন।",
+        opt3Btn: "ই-ভিসা চেক করুন",
+        opt4Badge: "অপশন ০৪",
+        opt4Title: "বিএমইটি চেক",
+        opt4Desc: "আজকে কয়টা ম্যানপাওয়ার হয়েছে, দেশভিত্তিক ক্লিয়ারেন্স রিপোর্ট ও অনুমোদনের পরিসংখ্যান সরাসরি দেখুন।",
+        opt4Btn: "বিএমইটি চেক করুন",
+        guideBadge: "দেশ পরিচিতি ও অফিশিয়াল নির্দেশিকা",
+        guideHeading: "মলদোভা যেতে যা কিছু জানা প্রয়োজন",
+        guideSubheading: "বাংলাদেশ বা অন্য যেকোনো দেশ থেকে মলদোভা যাওয়ার প্রয়োজনীয় সকল কাগজপত্র ও সঠিক নিয়মাবলী।",
+        infoCard1Title: "মলদোভা পরিচিতি",
+        infoCard1Desc: "মলদোভা পূর্ব ইউরোপের একটি শান্তিময় রাষ্ট্র। রাজধানী চিশিনাউ (Chișinău)। মুদ্রা মলদোভান লিউ (MDL)। এটি ইউরোপীয় ইউনিয়নের প্রার্থী রাষ্ট্র এবং রোমানিয়া ও ইউক্রেনের সীমান্তে অবস্থিত।",
+        infoCard2Title: "কাজের প্রধান খাতসমূহ",
+        infoCard2Desc: "নির্মাণ খাত (Construction), উৎপাদন ও টেক্সটাইল, খাদ্য প্রক্রিয়াজাতকরণ, ওয়্যারহাউস ও গুদামজাতকরণ এবং ড্রাইভিং সেক্টরে বর্তমানে নিয়মিত বিদেশি কর্মী নিয়োগ হচ্ছে।",
+        infoCard3Title: "ভিসার ধরন (Type D)",
+        infoCard3Desc: "কাজের উদ্দেশ্যে যেতে হলে 'লং-স্টে ডি/এস (Type D/AS - Work)' ভিসা প্রয়োজন হয়। এই ভিসার প্রাথমিক মেয়াদ ৯০ থেকে ৩৬০ দিন হয় এবং দেশটিতে পৌঁছানোর পর রেসিডেন্স পারমিট কার্ডে রূপান্তর করা যায়।",
+        docsHeading: "মলদোভা ভিসার জন্য প্রয়োজনীয় ডকুমেন্টস",
+        doc1Title: "মূল পাসপোর্ট (Original Passport)",
+        doc1Desc: "কমপক্ষে ৬ মাসের মেয়াদ এবং ন্যূনতম ২টি ফাঁকা পৃষ্ঠা থাকতে হবে।",
+        doc2Title: "IGM ওয়ার্ক ইনভাইটেশন লেটার",
+        doc2Desc: "মলদোভার অভিবাসন কর্তৃপক্ষ (IGM) কর্তৃক ইস্যুকৃত অনুমোদিত অফিশিয়াল ইনভাইটেশন।",
+        doc3Title: "পুলিশ ক্লিয়ারেন্স সার্টিফিকেট",
+        doc3Desc: "আইন মন্ত্রণালয় ও পররাষ্ট্র মন্ত্রণালয় থেকে নোটারাইজড ও সত্যায়িত কপি।",
+        doc4Title: "চাকরির চুক্তিপত্র (Job Contract)",
+        doc4Desc: "মলদোভান নিয়োগকর্তা ও কর্মীর মধ্যে স্বাক্ষরিত দ্বিপাক্ষিক কর্মচুক্তি।",
+        doc5Title: "মেডিকেল ফিটনেস সার্টিফিকেট",
+        doc5Desc: "অনুমোদিত ডায়াগনস্টিক সেন্টার থেকে রক্ত ও স্বাস্থ্য পরীক্ষার সার্টিফিকেট।",
+        doc6Title: "ট্রাভেল ইন্স্যুরেন্স ও টিকিট",
+        doc6Desc: "ন্যূনতম ৩০,০০০ ইউরো কাভারেজযুক্ত আন্তর্জাতিক স্বাস্থ্যবীমা ও টিকিট বুকিং।",
+        top5AgencyCrown: "TOP 5 Agency in Bangladesh",
+        top5AgencyHeading: "বাংলাদেশের শীর্ষ ৫টি এজেন্সি ও ইউজার রিভিউ",
+        top5AgencySubheading: "এজেন্সি সম্পর্কে অভিজ্ঞতা পর্যালোচনা করুন। আপনার জিমেইল দিয়ে সর্বোচ্চ ১০০ শব্দের রিভিউ ও রেটিং দিতে পারবেন।",
+        licenseLabel: "লাইসেন্স:",
+        leaveReviewBtn: "রিভিউ দিন (১০০ শব্দ)",
+        publicReviewsLabel: "পাবলিক রিভিউ",
+        verifiedUserTag: "যাচাইকৃত ইউজার (গোপন)",
+        noReviewYet: "এখনো কোনো রিভিউ নেই। প্রথম রিভিউ দিন!",
+        communityBadge: "আমাদের কমিউনিটিতে যুক্ত থাকুন",
+        communityHeading: "মলদোভা ভিসা ও ট্রাভেল হেল্পডেস্ক",
+        communitySubheading: "যেকোনো প্রশ্ন, তথ্য আপডেট এবং সরাসরি আলোচনার জন্য আমাদের অফিসিয়াল গ্রুপগুলোতে যোগ দিন।",
+        joinFbBtn: "ফেসবুক গ্রুপে জয়েন করুন",
+        joinWaBtn: "হোয়াটসঅ্যাপ গ্রুপে যুক্ত হন",
+        feedbackBadge: "পরামর্শ ও মতামত বক্স",
+        feedbackHeading: "আমাদের ওয়েবসাইটটি আরও সুন্দর ও তথ্যবহুল করতে আপনার পরামর্শ দিন",
+        feedbackSubheading: "কোন নতুন ফিচার যোগ করা প্রয়োজন বা সাইটের ডিজাইন কীভাবে আরও সহজ করা যায়? আপনার মতামত সরাসরি অ্যাডমিন এবং ভিআইপি প্যানেলে সংরক্ষিত হবে।",
+        feedbackEmailLabel: "আপনার ইমেইল অ্যাড্রেস:",
+        feedbackCategoryLabel: "পরামর্শের ধরন:",
+        feedbackMsgLabel: "আপনার মূল্যবান পরামর্শ:",
+        feedbackPlaceholder: "ওয়েবসাইটে কী পরিবর্তন বা সুবিধা আনলে এটি সবার জন্য আরও উপকারী হবে তা সংক্ষেপে লিখুন...",
+        feedbackSubmitBtn: "পরামর্শ পাঠান",
+        feedbackCharFormat: "{count}/৩০০ অক্ষর",
+        timerRemainingLabel: "ফ্রি ট্রায়াল বাকি:",
+        timerLockWarn: "এরপর পেজ সম্পূর্ণ লক হবে",
+        lockModalHeading: "১:০১ সেকেন্ডের ফ্রি ভিজিট সময় শেষ!",
+        lockModalDesc: "ওয়েবসাইটের সকল লিংক, ম্যানপাওয়ার ও এজেন্সি তথ্য ফ্রিতে নিয়মিত দেখতে আমাদের ফেসবুক ও হোয়াটসঅ্যাপ কমিউনিটিতে জয়েন করে আপনার <strong>@gmail.com</strong> দিয়ে প্রবেশ করুন।",
+        lockStep1Title: "১. ফেসবুক গ্রুপে জয়েন করুন",
+        lockStep1Desc: "অফিসিয়াল আপডেট ও আলোচনার জন্য",
+        lockStep2Title: "২. হোয়াটসঅ্যাপ গ্রুপে জয়েন করুন",
+        lockStep2Desc: "সরাসরি নোটিফিকেশন ও সহায়তার জন্য",
+        lockStep3Label: "৩. আপনার জিমেইল অ্যাকাউন্ট লিখুন:",
+        gmailOnlyBadge: "শুধুমাত্র @gmail.com",
+        lockUnlockBtn: "যাচাই করে ফ্রি এক্সেস আনলক করুন",
+        lockWarningFoot: "* অন্য কোনো ডোমেন যেমন yahoo, hotmail বা ভুয়া ইমেইল দিলে প্রবেশ করা যাবে না।",
+        joinBtnText: "জয়েন করুন",
+        connectBtnText: "যুক্ত হন",
+        stepCompletedText: "সম্পন্ন",
+        reviewModalTitle: "রিভিউ ও মতামত প্রদান",
+        reviewRatingLabel: "রেটিং নির্বাচন করুন (১ - ৫ স্টার):",
+        reviewCommentLabel: "আপনার মন্তব্য (সর্বোচ্চ ১০০ শব্দ):",
+        reviewPlaceholder: "এজেন্সির সার্ভিস, প্রসেসিং সময় ও ব্যবহার সম্পর্কে আপনার সত্য মতামত লিখুন...",
+        btnSubmitReview: "রিভিউ সাবমিট করুন",
+        vipModalTitle: "VIP ড্যাশবোর্ড ও বিস্তারিত ভিজিটর অ্যাক্টিভিটি",
+        vipModalSubtitle: "ভিউয়ারদের প্রতিটি ক্লিক, কাটানো সময়, আনলক স্ট্যাটাস ও গোপন পরামর্শের রেকর্ড।",
+        dataRefreshBtn: "ডাটা রিফ্রেশ",
+        statViews: "মোট পেজ ভিউ",
+        statViewsSub: "শুরু থেকে ভিউ",
+        statUsers: "মোট ইউজার",
+        statUsersSub: "ইউনিক ভিজিটর",
+        statSession: "বর্তমান সেশন",
+        statSessionSub: "কাটানো সময়",
+        statActions: "ভিউয়ার অ্যাকশন",
+        statActionsSub: "লগ করা অ্যাক্টিভিটি",
+        tblVisitorsTitle: "👥 নিবন্ধিত ভিজিটর ও আনলক করা জিমেইল",
+        thEmail: "জিমেইল",
+        thStatus: "স্ট্যাটাস",
+        thDuration: "কাটানো সময়",
+        thLast: "সর্বশেষ",
+        pnlActivityTitle: "ভিউয়ারদের রিয়েল-টাইম কার্যকলাপ লগ",
+        btnClearLog: "লগ মুছুন",
+        vipFeedbackHeading: "ইউজারদের পাঠানো ওয়েবসাইটের উন্নতিমূলক পরামর্শ",
+        footerContact: "আমাদের সাথে যোগাযোগ করুন:",
+        footerNote1: "Moldova Work Visa Bangladesh — সকল তথ্য মলদোভা সরকারের অফিসিয়াল ডেটাবেজ দ্বারা যাচাইকৃত।",
+        footerNote2: "© ২০২৬ সর্বস্বত্ব সংরক্ষিত। ভিসা প্রতারণা থেকে সতর্ক থাকুন এবং সবসময় সঠিক চ্যানেল ব্যবহার করুন।",
+        toastCopied: "ইমেইল সফলভাবে কপি করা হয়েছে!",
+        catDesign: "🎨 ডিজাইন ও লুক উন্নত করা",
+        catLinks: "🔗 নতুন দরকারি লিংক বা ফিচার",
+        catSpeed: "⚡ সাইটের গতি ও পারফরম্যান্স",
+        catVisa: "📄 ভিসা সংক্রান্ত অতিরিক্ত তথ্য",
+        catOther: "💡 অন্যান্য যেকোনো পরামর্শ"
+      },
+      en: {
+        topBarContact: "Official Contact:",
+        copyBtn: "Copy",
+        copiedBtn: "Copied!",
+        viewerNotice: "<strong>Admin Test Mode:</strong> You are experiencing the live 1:01s preview & lockout as seen by regular visitors.",
+        resetTrialBtn: "Reset 1:01 Trial",
+        backToAdminBtn: "👑 Return to Admin View",
+        headerSubtitle: "Information, Government Verification & Travel Support",
+        themeMode: "Dark",
+        langToggle: "বাংলা",
+        vipDashboardBtn: "VIP Dashboard",
+        heroBadge: "Official Services & Database Verification",
+        heroTitle: "Welcomes You to the Family",
+        heroSubtitle: "How can we assist your Moldova journey today?",
+        opt1Badge: "OPTION 01",
+        opt1Title: "Invitation Check",
+        opt1Desc: "Verify the official invitation letter & registration via Moldova IGM & MFA database.",
+        opt1Btn: "Check Invitation",
+        opt2Badge: "OPTION 02",
+        opt2Title: "Submission Slip Check",
+        opt2Desc: "Verify your fee invoice, voucher and application slip status on Moldova MPay portal.",
+        opt2Btn: "Check Submission Slip",
+        opt3Badge: "OPTION 03",
+        opt3Title: "E-Visa Check",
+        opt3Desc: "Track and confirm your authentic electronic visa directly on Moldova Ministry of Foreign Affairs database.",
+        opt3Btn: "Check E-Visa",
+        opt4Badge: "OPTION 04",
+        opt4Title: "BMET Clearance",
+        opt4Desc: "Check live daily manpower clearance counts, country-wise clearances and official approvals.",
+        opt4Btn: "Check BMET Clearance",
+        guideBadge: "Country Overview & Official Guidelines",
+        guideHeading: "Everything You Need to Know Before Traveling to Moldova",
+        guideSubheading: "All necessary documentation, official procedures, and essential guidelines from Bangladesh to Moldova.",
+        infoCard1Title: "About Moldova",
+        infoCard1Desc: "Moldova is a peaceful Eastern European nation. Capital: Chișinău. Currency: Moldovan Leu (MDL). It is an EU candidate nation bordered by Romania and Ukraine.",
+        infoCard2Title: "Key Employment Sectors",
+        infoCard2Desc: "Current high-demand sectors include Construction, Textile & Manufacturing, Food Processing, Warehousing & Logistics, and Commercial Driving.",
+        infoCard3Title: "Visa Category (Type D)",
+        infoCard3Desc: "For employment, a Long-Stay Work Visa (Type D/AS) is required. Initial validity ranges from 90 to 360 days, convertible to a Temporary Residence Permit on arrival.",
+        docsHeading: "Mandatory Documents for Moldova Work Visa",
+        doc1Title: "Original Passport",
+        doc1Desc: "Must be valid for at least 6 months with minimum 2 blank visa pages.",
+        doc2Title: "IGM Work Invitation Letter",
+        doc2Desc: "Official approved invitation letter issued by General Inspectorate for Migration (IGM).",
+        doc3Title: "Police Clearance Certificate",
+        doc3Desc: "Verified and notarized copies authenticated by Ministry of Foreign Affairs & Law.",
+        doc4Title: "Employment Contract",
+        doc4Desc: "Bilateral signed work agreement between the Moldovan employer and applicant.",
+        doc5Title: "Medical Fitness Certificate",
+        doc5Desc: "Comprehensive medical and blood test reports from an authorized diagnostic clinic.",
+        doc6Title: "Travel Insurance & Flight Booking",
+        doc6Desc: "International health insurance covering min €30,000 plus confirmed flight itinerary.",
+        top5AgencyCrown: "TOP 5 Agencies in Bangladesh",
+        top5AgencyHeading: "Top 5 Recruiting Agencies & Verified User Reviews",
+        top5AgencySubheading: "Explore authentic public reviews. You can submit your 100-word feedback with verified star ratings using your Gmail.",
+        licenseLabel: "License:",
+        leaveReviewBtn: "Write a Review (100 words)",
+        publicReviewsLabel: "Public Reviews",
+        verifiedUserTag: "Verified User (Protected)",
+        noReviewYet: "No reviews submitted yet. Be the first to review!",
+        communityBadge: "Stay Connected With Our Community",
+        communityHeading: "Moldova Visa & Travel Helpdesk",
+        communitySubheading: "Join our official channels for real-time announcements, discussion, and direct support.",
+        joinFbBtn: "Join Facebook Group",
+        joinWaBtn: "Join WhatsApp Group",
+        feedbackBadge: "Suggestions & Feedback",
+        feedbackHeading: "Share Your Suggestions to Improve Our Portal",
+        feedbackSubheading: "Want a new link or layout enhancement? Share your thoughts directly with the Admin & VIP panel.",
+        feedbackEmailLabel: "Your Email Address:",
+        feedbackCategoryLabel: "Suggestion Category:",
+        feedbackMsgLabel: "Your Valuable Feedback:",
+        feedbackPlaceholder: "Briefly explain what enhancements or features you would like to see on our website...",
+        feedbackSubmitBtn: "Send Suggestion",
+        feedbackCharFormat: "{count}/300 Characters",
+        timerRemainingLabel: "Free Trial Remaining:",
+        timerLockWarn: "Screen will lock completely afterwards",
+        lockModalHeading: "1:01 Seconds Free Preview Expired!",
+        lockModalDesc: "To continue accessing all official visa verification databases and manpower reports for free, join our Facebook & WhatsApp groups and unlock with your <strong>@gmail.com</strong>.",
+        lockStep1Title: "1. Join Our Facebook Group",
+        lockStep1Desc: "For daily updates, approvals and community discussions",
+        lockStep2Title: "2. Join Our WhatsApp Community",
+        lockStep2Desc: "For immediate alerts and instant verification support",
+        lockStep3Label: "3. Enter your Gmail address:",
+        gmailOnlyBadge: "Only @gmail.com",
+        lockUnlockBtn: "Verify & Unlock Lifetime Free Access",
+        lockWarningFoot: "* Other email domains like yahoo, hotmail, or temp-mail will be rejected.",
+        joinBtnText: "Join Now",
+        connectBtnText: "Connect Now",
+        stepCompletedText: "Done",
+        reviewModalTitle: "Submit Agency Review",
+        reviewRatingLabel: "Select Star Rating (1 - 5 Stars):",
+        reviewCommentLabel: "Your Feedback (Max 100 Words):",
+        reviewPlaceholder: "Share your experience regarding customer support, processing timeline, and overall service...",
+        btnSubmitReview: "Submit Review",
+        vipModalTitle: "VIP Dashboard & Live Visitor Analytics",
+        vipModalSubtitle: "Real-time viewer session tracker, click records, unlock statistics, and confidential feedback.",
+        dataRefreshBtn: "Refresh Data",
+        statViews: "Total Pageviews",
+        statViewsSub: "All time views",
+        statUsers: "Total Users",
+        statUsersSub: "Unique visitors",
+        statSession: "Current Session",
+        statSessionSub: "Time spent",
+        statActions: "Viewer Actions",
+        statActionsSub: "Logged events",
+        tblVisitorsTitle: "👥 Registered Visitors & Unlocked Gmails",
+        thEmail: "Gmail",
+        thStatus: "Status",
+        thDuration: "Duration",
+        thLast: "Last Seen",
+        pnlActivityTitle: "Real-time Visitor Activity Log",
+        btnClearLog: "Clear Logs",
+        vipFeedbackHeading: "Confidential Suggestions Received from Visitors",
+        footerContact: "Contact Us:",
+        footerNote1: "Moldova Work Visa Bangladesh — All databases are verified against official government servers.",
+        footerNote2: "© 2026 All Rights Reserved. Stay vigilant against visa fraud and always use legitimate channels.",
+        toastCopied: "Email successfully copied to clipboard!",
+        catDesign: "🎨 UI & Design Enhancements",
+        catLinks: "🔗 New Government Links or Tools",
+        catSpeed: "⚡ Performance & Mobile Speed",
+        catVisa: "📄 Additional Visa & Travel Information",
+        catOther: "💡 General Improvements & Ideas"
+      }
+    };
+
     const AGENCIES_DATA = [
       {
         id: "agency_1",
-        name: "১. Al Saafir Overseas",
+        name_bn: "১. Al Saafir Overseas",
+        name_en: "1. Al Saafir Overseas",
         badgeColor: "#0033a0",
         logoType: "custom_logo",
         rl: "RL-2305",
         phone: "01967-226186",
         email: "psalsaafir@gmail.com",
-        location: "৬৭/১, পল্টন চায়না টাউন পূর্ব সাইড (৮ম তলা), ভি আই পি রোড, নয়া পল্টন, ঢাকা",
-        details: "মলদোভা সহ ইউরোপীয় ও মধ্যপ্রাচ্যের দেশসমূহে কর্মী প্রেরণে সরকার অনুমোদিত (Govt. Approved Recruiting Agency) বিশ্বস্ত ও নির্ভরযোগ্য রিক্রুটিং এজেন্সি।"
+        location_bn: "৬৭/১, পল্টন চায়না টাউন পূর্ব সাইড (৮ম তলা), ভি আই পি রোড, নয়া পল্টন, ঢাকা",
+        location_en: "67/1, Paltan China Town East Side (8th Floor), VIP Road, Naya Paltan, Dhaka",
+        details_bn: "মলদোভা সহ ইউরোপীয় ও মধ্যপ্রাচ্যের দেশসমূহে কর্মী প্রেরণে সরকার অনুমোদিত (Govt. Approved Recruiting Agency) বিশ্বস্ত ও নির্ভরযোগ্য রিক্রুটিং এজেন্সি।",
+        details_en: "Govt. Approved Recruiting Agency (RL-2305) trusted for authentic manpower placement to Moldova, Europe, and Middle Eastern countries."
       },
       {
         id: "agency_2",
-        name: "২. Alliance Overseas",
+        name_bn: "২. Alliance Overseas",
+        name_en: "2. Alliance Overseas",
         badgeColor: "#dc2626",
         logoType: "alliance_logo",
         rl: "RL Approved",
         phone: "01996334649, 01740620442",
         email: "info@allianceoverseas.com",
-        location: "Tower Hemlet (Level 5), 16 Kamal Ataturk Avenue, Banani, Dhaka.",
-        details: "উচ্চমানের রিক্রুটমেন্ট সেবা ও আন্তর্জাতিক কর্মসংস্থানের জন্য বিশ্বস্ত সহযোগী। নীতিনিষ্ঠ, স্বচ্ছ ও কার্যকর ভিসা প্রসেসিং।"
+        location_bn: "Tower Hemlet (Level 5), 16 Kamal Ataturk Avenue, Banani, Dhaka.",
+        location_en: "Tower Hamlet (Level 5), 16 Kamal Ataturk Avenue, Banani, Dhaka.",
+        details_bn: "উচ্চমানের রিক্রুটমেন্ট সেবা ও আন্তর্জাতিক কর্মসংস্থানের জন্য বিশ্বস্ত সহযোগী। নীতিনিষ্ঠ, স্বচ্ছ ও কার্যকর ভিসা প্রসেসিং।",
+        details_en: "A premier international recruitment partner known for ethical standards, transparency, and dependable European visa processing."
       },
       {
         id: "agency_3",
-        name: "৩. MILAD International Ltd.",
+        name_bn: "৩. MILAD International Ltd.",
+        name_en: "3. MILAD International Ltd.",
         badgeColor: "#10b981",
         logoType: "milad_logo",
         rl: "RL-1927",
         phone: "01709273773, 01939237726",
         email: "info@miladinternational.com",
-        location: "1022 Madani Avenue, Vatara Dhaka",
-        details: "মলদোভা ও ইউরোপীয় দেশসমূহে কর্মী নিয়োগে সরকার অনুমোদিত রিক্রুটিং এজেন্সি (RL-1927)। দক্ষ সেবা ও সঠিক নির্দেশনা প্রদানকারী প্রতিষ্ঠান।"
+        location_bn: "1022 Madani Avenue, Vatara Dhaka",
+        location_en: "1022 Madani Avenue, Vatara, Dhaka",
+        details_bn: "মলদোভা ও ইউরোপীয় দেশসমূহে কর্মী নিয়োগে সরকার অনুমোদিত রিক্রুটিং এজেন্সি (RL-1927)। দক্ষ সেবা ও সঠিক নির্দেশনা প্রদানকারী প্রতিষ্ঠান।",
+        details_en: "Govt. Approved Recruiting Agency (RL-1927) providing skilled employment support, documentation and guidance for Moldova and European destinations."
       },
       {
         id: "agency_4",
-        name: "৪. Fly Sure International",
+        name_bn: "৪. Fly Sure International",
+        name_en: "4. Fly Sure International",
         badgeColor: "#0284c7",
         logoType: "flysure_logo",
         rl: "Govt. Approved",
         phone: "01879241369",
         email: "flysureintl@gmail.com",
-        location: "53, Baitul Abed (Lift 04), Purana Paltan, Dhaka.",
-        details: "আন্তর্জাতিক ফ্লাইট, ইউরোপীয় ওয়ার্ক পারমিট ফাইল প্রসেসিং এবং কর্মসংস্থান ভিসা নির্দেশিকায় নির্ভরযোগ্য কনসালটেন্সি।"
+        location_bn: "53, Baitul Abed (Lift 04), Purana Paltan, Dhaka.",
+        location_en: "53, Baitul Abed (Lift 04), Purana Paltan, Dhaka.",
+        details_bn: "আন্তর্জাতিক ফ্লাইট, ইউরোপীয় ওয়ার্ক পারমিট ফাইল প্রসেসিং এবং কর্মসংস্থান ভিসা নির্দেশিকায় নির্ভরযোগ্য কনসালটেন্সি।",
+        details_en: "Dependable consultancy for international flight management, European work permit file processing, and employment guidelines."
       },
       {
         id: "agency_5",
-        name: "৫. Axis Visa International",
+        name_bn: "৫. Axis Visa International",
+        name_en: "5. Axis Visa International",
         badgeColor: "#f97316",
         logoType: "axis_logo",
         rl: "Visa Consultancy",
         phone: "01760162497",
         email: "axisvisaintl@gmail.com",
-        location: "Asha Villa (GF), 1624 CDA Avenue, Chattogram 4000.",
-        details: "ইউরোপ ও মধ্যপ্রাচ্যের দেশসমূহে বৈধ ভিসা প্রসেসিং, ওয়ার্ক পারমিট ও ডকুমেন্টেশন সংক্রান্ত তথ্য ও বিশ্বস্ত সহায়তা।"
+        location_bn: "Asha Villa (GF), 1624 CDA Avenue, Chattogram 4000.",
+        location_en: "Asha Villa (GF), 1624 CDA Avenue, Chattogram 4000.",
+        details_bn: "ইউরোপ ও মধ্যপ্রাচ্যের দেশসমূহে বৈধ ভিসা প্রসেসিং, ওয়ার্ক পারমিট ও ডকুমেন্টেশন সংক্রান্ত তথ্য ও বিশ্বস্ত সহায়তা।",
+        details_en: "Dedicated visa and travel consultancy offering reliable documentation, work permit filing, and legal European travel assistance."
       }
     ];
 
-    let currentAdminViewMode = 'viewer'; // সাধারণ ইউজারদের জন্য ডিফল্ট ভিউয়ার
+    let currentLanguage = localStorage.getItem('moldova_app_lang') || 'bn';
+    let currentAdminViewMode = 'viewer';
     let currentSelectedAgencyId = null;
     let currentSelectedRating = 5;
     let sessionSeconds = 0;
     let sessionInterval = null;
 
-    // ১:০১ সেকেন্ডের (৬১ সেকেন্ড) প্রিভিউ কাউন্টডাউন
     let previewSecondsRemaining = 61;
     let previewTimerInterval = null;
     let hasJoinedFb = false;
     let hasJoinedWa = false;
     let secretClickCount = 0;
     let secretClickTimer = null;
+
+    function applyTranslations() {
+      const dict = I18N[currentLanguage];
+      document.documentElement.lang = currentLanguage;
+
+      // Update static data-i18n attributes
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Update feedback select options
+      document.querySelectorAll('[data-i18n-opt]').forEach(opt => {
+        const optKey = opt.getAttribute('data-i18n-opt');
+        if (dict[optKey]) {
+          opt.textContent = dict[optKey];
+        }
+      });
+
+      // Update textareas & inputs placeholders
+      const feedbackInput = document.getElementById('feedbackMessageInput');
+      if (feedbackInput) feedbackInput.placeholder = dict.feedbackPlaceholder;
+
+      const reviewInput = document.getElementById('reviewTextInput');
+      if (reviewInput) reviewInput.placeholder = dict.reviewPlaceholder;
+
+      // Update toggle button text
+      const langBtnText = document.getElementById('langToggleText');
+      if (langBtnText) {
+        langBtnText.textContent = (currentLanguage === 'bn') ? 'English' : 'বাংলা';
+      }
+
+      // Re-render dynamic agencies with chosen language
+      renderAgenciesSection();
+    }
+
+    function toggleLanguage() {
+      currentLanguage = (currentLanguage === 'bn') ? 'en' : 'bn';
+      localStorage.setItem('moldova_app_lang', currentLanguage);
+      applyTranslations();
+      trackUserAction(currentLanguage === 'en' ? 'Switched site language to English' : 'ওয়েবসাইটের ভাষা বাংলায় পরিবর্তন করেছে');
+    }
 
     // 🔒 এডমিন কিনা যাচাইকরণ
     function isCurrentUserAdmin() {
@@ -872,7 +1167,7 @@
       return false;
     }
 
-    // লোগোতে ৩ বার দ্রুত ক্লিক করলে এডমিন অথেন্টিকেশন প্রম্পট
+    // লোগোতে ৩ বার দ্রুত ক্লিক করলে এডমিন প্রম্পট
     function handleSecretAdminTrigger() {
       secretClickCount++;
       clearTimeout(secretClickTimer);
@@ -882,15 +1177,17 @@
 
       if (secretClickCount >= 3) {
         secretClickCount = 0;
-        const enteredEmail = prompt("👑 এডমিন ভেরিফিকেশন: আপনার এডমিন ইমেইল লিখুন:");
+        const enteredEmail = prompt(currentLanguage === 'en' 
+          ? "👑 Admin Verification: Please enter your admin email:" 
+          : "👑 এডমিন ভেরিফিকেশন: আপনার এডমিন ইমেইল লিখুন:");
         if (enteredEmail && VIP_ACCOUNTS.includes(enteredEmail.trim().toLowerCase())) {
           localStorage.setItem('moldova_admin_authenticated', 'true');
           localStorage.setItem('moldova_verified_user_email', enteredEmail.trim().toLowerCase());
-          alert("অভিনন্দন! এডমিন এক্সেস সক্রিয় করা হয়েছে।");
+          showToast(currentLanguage === 'en' ? "Admin Access Activated!" : "অভিনন্দন! এডমিন এক্সেস সক্রিয় করা হয়েছে।");
           initAdminInterface();
           setAdminViewMode('admin');
         } else if (enteredEmail) {
-          alert("ভুল এডমিন ইমেইল!");
+          showToast(currentLanguage === 'en' ? "Invalid admin email!" : "ভুল এডমিন ইমেইল!");
         }
       }
     }
@@ -901,7 +1198,6 @@
       const badge = document.getElementById('verifiedUserEmailBadge');
 
       if (isCurrentUserAdmin()) {
-        // শুধু এডমিন হলেই এই অপশনটি দৃশ্যমান হবে
         if (toggleContainer) {
           toggleContainer.classList.remove('hidden');
           toggleContainer.classList.add('flex');
@@ -915,14 +1211,12 @@
           badge.classList.add('flex');
         }
       } else {
-        // সাধারণ ভিজিটরদের জন্য সম্পূর্ণ লুকানো থাকবে
         if (toggleContainer) toggleContainer.classList.add('hidden');
         if (vipBtn) vipBtn.classList.add('hidden');
         if (badge) badge.classList.add('hidden');
       }
     }
 
-    // 🔔 সময় শেষ হলে সতর্কবার্তা সাউন্ড (Beep-Beep-Ding)
     function playTimerEndAlarmSound() {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -950,49 +1244,27 @@
           osc.stop(ctx.currentTime + note.time + note.duration);
         });
       } catch (err) {
-        console.warn('Audio error:', err);
+        console.warn('Audio warning:', err);
       }
     }
 
     // 📡 ভিউয়ার প্রতিটি কী অ্যাকশন নিচ্ছে তা রিয়েল-টাইম ট্র্যাক করার ইঞ্জিন
     function trackUserAction(actionDescription) {
       const now = new Date();
-      const timeStr = now.toLocaleTimeString('bn-BD', { hour12: true });
-      const currentRole = (currentAdminViewMode === 'admin') ? 'এডমিন (টেস্ট)' : 'সাধারণ ভিউয়ার';
+      const timeStr = now.toLocaleTimeString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US', { hour12: true });
+      const currentRole = (currentAdminViewMode === 'admin') 
+        ? (currentLanguage === 'en' ? 'Admin (Testing)' : 'এডমিন (টেস্ট)') 
+        : (currentLanguage === 'en' ? 'Visitor' : 'সাধারণ ভিউয়ার');
 
       const logItem = { time: timeStr, role: currentRole, action: actionDescription };
       const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
       activities.unshift(logItem);
       if (activities.length > 100) activities.pop();
       localStorage.setItem('moldova_viewer_activities', JSON.stringify(activities));
-
-      updateLiveHud();
-    }
-
-    function updateLiveHud() {
-      const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
-      const feed = document.getElementById('liveActivityFeedList');
-      const badge = document.getElementById('trackerTotalActionBadge');
-      if (badge) badge.textContent = `${activities.length} টি অ্যাকশন`;
-
-      if (feed) {
-        if (!activities.length) {
-          feed.innerHTML = '<div class="text-slate-500 italic text-[10px]">এখনো কোনো অ্যাক্টিভিটি নেই।</div>';
-          return;
-        }
-        feed.innerHTML = activities.slice(0, 5).map(a => `
-          <div class="bg-slate-900 border border-slate-800 px-2 py-1 rounded">
-            <span class="text-blue-400 font-bold">[${a.time}]</span>
-            <span class="text-amber-300 font-bold">(${a.role}):</span>
-            <span class="text-slate-200">${a.action}</span>
-          </div>
-        `).join('');
-      }
     }
 
     function clearActivityHistory() {
       localStorage.removeItem('moldova_viewer_activities');
-      updateLiveHud();
       renderModalActivityLogs();
     }
 
@@ -1000,11 +1272,11 @@
       const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
       const container = document.getElementById('modalAllActivityLogsList');
       const statBadge = document.getElementById('modalStatActionCount');
-      if (statBadge) statBadge.textContent = `${activities.length} টি`;
+      if (statBadge) statBadge.textContent = `${activities.length} ${currentLanguage === 'en' ? 'Items' : 'টি'}`;
 
       if (container) {
         if (!activities.length) {
-          container.innerHTML = '<div class="text-slate-500 text-center py-6 text-xs">এখনো কোনো অ্যাক্টিভিটি রেকর্ড নেই।</div>';
+          container.innerHTML = `<div class="text-slate-500 text-center py-6 text-xs">${currentLanguage === 'en' ? 'No activity logs found.' : 'এখনো কোনো অ্যাক্টিভিটি রেকর্ড নেই।'}</div>`;
           return;
         }
         container.innerHTML = activities.map(a => `
@@ -1022,7 +1294,6 @@
       }
     }
 
-    // ১:০১ মিনিটের প্রিভিউ কাউন্টডাউন
     function startOneMinuteCountdown() {
       if (previewTimerInterval) clearInterval(previewTimerInterval);
 
@@ -1034,7 +1305,9 @@
         const mins = Math.floor(sec / 60).toString().padStart(2, '0');
         const s = (sec % 60).toString().padStart(2, '0');
         if (sideDisplay) {
-          sideDisplay.textContent = `${mins}:${s}`;
+          sideDisplay.textContent = (currentLanguage === 'bn') 
+            ? `${mins.replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d])}:${s.replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d])}`
+            : `${mins}:${s}`;
           if (sec <= 15) {
             sideDisplay.className = 'font-mono text-xl sm:text-2xl font-black text-red-500 leading-none mt-0.5 animate-pulse';
           } else {
@@ -1052,7 +1325,7 @@
         if (previewSecondsRemaining <= 0) {
           clearInterval(previewTimerInterval);
           playTimerEndAlarmSound();
-          trackUserAction('⚠️ ১:০১ সেকেন্ড পূর্ণ হওয়ায় অ্যালার্ম বেজেছে এবং পেজ লক হয়ে গেছে');
+          trackUserAction(currentLanguage === 'en' ? '⚠️ 1:01 preview ended, alarm triggered and page locked' : '⚠️ ১:০১ সেকেন্ড পূর্ণ হওয়ায় অ্যালার্ম বেজেছে এবং পেজ লক হয়ে গেছে');
           if (widget) widget.classList.add('hidden');
           openOneMinuteLockModal();
         }
@@ -1068,38 +1341,41 @@
     }
 
     function markStepComplete(type) {
+      const dict = I18N[currentLanguage];
       if (type === 'fb') {
         hasJoinedFb = true;
-        trackUserAction('ফেসবুক গ্রুপ বাটনে ক্লিক করেছে ও জয়েন হয়েছে');
+        trackUserAction(currentLanguage === 'en' ? 'Clicked Facebook Group and joined' : 'ফেসবুক গ্রুপ বাটনে ক্লিক করেছে ও জয়েন হয়েছে');
         const status = document.getElementById('statusFbJoined');
         if (status) {
           status.className = 'text-xs px-2.5 py-1 bg-emerald-500 text-white rounded-lg font-bold flex items-center gap-1';
-          status.innerHTML = '<i class="fa-solid fa-check"></i> সম্পন্ন';
+          status.innerHTML = `<i class="fa-solid fa-check"></i> ${dict.stepCompletedText}`;
         }
       } else if (type === 'wa') {
         hasJoinedWa = true;
-        trackUserAction('হোয়াটসঅ্যাপ গ্রুপ বাটনে ক্লিক করেছে ও জয়েন হয়েছে');
+        trackUserAction(currentLanguage === 'en' ? 'Clicked WhatsApp Group and joined' : 'হোয়াটসঅ্যাপ গ্রুপ বাটনে ক্লিক করেছে ও জয়েন হয়েছে');
         const status = document.getElementById('statusWaJoined');
         if (status) {
           status.className = 'text-xs px-2.5 py-1 bg-emerald-500 text-white rounded-lg font-bold flex items-center gap-1';
-          status.innerHTML = '<i class="fa-solid fa-check"></i> সম্পন্ন';
+          status.innerHTML = `<i class="fa-solid fa-check"></i> ${dict.stepCompletedText}`;
         }
       }
     }
 
     function handleUserUnlockSubmit() {
+      const dict = I18N[currentLanguage];
       const emailInput = document.getElementById('userUnlockGmailInput');
       const errorMsg = document.getElementById('unlockErrorMessage');
       const email = emailInput.value.trim().toLowerCase();
 
-      trackUserAction(`আনলক করার জন্য জিমেইল সাবমিট করেছে: ${email || '(ফাঁকা)'}`);
+      trackUserAction(currentLanguage === 'en' ? `Submitted unlock email: ${email || '(empty)'}` : `আনলক করার জন্য জিমেইল সাবমিট করেছে: ${email || '(ফাঁকা)'}`);
 
-      // যদি মাস্টার এডমিন ইমেইল দেওয়া হয়, তবে সরাসরি এডমিন হিসেবে আনলক হবে
       if (VIP_ACCOUNTS.includes(email)) {
         localStorage.setItem('moldova_admin_authenticated', 'true');
         localStorage.setItem('moldova_verified_user_email', email);
         errorMsg.className = 'text-xs text-amber-300 font-bold bg-amber-950/40 p-2.5 rounded-lg border border-amber-500/40';
-        errorMsg.innerHTML = '<i class="fa-solid fa-crown text-amber-400"></i> মাস্টার এডমিন হিসেবে স্বীকৃত! সম্পূর্ণ সাইট আনলক হচ্ছে...';
+        errorMsg.innerHTML = currentLanguage === 'en'
+          ? '<i class="fa-solid fa-crown text-amber-400"></i> Master Admin Authenticated! Unlocking all access...'
+          : '<i class="fa-solid fa-crown text-amber-400"></i> মাস্টার এডমিন হিসেবে স্বীকৃত! সম্পূর্ণ সাইট আনলক হচ্ছে...';
         errorMsg.classList.remove('hidden');
 
         setTimeout(() => {
@@ -1111,28 +1387,32 @@
         return;
       }
 
-      // সাধারণ ভিজিটরদের জন্য ফেসবুক ও হোয়াটসঅ্যাপ জয়েনিং নিশ্চিতকরণ
       if (!hasJoinedFb || !hasJoinedWa) {
-        errorMsg.textContent = 'দয়া করে ফেসবুক গ্রুপ এবং হোয়াটসঅ্যাপ গ্রুপে প্রথমে যুক্ত হোন!';
+        errorMsg.textContent = currentLanguage === 'en' 
+          ? 'Please join both the Facebook Group and WhatsApp Community first!' 
+          : 'দয়া করে ফেসবুক গ্রুপ এবং হোয়াটসঅ্যাপ গ্রুপে প্রথমে যুক্ত হোন!';
         errorMsg.classList.remove('hidden');
-        trackUserAction('❌ শর্ত পূরণ না করে আনলক করার চেষ্টা করেছে (FB/WA বাকি)');
+        trackUserAction(currentLanguage === 'en' ? '❌ Attempted unlock without completing FB/WA steps' : '❌ শর্ত পূরণ না করে আনলক করার চেষ্টা করেছে (FB/WA বাকি)');
         return;
       }
 
-      // কঠোরভাবে শুধুমাত্র @gmail.com যাচাই
       const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
       if (!gmailRegex.test(email)) {
-        errorMsg.textContent = 'ভুল ইমেইল! শুধুমাত্র সক্রিয় @gmail.com ইমেইল গ্রহণযোগ্য (অন্য কোনো ডোমেন নয়)।';
+        errorMsg.textContent = currentLanguage === 'en'
+          ? 'Invalid email! Only active @gmail.com accounts are accepted (no other domains).'
+          : 'ভুল ইমেইল! শুধুমাত্র সক্রিয় @gmail.com ইমেইল গ্রহণযোগ্য (অন্য কোনো ডোমেন নয়)।';
         errorMsg.classList.remove('hidden');
-        trackUserAction('❌ ভুল বা অন্য ডোমেনের ইমেইল দিয়ে আনলক করার চেষ্টা করেছে: ' + email);
+        trackUserAction(currentLanguage === 'en' ? `❌ Invalid or non-gmail address attempted: ${email}` : `❌ ভুল বা অন্য ডোমেনের ইমেইল দিয়ে আনলক করার চেষ্টা করেছে: ${email}`);
         return;
       }
 
       localStorage.setItem('moldova_verified_user_email', email);
-      trackUserAction(`✅ জিমেইল ভেরিফাই হয়েছে এবং সাইট সম্পূর্ণ আনলক হয়েছে: ${email}`);
+      trackUserAction(currentLanguage === 'en' ? `✅ Gmail verified and portal unlocked: ${email}` : `✅ জিমেইল ভেরিফাই হয়েছে এবং সাইট সম্পূর্ণ আনলক হয়েছে: ${email}`);
 
       errorMsg.className = 'text-xs text-emerald-400 font-bold bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-500/30';
-      errorMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i> আপনার জিমেইল সফলভাবে ভেরিফাই হয়েছে! আনলক হচ্ছে...';
+      errorMsg.innerHTML = currentLanguage === 'en'
+        ? '<i class="fa-solid fa-circle-check"></i> Your Gmail is verified! Unlocking portal...'
+        : '<i class="fa-solid fa-circle-check"></i> আপনার জিমেইল সফলভাবে ভেরিফাই হয়েছে! আনলক হচ্ছে...';
       errorMsg.classList.remove('hidden');
 
       setTimeout(() => {
@@ -1145,18 +1425,14 @@
           isVip: false,
           visits: 1,
           durationSec: 61,
-          lastSeen: 'এইমাত্র'
+          lastSeen: currentLanguage === 'en' ? 'Just now' : 'এইমাত্র'
         });
         localStorage.setItem('moldova_visitor_list', JSON.stringify(visitors));
       }, 1200);
     }
 
-    // এডমিন ও ভিউয়ার মোড পরিবর্তনের প্রধান ফাংশন
     function setAdminViewMode(mode) {
-      if (!isCurrentUserAdmin()) {
-        // যদি সে এডমিন না হয়, তাহলে সুইচ করার কোনো সুযোগ নেই
-        return;
-      }
+      if (!isCurrentUserAdmin()) return;
 
       currentAdminViewMode = mode;
       const btnViewer = document.getElementById('btnViewAsViewer');
@@ -1165,27 +1441,25 @@
       const vipBtn = document.getElementById('vipDashboardBtn');
       const emailBadge = document.getElementById('verifiedUserEmailBadge');
       const badgeEmailText = document.getElementById('badgeEmailText');
-      const liveHud = document.getElementById('adminLiveActivityMonitor');
 
       if (mode === 'viewer') {
-        trackUserAction('এডমিন Viewer Mode সক্রিয় করেছেন এবং সাধারণ ভিউয়ারদের ১:০১ ট্রায়াল টেস্ট করছেন');
+        trackUserAction(currentLanguage === 'en' ? 'Admin switched to Viewer Mode' : 'এডমিন Viewer Mode সক্রিয় করেছেন এবং সাধারণ ভিউয়ারদের ১:০১ ট্রায়াল টেস্ট করছেন');
 
         if (btnViewer) btnViewer.className = 'px-2.5 py-1 rounded-lg bg-blue-600 text-white font-black text-xs flex items-center gap-1.5 shadow-sm transition';
         if (btnAdmin) btnAdmin.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition';
 
         if (vipBtn) vipBtn.classList.add('hidden');
         if (noticeBar) noticeBar.classList.remove('hidden');
-        if (liveHud) liveHud.classList.remove('hidden');
 
         if (emailBadge && badgeEmailText) {
-          badgeEmailText.textContent = 'টেস্টিং ভিউয়ার (১:০১ ফ্রি ট্রায়াল)';
+          badgeEmailText.textContent = (currentLanguage === 'en') ? 'Testing Viewer (1:01 Trial)' : 'টেস্টিং ভিউয়ার (১:০১ ফ্রি ট্রায়াল)';
           emailBadge.className = 'text-xs bg-slate-800/90 border border-slate-700 text-slate-300 px-3 py-1.5 rounded-xl font-medium flex items-center shadow whitespace-nowrap';
-          emailBadge.innerHTML = '<i class="fa-solid fa-eye text-blue-400 mr-1.5"></i> <span id="badgeEmailText">টেস্টিং ভিউয়ার (১:০১ ফ্রি ট্রায়াল)</span>';
+          emailBadge.innerHTML = `<i class="fa-solid fa-eye text-blue-400 mr-1.5"></i> <span>${(currentLanguage === 'en') ? 'Testing Viewer (1:01 Trial)' : 'টেস্টিং ভিউয়ার (১:০১ ফ্রি ট্রায়াল)'}</span>`;
         }
 
         simulateFreshViewerTrial();
       } else {
-        trackUserAction('Admin Mode-এ ফিরে এসেছেন');
+        trackUserAction(currentLanguage === 'en' ? 'Returned to Admin Mode' : 'Admin Mode-এ ফিরে এসেছেন');
 
         if (btnAdmin) btnAdmin.className = 'px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-sm transition';
         if (btnViewer) btnViewer.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition';
@@ -1195,7 +1469,6 @@
           vipBtn.classList.add('flex');
         }
         if (noticeBar) noticeBar.classList.add('hidden');
-        if (liveHud) liveHud.classList.add('hidden');
 
         document.getElementById('oneMinuteLockModal')?.classList.add('hidden');
         document.body.style.overflow = 'auto';
@@ -1204,12 +1477,13 @@
 
         if (emailBadge) {
           emailBadge.className = 'text-xs bg-amber-950/80 border border-amber-400 text-amber-300 px-3 py-1.5 rounded-xl font-bold flex items-center shadow-md whitespace-nowrap';
-          emailBadge.innerHTML = '<i class="fa-solid fa-crown text-amber-400 mr-1.5"></i> <span id="badgeEmailText">VIP: touhidul0454@gmail.com</span>';
+          emailBadge.innerHTML = '<i class="fa-solid fa-crown text-amber-400 mr-1.5"></i> <span>VIP: touhidul0454@gmail.com</span>';
         }
       }
     }
 
     function simulateFreshViewerTrial() {
+      const dict = I18N[currentLanguage];
       previewSecondsRemaining = 61;
       hasJoinedFb = false;
       hasJoinedWa = false;
@@ -1219,34 +1493,34 @@
       const fbStatus = document.getElementById('statusFbJoined');
       if (fbStatus) {
         fbStatus.className = 'text-xs px-2.5 py-1 bg-blue-600 text-white rounded-lg font-bold group-hover:bg-blue-500 flex items-center gap-1';
-        fbStatus.innerHTML = '<span>জয়েন করুন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>';
+        fbStatus.innerHTML = `<span>${dict.joinBtnText}</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
       }
       const waStatus = document.getElementById('statusWaJoined');
       if (waStatus) {
         waStatus.className = 'text-xs px-2.5 py-1 bg-emerald-600 text-white rounded-lg font-bold group-hover:bg-emerald-500 flex items-center gap-1';
-        waStatus.innerHTML = '<span>যুক্ত হন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>';
+        waStatus.innerHTML = `<span>${dict.connectBtnText}</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
       }
       const err = document.getElementById('unlockErrorMessage');
       if (err) err.classList.add('hidden');
 
       startOneMinuteCountdown();
-      trackUserAction('১:০১ সেকেন্ডের ফ্রি ট্রায়াল শুরু হয়েছে');
+      trackUserAction(currentLanguage === 'en' ? '1:01 seconds trial initiated' : '১:০১ সেকেন্ডের ফ্রি ট্রায়াল শুরু হয়েছে');
     }
 
     function copyToClipboard(text, btnElement) {
-      trackUserAction(`ইমেইল কপি করার জন্য বাটনে ক্লিক করেছে: ${text}`);
+      trackUserAction(`Copied email: ${text}`);
       const textArea = document.createElement("textarea");
       textArea.value = text;
       document.body.appendChild(textArea);
       textArea.select();
       try {
         document.execCommand('copy');
-        showToast('ইমেইল সফলভাবে কপি করা হয়েছে!');
+        showToast(I18N[currentLanguage].toastCopied);
         if (btnElement) {
           const label = btnElement.querySelector('.copy-label');
           if (label) {
             const original = label.textContent;
-            label.textContent = 'কপি হয়েছে!';
+            label.textContent = I18N[currentLanguage].copiedBtn;
             setTimeout(() => label.textContent = original, 2000);
           }
         }
@@ -1276,51 +1550,36 @@
 
       if (isLight) {
         root.classList.remove('light-theme');
-        if (text) text.textContent = 'ডার্ক';
+        if (text) text.textContent = (currentLanguage === 'en') ? 'Dark' : 'ডার্ক';
         if (icon) icon.innerHTML = '<i class="fa-solid fa-moon text-amber-300"></i>';
-        trackUserAction('থিম পরিবর্তন করে ডার্ক মোড করেছে');
+        trackUserAction('Switched to Dark Mode');
       } else {
         root.classList.add('light-theme');
-        if (text) text.textContent = 'লাইট';
+        if (text) text.textContent = (currentLanguage === 'en') ? 'Light' : 'লাইট';
         if (icon) icon.innerHTML = '<i class="fa-solid fa-sun text-amber-500"></i>';
-        trackUserAction('থিম পরিবর্তন করে লাইট মোড করেছে');
-      }
-    }
-
-    let currentLanguage = 'bn';
-    function toggleLanguage() {
-      currentLanguage = (currentLanguage === 'bn') ? 'en' : 'bn';
-      const langText = document.getElementById('langToggleText');
-      const heroTitle = document.getElementById('txtHeroTitle');
-      const heroSubtitle = document.getElementById('txtHeroSubtitle');
-      const heroBadge = document.getElementById('txtHeroBadge');
-
-      if (currentLanguage === 'en') {
-        if (langText) langText.textContent = 'EN | বাং';
-        if (heroTitle) heroTitle.textContent = 'Welcome to Moldova Work Visa Bangladesh';
-        if (heroSubtitle) heroSubtitle.textContent = 'How can we assist your Moldova journey today?';
-        if (heroBadge) heroBadge.textContent = 'Official Services & Database Verification';
-        trackUserAction('ভাষা পরিবর্তন করে ইংরেজি (English) করেছে');
-      } else {
-        if (langText) langText.textContent = 'বাং | EN';
-        if (heroTitle) heroTitle.textContent = 'পরিবারে আপনাকে স্বাগত';
-        if (heroSubtitle) heroSubtitle.textContent = 'আমরা আপনাকে কীভাবে সাহায্য করতে পারি?';
-        if (heroBadge) heroBadge.textContent = 'অফিসিয়াল সার্ভিসেস ও ডেটাবেজ লিংক';
-        trackUserAction('ভাষা পরিবর্তন করে বাংলা (Bengali) করেছে');
+        trackUserAction('Switched to Light Mode');
       }
     }
 
     function formatDuration(sec) {
-      if (!sec || sec < 60) return (sec || 0) + ' সে.';
-      const m = Math.floor(sec / 60);
-      const s = sec % 60;
-      return m + ' মি. ' + s + ' সে.';
+      if (currentLanguage === 'en') {
+        if (!sec || sec < 60) return (sec || 0) + 's';
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        return m + 'm ' + s + 's';
+      } else {
+        if (!sec || sec < 60) return (sec || 0) + ' সে.';
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        return m + ' মি. ' + s + ' সে.';
+      }
     }
 
     function renderAgenciesSection() {
       const container = document.getElementById('agenciesListContainer');
       if (!container) return;
 
+      const dict = I18N[currentLanguage];
       const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || '{}');
 
       container.innerHTML = AGENCIES_DATA.map(agency => {
@@ -1340,6 +1599,10 @@
             starsHtml += `<span class="text-slate-300 opacity-60"><i class="fa-solid fa-star"></i></span>`;
           }
         }
+
+        const agencyName = (currentLanguage === 'en') ? agency.name_en : agency.name_bn;
+        const agencyDetails = (currentLanguage === 'en') ? agency.details_en : agency.details_bn;
+        const agencyLocation = (currentLanguage === 'en') ? agency.location_en : agency.location_bn;
 
         return `
           <div class="relative pt-8 flex flex-col h-full">
@@ -1399,16 +1662,16 @@
               <div class="text-center mt-3 flex-grow flex flex-col justify-between">
                 <div>
                   <h4 class="text-base sm:text-lg font-black text-slate-900 tracking-tight mb-1 leading-snug">
-                    ${agency.name}
+                    ${agencyName}
                   </h4>
 
                   <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold mb-3">
                     <i class="fa-solid fa-shield-halved text-blue-600 text-[10px]"></i>
-                    <span>লাইসেন্স: <strong>${agency.rl}</strong></span>
+                    <span>${dict.licenseLabel} <strong>${agency.rl}</strong></span>
                   </div>
 
                   <p class="text-xs text-slate-600 leading-relaxed font-medium mb-4 line-clamp-3">
-                    ${agency.details}
+                    ${agencyDetails}
                   </p>
 
                   <div class="space-y-1.5 text-left mb-4 bg-slate-50 border border-slate-200/80 p-3 rounded-xl text-xs">
@@ -1416,21 +1679,21 @@
                       <span class="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center flex-shrink-0 text-[10px]">
                         <i class="fa-solid fa-phone"></i>
                       </span>
-                      <a href="tel:${agency.phone}" onclick="trackUserAction('এজেন্সির ফোনে ক্লিক করেছে: ${agency.phone}')" class="text-[11px] font-bold text-slate-800 hover:text-blue-600 truncate">${agency.phone}</a>
+                      <a href="tel:${agency.phone}" onclick="trackUserAction('Called agency: ' + '${agency.phone}')" class="text-[11px] font-bold text-slate-800 hover:text-blue-600 truncate">${agency.phone}</a>
                     </div>
 
                     <div class="flex items-center gap-2">
                       <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 text-[10px]">
                         <i class="fa-solid fa-envelope"></i>
                       </span>
-                      <a href="mailto:${agency.email}" onclick="trackUserAction('এজেন্সির ইমেইলে ক্লিক করেছে: ${agency.email}')" class="text-[11px] font-bold text-slate-800 hover:text-emerald-600 truncate">${agency.email}</a>
+                      <a href="mailto:${agency.email}" onclick="trackUserAction('Emailed agency: ' + '${agency.email}')" class="text-[11px] font-bold text-slate-800 hover:text-emerald-600 truncate">${agency.email}</a>
                     </div>
 
                     <div class="flex items-center gap-2">
                       <span class="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 text-[10px]">
                         <i class="fa-solid fa-location-dot"></i>
                       </span>
-                      <span class="text-[11px] font-bold text-slate-800 truncate">${agency.location}</span>
+                      <span class="text-[11px] font-bold text-slate-800 truncate">${agencyLocation}</span>
                     </div>
                   </div>
                 </div>
@@ -1450,22 +1713,22 @@
                 </div>
 
                 <div class="mt-2 mb-3">
-                  <button onclick="openReviewModal('${agency.id}', '${agency.name}')" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-600 hover:to-indigo-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition">
+                  <button onclick="openReviewModal('${agency.id}', '${agencyName.replace(/'/g, "\\'")}')" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-600 hover:to-indigo-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition">
                     <i class="fa-solid fa-pen-nib text-amber-300 text-[11px]"></i>
-                    <span>রিভিউ দিন (১০০ শব্দ)</span>
+                    <span>${dict.leaveReviewBtn}</span>
                   </button>
                 </div>
               </div>
 
-              <!-- পাবলিক রিভিউ তালিকা -->
+              <!-- পাবলিক রিভিউ তালিকা (ব্যবহারকারীর পরিচয় সম্পূর্ণ গোপন) -->
               <div class="pt-3 border-t border-slate-100">
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-[11px] font-bold text-slate-700 flex items-center gap-1">
                     <i class="fa-regular fa-comments text-blue-600"></i>
-                    <span>পাবলিক রিভিউ</span>
+                    <span>${dict.publicReviewsLabel}</span>
                   </span>
                   <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
-                    ${agencyReviews.length} টি
+                    ${agencyReviews.length} ${currentLanguage === 'en' ? 'Reviews' : 'টি'}
                   </span>
                 </div>
 
@@ -1473,7 +1736,10 @@
                   ${agencyReviews.length ? agencyReviews.map(r => `
                     <div class="bg-slate-50 border border-slate-200/70 p-2.5 rounded-xl text-left text-xs">
                       <div class="flex items-center justify-between mb-1">
-                        <span class="font-bold text-[11px] text-slate-800 truncate max-w-[130px]">${r.userEmail}</span>
+                        <span class="font-bold text-[10px] text-slate-700 flex items-center gap-1">
+                          <i class="fa-solid fa-user-shield text-emerald-600 text-[11px]"></i>
+                          <span>${dict.verifiedUserTag}</span>
+                        </span>
                         <div class="flex items-center gap-0.5 text-amber-500 text-[10px]">
                           ${Array.from({length: 5}, (_, i) => i < r.rating ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star text-slate-300"></i>').join('')}
                         </div>
@@ -1482,7 +1748,7 @@
                     </div>
                   `).join('') : `
                     <div class="text-center py-2 bg-slate-50 rounded-xl border border-dashed border-slate-200">
-                      <p class="text-[10px] text-slate-400">এখনো কোনো রিভিউ নেই। প্রথম রিভিউ দিন!</p>
+                      <p class="text-[10px] text-slate-400">${dict.noReviewYet}</p>
                     </div>
                   `}
                 </div>
@@ -1498,7 +1764,9 @@
       const len = el.value.length;
       const countEl = document.getElementById('feedbackCharCount');
       if (countEl) {
-        countEl.textContent = `${len}/৩০০ অক্ষর`;
+        countEl.textContent = (currentLanguage === 'en')
+          ? `${len}/300 Characters`
+          : `${len.toString().replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d])}/৩০০ অক্ষর`;
         if (len > 300) el.value = el.value.substring(0, 300);
       }
     }
@@ -1513,18 +1781,22 @@
       const category = catInput.value;
       const message = msgInput.value.trim();
 
-      trackUserAction(`পরামর্শ সাবমিট করার চেষ্টা: ${senderEmail}`);
+      trackUserAction(`Attempting to submit suggestion: ${senderEmail}`);
 
       const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
       if (!senderEmail || !gmailRegex.test(senderEmail)) {
-        alertBox.textContent = 'অনুগ্রহ করে শুধুমাত্র সক্রিয় @gmail.com ইমেইল অ্যাড্রেস লিখুন!';
+        alertBox.textContent = (currentLanguage === 'en') 
+          ? 'Please enter an active @gmail.com address!' 
+          : 'অনুগ্রহ করে শুধুমাত্র সক্রিয় @gmail.com ইমেইল অ্যাড্রেস লিখুন!';
         alertBox.className = 'text-xs py-2 px-3 rounded-xl font-bold text-center bg-red-500/20 text-red-300 border border-red-500/40 block';
-        trackUserAction('❌ পরামর্শ দিতে গিয়ে ভুল জিমেইল দিয়েছে');
+        trackUserAction('❌ Wrong or invalid email entered in suggestion box');
         return;
       }
 
       if (!message) {
-        alertBox.textContent = 'অনুগ্রহ করে ওয়েবসাইট সম্পর্কিত আপনার পরামর্শটি লিখুন!';
+        alertBox.textContent = (currentLanguage === 'en') 
+          ? 'Please write your valuable suggestion!' 
+          : 'অনুগ্রহ করে ওয়েবসাইট সম্পর্কিত আপনার পরামর্শটি লিখুন!';
         alertBox.className = 'text-xs py-2 px-3 rounded-xl font-bold text-center bg-red-500/20 text-red-300 border border-red-500/40 block';
         return;
       }
@@ -1534,13 +1806,15 @@
         sender: senderEmail,
         category,
         message,
-        time: new Date().toLocaleString('bn-BD', { dateStyle: 'medium', timeStyle: 'short' })
+        time: new Date().toLocaleString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' })
       });
 
       localStorage.setItem('moldova_site_feedbacks', JSON.stringify(feedbacks));
-      trackUserAction(`💡 সফলভাবে নতুন পরামর্শ জমা দিয়েছে (${category}): "${message.substring(0, 30)}..."`);
+      trackUserAction(`💡 Successfully submitted website suggestion (${category}): "${message.substring(0, 30)}..."`);
 
-      alertBox.textContent = 'ধন্যবাদ! আপনার মূল্যবান পরামর্শটি এডমিন প্যানেলে সংরক্ষিত হয়েছে।';
+      alertBox.textContent = (currentLanguage === 'en') 
+        ? 'Thank you! Your feedback has been safely recorded in the Admin panel.' 
+        : 'ধন্যবাদ! আপনার মূল্যবান পরামর্শটি এডমিন প্যানেলে সংরক্ষিত হয়েছে।';
       alertBox.className = 'text-xs py-2 px-3 rounded-xl font-bold text-center bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 block';
       emailInput.value = '';
       msgInput.value = '';
@@ -1550,10 +1824,10 @@
 
     function openReviewModal(id, name) {
       currentSelectedAgencyId = id;
-      trackUserAction(`এজেন্সি রিভিউ দেওয়ার জন্য মডাল খুলেছে: ${name}`);
+      trackUserAction(`Opened review modal for: ${name}`);
       document.getElementById('reviewTargetAgencyName').textContent = name;
       document.getElementById('reviewTextInput').value = '';
-      document.getElementById('reviewWordCountBadge').textContent = '০/১০০ শব্দ';
+      document.getElementById('reviewWordCountBadge').textContent = (currentLanguage === 'en') ? '0/100 Words' : '০/১০০ শব্দ';
       document.getElementById('reviewErrorNotice').classList.add('hidden');
       setSelectRating(5);
       document.getElementById('agencyReviewModal')?.classList.remove('hidden');
@@ -1565,7 +1839,7 @@
 
     function setSelectRating(stars) {
       currentSelectedRating = stars;
-      trackUserAction(`রেটিং পরিবর্তন করে ${stars} স্টার নির্বাচন করেছে`);
+      trackUserAction(`Selected ${stars} stars`);
       const buttons = document.querySelectorAll('#starRatingSelector .star-btn');
       buttons.forEach((btn, idx) => {
         btn.className = (idx < stars) 
@@ -1579,9 +1853,11 @@
       const badge = document.getElementById('reviewWordCountBadge');
       if (words.length > 100) {
         el.value = words.slice(0, 100).join(' ');
-        badge.textContent = '১০০/১০০ শব্দ (সীমা পূর্ণ)';
+        badge.textContent = (currentLanguage === 'en') ? '100/100 Words (Limit reached)' : '১০০/১০০ শব্দ (সীমা পূর্ণ)';
       } else {
-        badge.textContent = `${words.length}/১০০ শব্দ`;
+        badge.textContent = (currentLanguage === 'en') 
+          ? `${words.length}/100 Words` 
+          : `${words.length.toString().replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d])}/১০০ শব্দ`;
       }
     }
 
@@ -1592,12 +1868,14 @@
       const text = input.value.trim();
 
       if (!text) {
-        err.textContent = 'অনুগ্রহ করে আপনার মূল্যবান মতামতটি লিখুন!';
+        err.textContent = (currentLanguage === 'en') 
+          ? 'Please enter your authentic review!' 
+          : 'অনুগ্রহ করে আপনার মূল্যবান মতামতটি লিখুন!';
         err.classList.remove('hidden');
         return;
       }
 
-      const verifiedEmail = localStorage.getItem('moldova_verified_user_email') || 'ইউজার';
+      const verifiedEmail = localStorage.getItem('moldova_verified_user_email') || 'User';
       const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || '{}');
       if (!allReviews[currentSelectedAgencyId]) allReviews[currentSelectedAgencyId] = [];
 
@@ -1605,11 +1883,11 @@
         userEmail: verifiedEmail,
         rating: currentSelectedRating,
         comment: text,
-        date: new Date().toLocaleDateString('bn-BD')
+        date: new Date().toLocaleDateString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US')
       });
 
       localStorage.setItem('moldova_agencies_reviews', JSON.stringify(allReviews));
-      trackUserAction(`⭐ এজেন্সির জন্য ${currentSelectedRating} স্টার রিভিউ জমা দিয়েছে: "${text.substring(0, 25)}..."`);
+      trackUserAction(`⭐ Submitted ${currentSelectedRating}-star review: "${text.substring(0, 25)}..."`);
 
       closeReviewModal();
       renderAgenciesSection();
@@ -1620,7 +1898,7 @@
       renderVipFeedbackList();
       renderModalActivityLogs();
       document.getElementById('vipDashboardModal')?.classList.remove('hidden');
-      trackUserAction('এডমিন VIP অ্যানালিটিক্স ড্যাশবোর্ড খুলেছেন');
+      trackUserAction('Admin opened VIP analytics dashboard');
     }
 
     function closeVipDashboardModal() {
@@ -1629,9 +1907,9 @@
 
     function refreshVisitorTables() {
       const visitors = JSON.parse(localStorage.getItem('moldova_visitor_list') || 'null') || [
-        { email: "touhidul0454@gmail.com", isVip: true, visits: 24, durationSec: 1250, lastSeen: "আজ, ১২:০০ অপরাহ্ন" },
-        { email: "kamal.bd@gmail.com", isVip: false, visits: 4, durationSec: 180, lastSeen: "আজ, ১১:৪০ পূর্বাহ্ন" },
-        { email: "shakil.dhaka@gmail.com", isVip: false, visits: 9, durationSec: 55, lastSeen: "গতকাল, ১০:১৫ অপরাহ্ন" }
+        { email: "touhidul0454@gmail.com", isVip: true, visits: 24, durationSec: 1250, lastSeen: "Today, 12:00 PM" },
+        { email: "kamal.bd@gmail.com", isVip: false, visits: 4, durationSec: 180, lastSeen: "Today, 11:40 AM" },
+        { email: "shakil.dhaka@gmail.com", isVip: false, visits: 9, durationSec: 55, lastSeen: "Yesterday, 10:15 PM" }
       ];
 
       const tbody = document.getElementById('modalVisitorLogTbody');
@@ -1639,7 +1917,7 @@
         tbody.innerHTML = visitors.map(v => `
           <tr class="hover:bg-slate-800/50 transition">
             <td class="py-2.5 px-3 font-bold text-slate-200 text-xs">${v.email}</td>
-            <td class="py-2.5 px-3">${v.isVip ? '<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold text-[9px]">👑 VIP</span>' : '<span class="text-emerald-400 font-bold text-[10px]">আনলকড</span>'}</td>
+            <td class="py-2.5 px-3">${v.isVip ? '<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold text-[9px]">👑 VIP</span>' : `<span class="text-emerald-400 font-bold text-[10px]">${currentLanguage === 'en' ? 'Unlocked' : 'আনলকড'}</span>`}</td>
             <td class="py-2.5 px-3 font-mono text-emerald-400 text-xs">${formatDuration(v.durationSec)}</td>
             <td class="py-2.5 px-3 text-slate-400 text-[10px]">${v.lastSeen}</td>
           </tr>
@@ -1653,11 +1931,11 @@
       const container = document.getElementById('vipFeedbackList');
       const feedbacks = JSON.parse(localStorage.getItem('moldova_site_feedbacks') || '[]');
       const badge = document.getElementById('feedbackTotalBadge');
-      if (badge) badge.textContent = `${feedbacks.length} টি পরামর্শ`;
+      if (badge) badge.textContent = `${feedbacks.length} ${currentLanguage === 'en' ? 'Suggestions' : 'টি পরামর্শ'}`;
 
       if (container) {
         if (!feedbacks.length) {
-          container.innerHTML = '<div class="text-center py-3 text-xs text-slate-500">এখনো কোনো পরামর্শ জমা হয়নি।</div>';
+          container.innerHTML = `<div class="text-center py-3 text-xs text-slate-500">${currentLanguage === 'en' ? 'No suggestions submitted yet.' : 'এখনো কোনো পরামর্শ জমা হয়নি।'}</div>`;
           return;
         }
         container.innerHTML = feedbacks.map(f => `
@@ -1673,33 +1951,31 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      renderAgenciesSection();
+      // 1. ভাষা ও কনটেন্ট ইনিশিয়ালাইজেশন
+      applyTranslations();
 
+      // 2. অ্যাডমিন স্ট্যাটাস যাচাই
       const userIsAdmin = isCurrentUserAdmin();
 
       if (userIsAdmin) {
-        // আপনি এডমিন হলে এডমিন কন্ট্রোল দৃশ্যমান হবে এবং এডমিন মোড সক্রিয় থাকবে
         initAdminInterface();
         setAdminViewMode('admin');
       } else {
-        // সাধারণ ভিজিটর হলে সুইচার বাটন ও ভিআইপি বাটন ১০০% লুকানো থাকবে
         initAdminInterface();
-        // চেক করা হবে সে কি আগে থেকে আনলক করা কিনা
         const unlockedEmail = localStorage.getItem('moldova_verified_user_email');
         if (!unlockedEmail) {
-          startOneMinuteCountdown(); // নতুন ভিজিটরের জন্য ১:০১ কাউন্টডাউন শুরু
+          startOneMinuteCountdown();
         } else {
           document.getElementById('floatingSideTimerWidget')?.classList.add('hidden');
         }
       }
 
+      // সেশন টাইমার
       sessionInterval = setInterval(() => {
         sessionSeconds++;
         const stat = document.getElementById('modalStatCurrentSession');
         if (stat) stat.textContent = formatDuration(sessionSeconds);
       }, 1000);
-
-      updateLiveHud();
     });
   </script>
 </body>
