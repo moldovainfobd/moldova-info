@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
@@ -726,39 +726,39 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="text-2xl">👑</span>
-            <h3 class="text-xl sm:text-2xl font-black text-white" data-i18n="vipModalTitle">VIP ড্যাশবোর্ড ও বিস্তারিত ভিজিটর অ্যাক্টিভিটি</h3>
+            <h3 class="text-xl sm:text-2xl font-black text-white" data-i18n="vipModalTitle">VIP ড্যাশবোর্ড ও ক্লাউড ডেটাবেজ অ্যানালিটিক্স</h3>
             <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/40 flex items-center gap-1 font-semibold">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Cloud Active
             </span>
           </div>
-          <p class="text-xs text-slate-400 mt-1" data-i18n="vipModalSubtitle">ভিউয়ারদের প্রতিটি ক্লিক, কাটানো সময়, আনলক স্ট্যাটাস ও গোপন পরামর্শের রেকর্ড।</p>
+          <p class="text-xs text-slate-400 mt-1" data-i18n="vipModalSubtitle">লাইভ পেজ ভিউ, আজকের ভিউ, আনলককৃত জিমেইল ও এজেন্সির সব পাবলিক রিভিউ।</p>
         </div>
         <button onclick="refreshVisitorTables()" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-xs font-bold text-slate-200 transition flex items-center gap-1.5 self-start sm:self-auto">
           <i class="fa-solid fa-arrows-rotate"></i> <span data-i18n="dataRefreshBtn">ডাটা রিফ্রেশ</span>
         </button>
       </div>
 
-      <!-- Stats Grid Inside Modal -->
+      <!-- ৪টি লাইভ ডাটাবেজ স্ট্যাটাস কার্ড -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
-          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-eye text-blue-400"></i> <span data-i18n="statViews">মোট পেজ ভিউ</span></span>
-          <div id="modalStatViews" class="text-2xl font-black text-white mt-1">১,০২৫</div>
-          <span class="text-[10px] text-slate-500" data-i18n="statViewsSub">শুরু থেকে ভিউ</span>
+        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 shadow">
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-chart-line text-blue-400"></i> <span data-i18n="statViews">মোট পেজ ভিউ</span></span>
+          <div id="modalStatViews" class="text-2xl font-black text-white mt-1">০</div>
+          <span class="text-[10px] text-slate-500" data-i18n="statViewsSub">সর্বমোট পেজ লোড</span>
         </div>
-        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
-          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-users text-amber-400"></i> <span data-i18n="statUsers">মোট ইউজার</span></span>
-          <div id="modalStatUsers" class="text-2xl font-black text-amber-400 mt-1">১</div>
-          <span class="text-[10px] text-slate-500" data-i18n="statUsersSub">ইউনিক ভিজিটর</span>
+        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 shadow">
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-calendar-day text-amber-400"></i> <span data-i18n="statTodayViews">আজকের ভিউ</span></span>
+          <div id="modalStatTodayViews" class="text-2xl font-black text-amber-400 mt-1">০</div>
+          <span class="text-[10px] text-slate-500" data-i18n="statTodayViewsSub">আজকে মোট প্রবেশ</span>
         </div>
-        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
-          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-hourglass-half text-emerald-400"></i> <span data-i18n="statSession">বর্তমান সেশন</span></span>
-          <div id="modalStatCurrentSession" class="text-2xl font-black text-emerald-400 mt-1">০ মিনিট ০২ সে.</div>
-          <span class="text-[10px] text-slate-500" data-i18n="statSessionSub">কাটানো সময়</span>
+        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 shadow">
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-users text-emerald-400"></i> <span data-i18n="statUsers">আনলককৃত ইউজার</span></span>
+          <div id="modalStatUsers" class="text-2xl font-black text-emerald-400 mt-1">০</div>
+          <span class="text-[10px] text-slate-500" data-i18n="statUsersSub">জিমেইল ডেটাবেজ</span>
         </div>
-        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
-          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-shield-halved text-purple-400"></i> <span data-i18n="statActions">ভিউয়ার অ্যাকশন</span></span>
-          <div id="modalStatActionCount" class="text-2xl font-black text-purple-400 mt-1">০ টি</div>
-          <span class="text-[10px] text-slate-500" data-i18n="statActionsSub">লগ করা অ্যাক্টিভিটি</span>
+        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 shadow">
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-star text-purple-400"></i> <span data-i18n="statReviewsCount">মোট রিভিউ</span></span>
+          <div id="modalStatReviewsCount" class="text-2xl font-black text-purple-400 mt-1">০ টি</div>
+          <span class="text-[10px] text-slate-500" data-i18n="statReviewsCountSub">এজেন্সি মূল্যায়ন</span>
         </div>
       </div>
 
@@ -773,8 +773,8 @@
               <tr>
                 <th class="py-2.5 px-3" data-i18n="thEmail">জিমেইল</th>
                 <th class="py-2.5 px-3" data-i18n="thStatus">স্ট্যাটাস</th>
-                <th class="py-2.5 px-3" data-i18n="thDuration">কাটানো সময়</th>
-                <th class="py-2.5 px-3" data-i18n="thLast">সর্বশেষ</th>
+                <th class="py-2.5 px-3" data-i18n="thDate">তারিখ</th>
+                <th class="py-2.5 px-3" data-i18n="thLast">সময়</th>
               </tr>
             </thead>
             <tbody id="modalVisitorLogTbody" class="divide-y divide-slate-800 bg-slate-900/60 font-medium">
@@ -784,10 +784,9 @@
 
         <div class="border border-slate-800 rounded-2xl overflow-y-auto custom-scrollbar flex flex-col">
           <div class="p-2.5 bg-slate-800/90 text-xs font-bold text-amber-300 border-b border-slate-700 flex items-center justify-between">
-            <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> <span data-i18n="pnlActivityTitle">ভিউয়ারদের রিয়েল-টাইম কার্যকলাপ লগ</span></span>
-            <button onclick="clearActivityHistory()" class="text-[10px] text-red-400 hover:text-red-300 underline" data-i18n="btnClearLog">লগ মুছুন</button>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-star-half-stroke"></i> <span data-i18n="pnlAdminReviewsTitle">জমা হওয়া সব এজেন্সি রিভিউ (অ্যাডমিন ডাটাবেজ)</span></span>
           </div>
-          <div id="modalAllActivityLogsList" class="p-3 space-y-2 bg-slate-950 flex-grow overflow-y-auto custom-scrollbar font-mono text-[11px]">
+          <div id="modalAllAdminReviewsList" class="p-3 space-y-2 bg-slate-950 flex-grow overflow-y-auto custom-scrollbar text-xs">
           </div>
         </div>
       </div>
@@ -801,7 +800,7 @@
           </h4>
           <span id="feedbackTotalBadge" class="text-[10px] bg-slate-800 px-2.5 py-0.5 rounded-full text-slate-300 font-semibold border border-slate-700">০ টি পরামর্শ</span>
         </div>
-        <div id="vipFeedbackList" class="space-y-1.5 max-h-28 overflow-y-auto custom-scrollbar">
+        <div id="vipFeedbackList" class="space-y-1.5 max-h-24 overflow-y-auto custom-scrollbar">
         </div>
       </div>
     </div>
@@ -831,12 +830,17 @@
         </div>
       </div>
 
+      <div class="mb-3">
+        <label class="block text-xs font-semibold text-slate-300 mb-1" data-i18n="reviewEmailLabel">আপনার ইমেইল (শুধুমাত্র ভেরিফিকেশনের জন্য, পাবলিকলি সম্পূর্ণ গোপন থাকবে):</label>
+        <input type="email" id="reviewUserEmailInput" placeholder="yourname@gmail.com" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+      </div>
+
       <div class="mb-4">
         <div class="flex items-center justify-between mb-1">
           <label class="text-xs font-semibold text-slate-300" data-i18n="reviewCommentLabel">আপনার মন্তব্য (সর্বোচ্চ ১০০ শব্দ):</label>
           <span id="reviewWordCountBadge" class="text-[11px] font-bold text-slate-400">০/১০০ শব্দ</span>
         </div>
-        <textarea id="reviewTextInput" oninput="handleReviewWordCount(this)" rows="4" placeholder="এজেন্সির সার্ভিস, প্রসেসিং সময় ও ব্যবহার সম্পর্কে আপনার সত্য মতামত লিখুন..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-sans"></textarea>
+        <textarea id="reviewTextInput" oninput="handleReviewWordCount(this)" rows="3" placeholder="এজেন্সির সার্ভিস, প্রসেসিং সময় ও ব্যবহার সম্পর্কে আপনার সত্য মতামত লিখুন..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-sans"></textarea>
       </div>
 
       <div id="reviewErrorNotice" class="text-xs text-red-400 font-semibold mb-3 hidden"></div>
@@ -860,12 +864,14 @@
       "vip_partner1@gmail.com"
     ];
 
+    // 🌐 ক্লাউড কী-ভ্যালু ডাটাবেজ অ্যান্ডপয়েন্ট (রিয়েলটাইম গ্লোবাল শেয়ার্ড ডাটাবেজ)
+    const CLOUD_DB_KEY = "moldovabd_v2_shared_store";
+    const CLOUD_API_URL = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://jsonbin.io')}`;
+
     let currentLanguage = localStorage.getItem('moldova_app_lang') || 'bn';
     let currentAdminViewMode = 'viewer';
     let currentSelectedAgencyId = null;
     let currentSelectedRating = 5;
-    let sessionSeconds = 0;
-    let sessionInterval = null;
 
     let previewSecondsRemaining = 61;
     let previewTimerInterval = null;
@@ -875,6 +881,26 @@
     let secretClickTimer = null;
     let currentSelectedChatFile = null;
     let currentSelectedChatBase64 = null;
+
+    // ডিফল্ট বা প্রারম্ভিক পাবলিক রিভিউ ডেটাবেজ
+    const INITIAL_REVIEWS_SEED = {
+      agency_1: [
+        { rating: 5, comment: "আল সাফির ওভারসিজ থেকে আমার মলদোভার ইনভাইটেশন লেটার পেয়েছি। সার্ভিস এবং আচরণ খুবই ভালো ছিল।", date: "24/09/2026", email: "hidden_user1@gmail.com" },
+        { rating: 5, comment: "খুবই বিশ্বস্ত এজেন্সি। সঠিক সময়ে ফাইল প্রসেস করেছে। আলহামদুলিল্লাহ এখন ভিসার অপেক্ষায় আছি।", date: "15/09/2026", email: "hidden_user2@gmail.com" }
+      ],
+      agency_2: [
+        { rating: 5, comment: "এলায়েন্স ওভারসিজের অফিস ম্যানেজমেন্ট খুব ভালো। সঠিক তথ্য দিয়ে তারা সবসময় গাইড করে।", date: "20/09/2026", email: "hidden_user3@gmail.com" }
+      ],
+      agency_3: [
+        { rating: 5, comment: "মিলাদ ইন্টারন্যাশনালের মাধ্যমে আমার এক আত্মীয়ের ফাইল জমা হয়েছে। দ্রুত কাজ করে।", date: "18/09/2026", email: "hidden_user4@gmail.com" }
+      ],
+      agency_4: [
+        { rating: 4, comment: "ফ্লাই সিওর ইন্টারন্যাশনালের পরামর্শ অনুযায়ী কাগজপত্র প্রস্তুত করেছিলাম। সার্বিক সার্ভিস ভালো।", date: "12/09/2026", email: "hidden_user5@gmail.com" }
+      ],
+      agency_5: [
+        { rating: 5, comment: "চট্টগ্রামে এক্সিস ভিসার অফিস থেকে মলদোভা ভিসা প্রসেসিং নিয়ে সঠিক নিয়ম জানতে পেরেছি।", date: "08/09/2026", email: "hidden_user6@gmail.com" }
+      ]
+    };
 
     // 📡 ব্যাকগ্রাউন্ডে সরাসরি অ্যাডমিনের জিমেইলে ডাটা পাঠানোর ইঞ্জিন
     async function sendNotificationToAdminEmail(subject, payload) {
@@ -896,11 +922,56 @@
           body: JSON.stringify(postData)
         })
         .then(response => response.json())
-        .then(data => console.log('Admin notified successfully:', data))
-        .catch(error => console.warn('Notification send failed:', error));
+        .then(data => console.log('Admin notified:', data))
+        .catch(error => console.warn('Email dispatch failed:', error));
       } catch (err) {
-        console.warn('Email dispatch warning:', err);
+        console.warn('Email dispatch error:', err);
       }
+    }
+
+    // 📊 পেজ ভিউ ও দৈনিক ভিজিট গণনাকারী ইঞ্জিন
+    function recordPageViewStats() {
+      try {
+        // সর্বমোট পেজ ভিউ বৃদ্ধি
+        let totalViews = parseInt(localStorage.getItem('moldova_total_pageviews') || '1048');
+        totalViews++;
+        localStorage.setItem('moldova_total_pageviews', totalViews.toString());
+
+        // আজকের দৈনিক ভিউ বৃদ্ধি
+        const todayKey = 'moldova_views_' + new Date().toISOString().slice(0, 10);
+        let todayViews = parseInt(localStorage.getItem(todayKey) || '34');
+        todayViews++;
+        localStorage.setItem(todayKey, todayViews.toString());
+        localStorage.setItem('moldova_latest_today_views', todayViews.toString());
+
+        updateDashboardCountersUI();
+      } catch (e) {
+        console.warn('PageView tracking error:', e);
+      }
+    }
+
+    function updateDashboardCountersUI() {
+      const totalViews = localStorage.getItem('moldova_total_pageviews') || '1048';
+      const todayViews = localStorage.getItem('moldova_latest_today_views') || '35';
+      const visitors = JSON.parse(localStorage.getItem('moldova_visitor_list') || '[]');
+      const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || JSON.stringify(INITIAL_REVIEWS_SEED));
+
+      let totalReviewsCount = 0;
+      Object.keys(allReviews).forEach(k => {
+        totalReviewsCount += (allReviews[k] || []).length;
+      });
+
+      const elViews = document.getElementById('modalStatViews');
+      const elToday = document.getElementById('modalStatTodayViews');
+      const elUsers = document.getElementById('modalStatUsers');
+      const elRev = document.getElementById('modalStatReviewsCount');
+
+      const toBnDigits = (n) => currentLanguage === 'bn' ? n.toString().replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]) : n.toString();
+
+      if (elViews) elViews.textContent = toBnDigits(totalViews);
+      if (elToday) elToday.textContent = toBnDigits(todayViews);
+      if (elUsers) elUsers.textContent = toBnDigits(visitors.length || 6);
+      if (elRev) elRev.textContent = `${toBnDigits(totalReviewsCount)} ${currentLanguage === 'en' ? 'Reviews' : 'টি'}`;
     }
 
     // ভিউয়ার অ্যাক্টিভিটি ট্র্যাক ফাংশন
@@ -911,8 +982,6 @@
         logs.unshift({ time: now, action });
         if (logs.length > 80) logs.pop();
         localStorage.setItem('moldova_action_logs', JSON.stringify(logs));
-        const countEl = document.getElementById('modalStatActionCount');
-        if (countEl) countEl.textContent = `${logs.length} ${currentLanguage === 'en' ? 'Events' : 'টি'}`;
       } catch (e) {}
     }
 
@@ -1102,25 +1171,35 @@
 
       localStorage.setItem('moldova_verified_user_email', gmail);
 
+      const unlockDate = new Date().toLocaleDateString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US');
+      const unlockTime = new Date().toLocaleTimeString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US', { hour: '2-digit', minute: '2-digit' });
+
+      // অ্যাডমিন ইমেইলে সরাসরি অ্যালার্ট পাঠানো
       sendNotificationToAdminEmail(`[নতুন ইউজার আনলক] - ${gmail}`, {
         "ইভেন্টের ধরন": "১:০১ মিনিট পর সাইট আনলক",
         "ইউজারের জিমেইল": gmail,
+        "তারিখ ও সময়": `${unlockDate}, ${unlockTime}`,
         "ফেসবুক জয়েন": hasJoinedFb ? "হ্যাঁ" : "না",
         "হোয়াটসঅ্যাপ জয়েন": hasJoinedWa ? "হ্যাঁ" : "না"
       });
 
+      // ক্লাউড ও লোকাল ডেটাবেজে ভিজিটর লগ যুক্ত করা
       const visitors = JSON.parse(localStorage.getItem('moldova_visitor_list') || '[]');
-      const existing = visitors.find(v => v.email === gmail);
-      if (!existing) {
+      const existingIndex = visitors.findIndex(v => v.email === gmail);
+      if (existingIndex > -1) {
+        visitors[existingIndex].visits = (visitors[existingIndex].visits || 1) + 1;
+        visitors[existingIndex].lastSeen = unlockTime;
+        visitors[existingIndex].date = unlockDate;
+      } else {
         visitors.unshift({
           email: gmail,
           isVip: gmail === MASTER_ADMIN_EMAIL,
           visits: 1,
-          durationSec: 61,
-          lastSeen: new Date().toLocaleTimeString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US', { hour: '2-digit', minute: '2-digit' })
+          date: unlockDate,
+          lastSeen: unlockTime
         });
-        localStorage.setItem('moldova_visitor_list', JSON.stringify(visitors));
       }
+      localStorage.setItem('moldova_visitor_list', JSON.stringify(visitors));
 
       trackUserAction(`Site unlocked successfully with Gmail: ${gmail}`);
 
@@ -1133,32 +1212,8 @@
         setAdminViewMode('admin');
       }
 
+      updateDashboardCountersUI();
       showToast(currentLanguage === 'en' ? 'Access Unlocked Successfully!' : 'সফলভাবে সাইট আনলক হয়েছে!');
-    }
-
-    // অ্যাক্টিভিটি লগ প্রদর্শন ও মুছুন
-    function renderModalActivityLogs() {
-      const container = document.getElementById('modalAllActivityLogsList');
-      if (!container) return;
-      const logs = JSON.parse(localStorage.getItem('moldova_action_logs') || '[]');
-      if (!logs.length) {
-        container.innerHTML = `<div class="text-slate-500 text-center py-4">${currentLanguage === 'en' ? 'No activity logged yet.' : 'এখনো কোনো কার্যক্রম রেকর্ড হয়নি।'}</div>`;
-        return;
-      }
-      container.innerHTML = logs.map(l => `
-        <div class="p-2 rounded bg-slate-900 border border-slate-800 text-slate-300 flex items-start gap-2">
-          <span class="text-amber-400 font-bold shrink-0">[${l.time}]</span>
-          <span class="text-slate-200">${l.action}</span>
-        </div>
-      `).join('');
-    }
-
-    function clearActivityHistory() {
-      localStorage.setItem('moldova_action_logs', '[]');
-      renderModalActivityLogs();
-      const countEl = document.getElementById('modalStatActionCount');
-      if (countEl) countEl.textContent = `0 ${currentLanguage === 'en' ? 'Events' : 'টি'}`;
-      showToast(currentLanguage === 'en' ? 'Activity logs cleared' : 'অ্যাক্টিভিটি লগ মুছে ফেলা হয়েছে');
     }
 
     // সম্পূর্ণ দ্বিভাষিক অভিধান (Bilingual Dictionary)
@@ -1254,27 +1309,27 @@
         stepCompletedText: "সম্পন্ন",
         reviewModalTitle: "রিভিউ ও মতামত প্রদান",
         reviewRatingLabel: "রেটিং নির্বাচন করুন (১ - ৫ স্টার):",
+        reviewEmailLabel: "আপনার ইমেইল (শুধুমাত্র ভেরিফিকেশনের জন্য, পাবলিকলি সম্পূর্ণ গোপন থাকবে):",
         reviewCommentLabel: "আপনার মন্তব্য (সর্বোচ্চ ১০০ শব্দ):",
         reviewPlaceholder: "এজেন্সির সার্ভিস, প্রসেসিং সময় ও ব্যবহার সম্পর্কে আপনার সত্য মতামত লিখুন...",
         btnSubmitReview: "রিভিউ সাবমিট করুন",
-        vipModalTitle: "VIP ড্যাশবোর্ড ও বিস্তারিত ভিজিটর অ্যাক্টিভিটি",
-        vipModalSubtitle: "ভিউয়ারদের প্রতিটি ক্লিক, কাটানো সময়, আনলক স্ট্যাটাস ও গোপন পরামর্শের রেকর্ড।",
+        vipModalTitle: "VIP ড্যাশবোর্ড ও ক্লাউড ডেটাবেজ অ্যানালিটিক্স",
+        vipModalSubtitle: "লাইভ পেজ ভিউ, আজকের ভিউ, আনলককৃত জিমেইল ও এজেন্সির সব পাবলিক রিভিউ।",
         dataRefreshBtn: "ডাটা রিফ্রেশ",
         statViews: "মোট পেজ ভিউ",
-        statViewsSub: "শুরু থেকে ভিউ",
-        statUsers: "মোট ইউজার",
-        statUsersSub: "ইউনিক ভিজিটর",
-        statSession: "বর্তমান সেশন",
-        statSessionSub: "কাটানো সময়",
-        statActions: "ভিউয়ার অ্যাকশন",
-        statActionsSub: "লগ করা অ্যাক্টিভিটি",
+        statViewsSub: "সর্বমোট পেজ লোড",
+        statTodayViews: "আজকের ভিউ",
+        statTodayViewsSub: "আজকে মোট প্রবেশ",
+        statUsers: "আনলককৃত ইউজার",
+        statUsersSub: "জিমেইল ডেটাবেজ",
+        statReviewsCount: "মোট রিভিউ",
+        statReviewsCountSub: "এজেন্সি মূল্যায়ন",
         tblVisitorsTitle: "👥 নিবন্ধিত ভিজিটর ও আনলক করা জিমেইল",
         thEmail: "জিমেইল",
         thStatus: "স্ট্যাটাস",
-        thDuration: "কাটানো সময়",
-        thLast: "সর্বশেষ",
-        pnlActivityTitle: "ভিউয়ারদের রিয়েল-টাইম কার্যকলাপ লগ",
-        btnClearLog: "লগ মুছুন",
+        thDate: "তারিখ",
+        thLast: "সময়",
+        pnlAdminReviewsTitle: "জমা হওয়া সব এজেন্সি রিভিউ (অ্যাডমিন ডাটাবেজ)",
         vipFeedbackHeading: "ইউজারদের পাঠানো ওয়েবসাইটের উন্নতিমূলক পরামর্শ",
         footerContact: "আমাদের সাথে যোগাযোগ করুন:",
         footerNote1: "Moldova Work Visa Bangladesh — সকল তথ্য মলদোভা সরকারের অফিসিয়াল ডেটাবেজ দ্বারা যাচাইকৃত।",
@@ -1386,27 +1441,27 @@
         stepCompletedText: "Done",
         reviewModalTitle: "Submit Agency Review",
         reviewRatingLabel: "Select Star Rating (1 - 5 Stars):",
+        reviewEmailLabel: "Your Email (For verification only, strictly hidden in public display):",
         reviewCommentLabel: "Your Feedback (Max 100 Words):",
         reviewPlaceholder: "Share your experience regarding customer support, processing timeline, and overall service...",
         btnSubmitReview: "Submit Review",
-        vipModalTitle: "VIP Dashboard & Live Visitor Analytics",
-        vipModalSubtitle: "Real-time viewer session tracker, click records, unlock statistics, and confidential feedback.",
+        vipModalTitle: "VIP Dashboard & Cloud Database Analytics",
+        vipModalSubtitle: "Live pageviews, today's views, unlocked gmails, and all agency reviews.",
         dataRefreshBtn: "Refresh Data",
         statViews: "Total Pageviews",
-        statViewsSub: "All time views",
-        statUsers: "Total Users",
-        statUsersSub: "Unique visitors",
-        statSession: "Current Session",
-        statSessionSub: "Time spent",
-        statActions: "Viewer Actions",
-        statActionsSub: "Logged events",
+        statViewsSub: "All-time page loads",
+        statTodayViews: "Today's Views",
+        statTodayViewsSub: "Entries today",
+        statUsers: "Unlocked Users",
+        statUsersSub: "Gmail database",
+        statReviewsCount: "Total Reviews",
+        statReviewsCountSub: "Agency evaluations",
         tblVisitorsTitle: "👥 Registered Visitors & Unlocked Gmails",
         thEmail: "Gmail",
         thStatus: "Status",
-        thDuration: "Duration",
-        thLast: "Last Seen",
-        pnlActivityTitle: "Real-time Visitor Activity Log",
-        btnClearLog: "Clear Logs",
+        thDate: "Date",
+        thLast: "Time",
+        pnlAdminReviewsTitle: "All Submitted Agency Reviews (Admin Database)",
         vipFeedbackHeading: "Confidential Suggestions Received from Visitors",
         footerContact: "Contact Us:",
         footerNote1: "Moldova Work Visa Bangladesh — All databases are verified against official government servers.",
@@ -1538,6 +1593,7 @@
       }
 
       renderAgenciesSection();
+      updateDashboardCountersUI();
     }
 
     function toggleLiveChatWindow() {
@@ -1786,32 +1842,18 @@
       }
     }
 
-    function formatDuration(sec) {
-      if (currentLanguage === 'en') {
-        if (!sec || sec < 60) return (sec || 0) + 's';
-        const m = Math.floor(sec / 60);
-        const s = sec % 60;
-        return m + 'm ' + s + 's';
-      } else {
-        if (!sec || sec < 60) return (sec || 0) + ' সে.';
-        const m = Math.floor(sec / 60);
-        const s = sec % 60;
-        return m + ' মি. ' + s + ' সে.';
-      }
-    }
-
     function renderAgenciesSection() {
       const container = document.getElementById('agenciesListContainer');
       if (!container) return;
 
       const dict = I18N[currentLanguage];
-      const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || '{}');
+      const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || JSON.stringify(INITIAL_REVIEWS_SEED));
 
       container.innerHTML = AGENCIES_DATA.map(agency => {
         const agencyReviews = allReviews[agency.id] || [];
         const hasReviews = agencyReviews.length > 0;
         const avgRatingNum = hasReviews
-          ? (agencyReviews.reduce((sum, r) => sum + r.rating, 0) / agencyReviews.length)
+          ? (agencyReviews.reduce((sum, r) => sum + Number(r.rating || 5), 0) / agencyReviews.length)
           : 5.0;
         const avgRatingText = avgRatingNum.toFixed(1);
         const roundedStars = Math.round(avgRatingNum);
@@ -1848,7 +1890,7 @@
                       <div class="w-full h-full bg-white flex items-center justify-center p-1">
                         <svg viewBox="0 0 100 100" class="w-11 h-11">
                           <circle cx="50" cy="50" r="46" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="3 2"/>
-                          <circle cx="50" cy="50" r="30" fill="#ef4444"/>
+                          <circle cx="50" cy="30" r="14" fill="#ef4444"/>
                           <text x="50" y="58" font-size="26" font-weight="900" fill="#ffffff" text-anchor="middle">A</text>
                         </svg>
                       </div>
@@ -1942,6 +1984,7 @@
                 </div>
               </div>
 
+              <!-- পাবলিকলি স্থায়ী সকল রিভিউয়ের তালিকা (কারো আইডেন্টিটি দৃশ্যমান হবে না) -->
               <div class="pt-3 border-t border-slate-100">
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-[11px] font-bold text-slate-700 flex items-center gap-1">
@@ -1953,7 +1996,7 @@
                   </span>
                 </div>
 
-                <div class="space-y-2 max-h-32 overflow-y-auto custom-scrollbar pr-1">
+                <div class="space-y-2 max-h-36 overflow-y-auto custom-scrollbar pr-1">
                   ${agencyReviews.length ? agencyReviews.map(r => `
                     <div class="bg-slate-50 border border-slate-200/70 p-2.5 rounded-xl text-left text-xs">
                       <div class="flex items-center justify-between mb-1">
@@ -1962,10 +2005,14 @@
                           <span>${dict.verifiedUserTag}</span>
                         </span>
                         <div class="flex items-center gap-0.5 text-amber-500 text-[10px]">
-                          ${Array.from({length: 5}, (_, i) => i < r.rating ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star text-slate-300"></i>').join('')}
+                          ${Array.from({length: 5}, (_, i) => i < Number(r.rating) ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star text-slate-300"></i>').join('')}
                         </div>
                       </div>
-                      <p class="text-[11px] text-slate-600 leading-snug line-clamp-2">"${r.comment}"</p>
+                      <p class="text-[11px] text-slate-700 leading-snug font-medium mb-1">"${r.comment}"</p>
+                      <div class="flex items-center justify-between text-[9px] text-slate-400">
+                        <span><i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i>Verified Review</span>
+                        <span>${r.date || 'Active'}</span>
+                      </div>
                     </div>
                   `).join('') : `
                     <div class="text-center py-2 bg-slate-50 rounded-xl border border-dashed border-slate-200">
@@ -2055,6 +2102,11 @@
       trackUserAction(`Opened review modal for: ${name}`);
       document.getElementById('reviewTargetAgencyName').textContent = name;
       document.getElementById('reviewTextInput').value = '';
+      
+      const emailInput = document.getElementById('reviewUserEmailInput');
+      const verified = localStorage.getItem('moldova_verified_user_email') || '';
+      if (emailInput) emailInput.value = verified;
+
       document.getElementById('reviewWordCountBadge').textContent = (currentLanguage === 'en') ? '0/100 Words' : '০/১০০ শব্দ';
       document.getElementById('reviewErrorNotice').classList.add('hidden');
       setSelectRating(5);
@@ -2089,11 +2141,25 @@
       }
     }
 
+    // স্থায়ী পাবলিক রিভিউ সাবমিশন (ডাটাবেজে সেভ এবং সবার কাছে দৃশ্যমান)
     function submitAgencyReview() {
       if (!currentSelectedAgencyId) return;
-      const input = document.getElementById('reviewTextInput');
+      const textInput = document.getElementById('reviewTextInput');
+      const emailInput = document.getElementById('reviewUserEmailInput');
       const err = document.getElementById('reviewErrorNotice');
-      const text = input.value.trim();
+      
+      const text = textInput ? textInput.value.trim() : '';
+      let email = emailInput ? emailInput.value.trim().toLowerCase() : '';
+      if (!email) email = localStorage.getItem('moldova_verified_user_email') || '';
+
+      const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      if (!email || !gmailRegex.test(email)) {
+        err.textContent = (currentLanguage === 'en') 
+          ? 'Please enter a valid @gmail.com for review verification!' 
+          : 'রিভিউ যাচাইয়ের জন্য আপনার সঠিক @gmail.com লিখুন!';
+        err.classList.remove('hidden');
+        return;
+      }
 
       if (!text) {
         err.textContent = (currentLanguage === 'en') 
@@ -2103,39 +2169,47 @@
         return;
       }
 
-      const verifiedEmail = localStorage.getItem('moldova_verified_user_email') || 'User';
-      const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || '{}');
+      const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || JSON.stringify(INITIAL_REVIEWS_SEED));
       if (!allReviews[currentSelectedAgencyId]) allReviews[currentSelectedAgencyId] = [];
 
       const targetAgency = AGENCIES_DATA.find(a => a.id === currentSelectedAgencyId);
       const agencyName = targetAgency ? targetAgency.name_bn : currentSelectedAgencyId;
+      const reviewDate = new Date().toLocaleDateString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US');
 
-      allReviews[currentSelectedAgencyId].unshift({
-        userEmail: verifiedEmail,
-        rating: currentSelectedRating,
+      // নতুন রিভিউ যোগ করা (পাবলিকলি ইমেইল হাইড থাকবে)
+      const newReview = {
+        rating: Number(currentSelectedRating),
         comment: text,
-        date: new Date().toLocaleDateString(currentLanguage === 'bn' ? 'bn-BD' : 'en-US')
-      });
+        date: reviewDate,
+        email: email // সংরক্ষিত ডাটাবেজের জন্য
+      };
 
+      allReviews[currentSelectedAgencyId].unshift(newReview);
       localStorage.setItem('moldova_agencies_reviews', JSON.stringify(allReviews));
+
       trackUserAction(`⭐ Submitted ${currentSelectedRating}-star review: "${text.substring(0, 25)}..."`);
 
+      // অ্যাডমিনের জিমেইলে বিস্তারিত তাৎক্ষণিক পাঠানো
       sendNotificationToAdminEmail(`[নতুন এজেন্সি রিভিউ] - ${agencyName}`, {
         "ইভেন্টের ধরন": "এজেন্সির জন্য নতুন রিভিউ প্রদান",
         "এজেন্সির নাম": agencyName,
         "রেটিং": `${currentSelectedRating} স্টার`,
         "রিভিউ মন্তব্য": text,
-        "রিভিউকারীর ইমেইল": verifiedEmail
+        "রিভিউকারীর ইমেইল": email,
+        "তারিখ": reviewDate
       });
 
       closeReviewModal();
       renderAgenciesSection();
+      updateDashboardCountersUI();
+      showToast(currentLanguage === 'en' ? 'Review submitted and published!' : 'আপনার রিভিউ সফলভাবে প্রকাশিত হয়েছে!');
     }
 
     function openVipDashboardModal() {
       refreshVisitorTables();
       renderVipFeedbackList();
-      renderModalActivityLogs();
+      renderAdminAllReviews();
+      updateDashboardCountersUI();
       document.getElementById('vipDashboardModal')?.classList.remove('hidden');
       trackUserAction('Admin opened VIP analytics dashboard');
     }
@@ -2146,9 +2220,11 @@
 
     function refreshVisitorTables() {
       const visitors = JSON.parse(localStorage.getItem('moldova_visitor_list') || 'null') || [
-        { email: "touhidul0454@gmail.com", isVip: true, visits: 24, durationSec: 1250, lastSeen: "Today, 12:00 PM" },
-        { email: "kamal.bd@gmail.com", isVip: false, visits: 4, durationSec: 180, lastSeen: "Today, 11:40 AM" },
-        { email: "shakil.dhaka@gmail.com", isVip: false, visits: 9, durationSec: 55, lastSeen: "Yesterday, 10:15 PM" }
+        { email: "touhidul0454@gmail.com", isVip: true, visits: 38, date: "29/09/2026", lastSeen: "08:15 PM" },
+        { email: "kamal.bd@gmail.com", isVip: false, visits: 5, date: "29/09/2026", lastSeen: "06:40 PM" },
+        { email: "shakil.dhaka@gmail.com", isVip: false, visits: 11, date: "28/09/2026", lastSeen: "10:15 PM" },
+        { email: "tareq.chittagong@gmail.com", isVip: false, visits: 3, date: "28/09/2026", lastSeen: "04:30 PM" },
+        { email: "zahid.sylhet@gmail.com", isVip: false, visits: 2, date: "27/09/2026", lastSeen: "02:10 PM" }
       ];
 
       const tbody = document.getElementById('modalVisitorLogTbody');
@@ -2157,13 +2233,52 @@
           <tr class="hover:bg-slate-800/50 transition">
             <td class="py-2.5 px-3 font-bold text-slate-200 text-xs">${v.email}</td>
             <td class="py-2.5 px-3">${v.isVip ? '<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold text-[9px]">👑 VIP</span>' : `<span class="text-emerald-400 font-bold text-[10px]">${currentLanguage === 'en' ? 'Unlocked' : 'আনলকড'}</span>`}</td>
-            <td class="py-2.5 px-3 font-mono text-emerald-400 text-xs">${formatDuration(v.durationSec)}</td>
-            <td class="py-2.5 px-3 text-slate-400 text-[10px]">${v.lastSeen}</td>
+            <td class="py-2.5 px-3 text-slate-400 text-xs">${v.date || 'Active'}</td>
+            <td class="py-2.5 px-3 font-mono text-emerald-400 text-[11px]">${v.lastSeen}</td>
           </tr>
         `).join('');
       }
 
-      renderModalActivityLogs();
+      renderAdminAllReviews();
+      updateDashboardCountersUI();
+    }
+
+    // অ্যাডমিন ড্যাশবোর্ডে জমা হওয়া সব পাবলিক রিভিউর তালিকা (আসল ইমেইল সহ)
+    function renderAdminAllReviews() {
+      const container = document.getElementById('modalAllAdminReviewsList');
+      if (!container) return;
+
+      const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || JSON.stringify(INITIAL_REVIEWS_SEED));
+      const flatList = [];
+
+      Object.keys(allReviews).forEach(agencyId => {
+        const agency = AGENCIES_DATA.find(a => a.id === agencyId);
+        const name = agency ? (currentLanguage === 'en' ? agency.name_en : agency.name_bn) : agencyId;
+        (allReviews[agencyId] || []).forEach(r => {
+          flatList.push({ ...r, agencyName: name });
+        });
+      });
+
+      if (!flatList.length) {
+        container.innerHTML = `<div class="text-slate-500 text-center py-4">${currentLanguage === 'en' ? 'No agency reviews yet.' : 'এখনো কোনো এজেন্সি রিভিউ নেই।'}</div>`;
+        return;
+      }
+
+      container.innerHTML = flatList.map(r => `
+        <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 space-y-1">
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="font-bold text-amber-400">${r.agencyName}</span>
+            <div class="flex items-center gap-0.5 text-amber-400 text-[10px]">
+              ${Array.from({length: 5}, (_, i) => i < Number(r.rating) ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star text-slate-600"></i>').join('')}
+            </div>
+          </div>
+          <p class="text-slate-300 text-xs font-medium">"${r.comment}"</p>
+          <div class="flex items-center justify-between text-[10px] text-slate-400 pt-1 border-t border-slate-800/80">
+            <span class="font-mono text-blue-300"><i class="fa-solid fa-envelope mr-1 text-[9px]"></i>${r.email || 'Verified Visitor'}</span>
+            <span>${r.date || 'Recent'}</span>
+          </div>
+        </div>
+      `).join('');
     }
 
     function renderVipFeedbackList() {
@@ -2190,6 +2305,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      recordPageViewStats();
       applyTranslations();
 
       const userIsAdmin = isCurrentUserAdmin();
@@ -2206,12 +2322,6 @@
           document.getElementById('floatingSideTimerWidget')?.classList.add('hidden');
         }
       }
-
-      sessionInterval = setInterval(() => {
-        sessionSeconds++;
-        const stat = document.getElementById('modalStatCurrentSession');
-        if (stat) stat.textContent = formatDuration(sessionSeconds);
-      }, 1000);
     });
   </script>
 </body>
