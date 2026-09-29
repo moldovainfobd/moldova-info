@@ -3,729 +3,1630 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ওয়েলকাম টু মলদোভা - অফিসিয়াল তথ্য, ভেরিফিকেশন ও পর্যটন গেটওয়ে</title>
+  <title>Moldova Work Visa Bangladesh | Verification Portal</title>
   
-  <!-- Google Fonts: Hind Siliguri for Bengali -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Safe Pre-initialization for Tailwind CDN Configuration -->
-  <script>
-    window.tailwind = window.tailwind || {};
-    window.tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Hind Siliguri"', 'sans-serif'],
-          },
-          colors: {
-            mdBlue: '#0033a0',
-            mdYellow: '#ffd100',
-            mdRed: '#d21034',
-            portalNavy: '#0a1633',
-            portalDark: '#060d1f',
-          }
-        }
-      }
-    };
-  </script>
-
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mdBlue: '#0033a0',
+            mdYellow: '#ffd100',
+            mdRed: '#d81e05',
+            mdDark: '#070d1e',
+            mdCard: '#0f172a'
+          },
+          fontFamily: {
+            sans: ['Hind Siliguri', 'Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
+    :root {
+      --bg-main: #070d1e;
+      --text-main: #f8fafc;
+      --card-bg: #0f172a;
+      --border-color: #1e293b;
+    }
+    html.light-theme {
+      --bg-main: #f1f5f9;
+      --text-main: #0f172a;
+      --card-bg: #ffffff;
+      --border-color: #cbd5e1;
+    }
     body {
-      font-family: 'Hind Siliguri', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Hind Siliguri', 'Inter', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
-    
-    /* Fallback color utilities in case CDN is deferred */
-    .bg-mdBlue { background-color: #0033a0; }
-    .text-mdBlue { color: #0033a0; }
-    .bg-mdYellow { background-color: #ffd100; }
-    .text-mdYellow { color: #ffd100; }
-    .bg-mdRed { background-color: #d21034; }
-    .text-mdRed { color: #d21034; }
-    
-    /* Moldova Flag Tricolor Stripe */
-    .moldova-flag-bar {
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
       height: 6px;
-      background: linear-gradient(90deg, #0033a0 0% 33.33%, #ffd100 33.33% 66.66%, #d21034 66.66% 100%);
     }
-
-    .moldova-hero-bg {
-      background: linear-gradient(135deg, #07122b 0%, #0d204d 50%, #15274d 80%, #20101b 100%);
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0b132b;
     }
-
-    /* Image zoom hover effect */
-    .place-card:hover .place-img {
-      transform: scale(1.06);
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+    .timer-ring-pulse {
+      animation: pulse-ring 2s infinite;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-black relative">
 
-  <!-- TOP MOLDOVA FLAG ACCENT -->
-  <div class="moldova-flag-bar"></div>
+  <!-- Top Moldova Flag Ribbon -->
+  <div class="h-1.5 w-full flex">
+    <div class="h-full w-1/3 bg-[#0033a0]"></div>
+    <div class="h-full w-1/3 bg-[#ffd100]"></div>
+    <div class="h-full w-1/3 bg-[#d81e05]"></div>
+  </div>
 
-  <!-- Main Navigation / Header with Moldova Flag Emblem -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+  <!-- নোটিফিকেশন টপ বার: ইমেইল এবং কপি বাটন -->
+  <div class="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 border-b border-slate-800 text-xs py-1.5 px-4 text-center flex flex-wrap items-center justify-center gap-2 text-slate-300">
+    <span class="flex items-center gap-1.5">
+      <i class="fa-solid fa-headset text-amber-400"></i>
+      <span>অফিসিয়াল যোগাযোগ:</span>
+      <a href="mailto:tfbangla90@gmail.com" class="font-mono text-amber-300 font-bold hover:underline">tfbangla90@gmail.com</a>
+    </span>
+    <button onclick="copyToClipboard('tfbangla90@gmail.com', this)" class="px-2 py-0.5 rounded-md bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 border border-amber-400/40 text-[10px] font-bold flex items-center gap-1 transition">
+      <i class="fa-regular fa-copy"></i>
+      <span class="copy-label">কপি</span>
+    </button>
+  </div>
+
+  <!-- Viewer মোড সক্রিয় থাকলে শীর্ষে বিশেষ কন্ট্রোল বার -->
+  <div id="viewerModeNoticeBar" class="hidden bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white px-4 py-2 text-xs font-semibold text-center border-b border-blue-400/40 flex flex-wrap items-center justify-center gap-3 shadow-md z-50 sticky top-0">
+    <span class="flex items-center gap-1.5">
+      <i class="fa-solid fa-eye text-amber-300"></i>
+      <span><strong>ভিউয়ার মোড পরীক্ষা চলছে:</strong> সাধারণ মানুষ ১ মিনিট যেভাবে দেখে এবং লক হয়, আপনি তা লাইভ দেখছেন।</span>
+    </span>
+    <div class="flex items-center gap-2">
+      <button onclick="simulateFreshViewerTrial()" class="px-2.5 py-1 bg-blue-900 hover:bg-blue-950 text-white rounded-lg text-[11px] font-bold border border-blue-400/50 flex items-center gap-1">
+        <i class="fa-solid fa-arrows-rotate"></i> ১ মিনিট ট্রায়াল রিসেট
+      </button>
+      <button onclick="setAdminViewMode('admin')" class="px-3 py-1 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black rounded-lg text-[11px] shadow transition">
+        👑 এডমিন ভিউতে ফিরুন
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="sticky top-0 z-30 bg-[#070d1e]/95 backdrop-blur-md border-b border-slate-800 shadow-xl transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
       
-      <div class="flex items-center space-x-3.5">
-        <!-- Moldova Flag SVG Emblem -->
-        <div class="w-12 h-8 rounded-lg overflow-hidden shadow-sm border border-slate-300 shrink-0 flex relative">
-          <div class="w-1/3 h-full bg-[#0033a0]"></div>
-          <div class="w-1/3 h-full bg-[#ffd100] flex items-center justify-center">
-            <!-- Coat of Arms Eagle representation -->
-            <svg class="w-4 h-4 text-[#8a4f0d]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L9 7h6l-3-5zm0 6c-2.5 0-4.5 2-4.5 4.5 0 2.5 2 4.5 4.5 4.5s4.5-2 4.5-4.5C16.5 10 14.5 8 12 8zm-6 2l-3 4 3 2v-6zm12 0v6l3-2-3-4z"/>
-            </svg>
-          </div>
-          <div class="w-1/3 h-full bg-[#d21034]"></div>
+      <!-- Brand Logo / Emblem -->
+      <a href="https://www.facebook.com/groups/1275931528076368" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('লোগো লিঙ্কে ক্লিক করে ফেসবুক গ্রুপে যেতে চেয়েছে')" class="flex items-center gap-3 group">
+        <div class="w-11 h-8 rounded-lg overflow-hidden border-2 border-amber-400/50 shadow-md flex-shrink-0 relative">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Flag_of_Moldova.svg/120px-Flag_of_Moldova.svg.png" 
+               alt="Moldova Flag" 
+               class="w-full h-full object-cover">
         </div>
-
         <div>
-          <span class="text-xl font-black tracking-tight text-slate-900 block leading-tight">
-            MOLDOVA PORTAL
-          </span>
-          <span class="text-xs text-blue-900 font-semibold tracking-wide">
-            তথ্য, সরকারি ভেরিফিকেশন ও গাইডলাইন গেটওয়ে
-          </span>
+          <div class="flex items-center gap-2">
+            <h1 class="text-sm sm:text-base font-black tracking-tight text-white group-hover:text-amber-400 transition-colors">
+              Moldova Work Visa Bangladesh
+            </h1>
+            <span class="text-[9px] px-1.5 py-0.2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full font-bold">VERIFIED</span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">তথ্য, সরকারি ভেরিফিকেশন ও ট্রাভেল সাপোর্ট</p>
         </div>
-      </div>
+      </a>
 
-      <div class="flex items-center gap-2">
-        <a href="#about-moldova" class="text-xs sm:text-sm font-semibold text-mdBlue bg-blue-50 hover:bg-blue-100 px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 border border-blue-200">
-          <i class="fa-solid fa-file-shield text-blue-600"></i>
-          <span>ভিসা গাইড</span>
-        </a>
-        <a href="#famous-places" class="text-xs sm:text-sm font-semibold text-amber-800 bg-amber-50 hover:bg-amber-100 px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 border border-amber-200">
-          <i class="fa-solid fa-camera text-amber-600"></i>
-          <span>দর্শনীয় স্থান</span>
-        </a>
+      <!-- কন্ট্রোল প্যানেল: Viewer & Admin সুইচার, ভাষা, থিম এবং ড্যাশবোর্ড বাটন -->
+      <div class="flex items-center flex-wrap gap-2 ml-auto">
+        
+        <!-- 🔥 এডমিন ও ভিউয়ার মোড সুইচ বাটন -->
+        <div id="adminViewModeToggleContainer" class="flex items-center bg-slate-900 border-2 border-amber-400/60 rounded-xl p-1 shadow-lg shadow-amber-500/10">
+          <button id="btnViewAsViewer" onclick="setAdminViewMode('viewer')" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-eye text-blue-400"></i>
+            <span>Viewer</span>
+          </button>
+          <button id="btnViewAsAdmin" onclick="setAdminViewMode('admin')" class="px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 text-xs font-black flex items-center gap-1.5 shadow-sm transition">
+            <i class="fa-solid fa-crown text-amber-950"></i>
+            <span>Admin</span>
+          </button>
+        </div>
+
+        <!-- ডার্ক / লাইট মোড টগল বাটন -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-bold transition shadow-sm" title="ডার্ক / লাইট মোড পরিবর্তন">
+          <span id="themeToggleIcon"><i class="fa-solid fa-moon text-amber-300"></i></span>
+          <span id="themeToggleText" class="hidden sm:inline text-[11px]">ডার্ক</span>
+        </button>
+
+        <!-- ভাষা পরিবর্তন বাটন (বাংলা / EN) -->
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="flex items-center gap-1 px-2.5 py-1.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-bold transition shadow-sm" title="ভাষা পরিবর্তন">
+          <i class="fa-solid fa-language text-blue-400"></i>
+          <span id="langToggleText" class="text-[11px]">বাং | EN</span>
+        </button>
+
+        <!-- Verified User / Admin Email Badge -->
+        <div id="verifiedUserEmailBadge" class="text-xs bg-amber-950/80 border border-amber-400 text-amber-300 px-3 py-1.5 rounded-xl font-bold flex items-center shadow-md whitespace-nowrap">
+          <i class="fa-solid fa-crown text-amber-400 mr-1.5"></i>
+          <span id="badgeEmailText">VIP: touhidul0454@gmail.com</span>
+        </div>
+
+        <!-- VIP ড্যাশবোর্ড বাটন (এডমিন মোডে দৃশ্যমান) -->
+        <button id="vipDashboardBtn" onclick="openVipDashboardModal()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs shadow-md shadow-amber-500/20 transition-all transform hover:scale-105 flex items-center gap-1.5 whitespace-nowrap">
+          <i class="fa-solid fa-chart-line text-xs"></i>
+          <span>VIP ড্যাশবোর্ড</span>
+        </button>
       </div>
 
     </div>
   </header>
 
-  <!-- Hero & Welcome Section -->
+  <!-- Hero Section -->
   <main class="flex-grow">
-    <section class="py-14 sm:py-16 moldova-hero-bg text-white text-center relative px-4 overflow-hidden">
-      <!-- Ambient Glows -->
-      <div class="absolute -top-24 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute top-1/2 right-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="max-w-4xl mx-auto space-y-3 relative z-10">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md text-yellow-300 text-xs sm:text-sm font-semibold border border-yellow-400/30 shadow-sm">
-          <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-          <span>মলদোভা ও বাংলাদেশ সরকারি ভেরিফিকেশন গেটওয়ে</span>
+    <section class="relative py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0b132b] via-[#070d1e] to-[#070d1e] text-center border-b border-slate-800/80">
+      <div class="max-w-4xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0033a0]/30 border border-[#ffd100]/30 text-[#ffd100] text-xs font-semibold">
+          <i class="fa-solid fa-passport"></i>
+          <span id="txtHeroBadge">অফিসিয়াল সার্ভিসেস ও ডেটাবেজ লিংক</span>
         </div>
-
-        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-sm">
-          ওয়েলকাম টু মলদোভা
-        </h1>
-
-        <p class="text-lg sm:text-xl text-yellow-300 font-semibold">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-snug">
+          <span class="text-amber-400">Moldova Work Visa Bangladesh</span> <span id="txtHeroTitle">পরিবারে আপনাকে স্বাগত</span>
+        </h2>
+        <p id="txtHeroSubtitle" class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-medium">
           আমরা আপনাকে কীভাবে সাহায্য করতে পারি?
-        </p>
-
-        <p class="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          আপনার প্রয়োজনীয় সেবার বাটনে ক্লিক করুন। সরাসরি অফিশিয়াল সরকারি ডাটাবেজ পেজ ওপেন হবে এবং সেখান থেকে আপনি যাবতীয় তথ্য যাচাই করতে পারবেন।
         </p>
       </div>
     </section>
 
-    <!-- 4 Action Cards -->
-    <section class="max-w-7xl mx-auto px-4 -mt-10 relative z-20 pb-16">
+    <!-- ৪টি মূল সরকারি সার্ভিস কার্ড -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        <!-- Card 1: Invitation Check -->
-        <div class="bg-white rounded-3xl shadow-xl border border-slate-200/90 p-6 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300">
+        
+        <!-- অপশন ০১: ইনভাইটেশন চেক -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-2xl flex flex-col justify-between hover:shadow-blue-500/10 hover:-translate-y-1 transition duration-200">
           <div>
-            <div class="w-14 h-14 bg-blue-50 text-mdBlue rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm border border-blue-100">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0033a0] flex items-center justify-center text-xl mb-4 shadow-sm">
               <i class="fa-solid fa-envelope-open-text"></i>
             </div>
-            <span class="text-xs uppercase font-extrabold tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">অপশন ০১</span>
-            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">ইনভাইটেশন চেক</h3>
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+            <span class="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#0033a0] text-xs font-bold mb-3">
+              অপশন ০১
+            </span>
+            <h3 class="text-xl font-black text-slate-900 mb-2">ইনভাইটেশন চেক</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium">
               মলদোভা মাইগ্রেশন ও পররাষ্ট্র দপ্তরের ইনভাইটেশন লেটার এবং ফাইল রেজিস্ট্রেশন যাচাই করুন।
             </p>
           </div>
-          <a href="https://www.evisa.gov.md/VisaFile/Inregistrare" target="_blank" rel="noopener noreferrer" 
-             class="w-full bg-mdBlue hover:bg-blue-800 text-white font-bold py-3.5 px-3 rounded-xl text-center shadow-md flex items-center justify-center gap-2 group transition text-sm">
+          <a href="https://evisa.gov.md/VisaFile/Inregistrare" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('অপশন ০১ (ইনভাইটেশন চেক) লিঙ্কে ক্লিক করেছে')" class="w-full py-3.5 px-4 rounded-xl bg-[#0033a0] hover:bg-[#002677] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-blue-900/20 transition">
             <span>ইনভাইটেশন চেক করুন</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
 
-        <!-- Card 2: Submission Slip Check -->
-        <div class="bg-white rounded-3xl shadow-xl border border-slate-200/90 p-6 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300">
+        <!-- অপশন ০২: সাবমিশন স্লিপ চেক -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-2xl flex flex-col justify-between hover:shadow-amber-500/10 hover:-translate-y-1 transition duration-200">
           <div>
-            <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm border border-amber-100">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-[#e68a00] flex items-center justify-center text-xl mb-4 shadow-sm">
               <i class="fa-solid fa-receipt"></i>
             </div>
-            <span class="text-xs uppercase font-extrabold tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">অপশন ০২</span>
-            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">সাবমিশন স্লিপ চেক</h3>
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+            <span class="inline-block px-3 py-1 rounded-full bg-amber-50 text-[#d97706] text-xs font-bold mb-3">
+              অপশন ০২
+            </span>
+            <h3 class="text-xl font-black text-slate-900 mb-2">সাবমিশন স্লিপ চেক</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium">
               মলদোভার সরকারি পেমেন্ট ও ইনভয়েস সার্চ পোর্টাল (MPay)-এ স্লিপ ও চালানের স্ট্যাটাস যাচাই করুন।
             </p>
           </div>
-          <a href="https://mpay.gov.md/Invoice/SearchInvoice" target="_blank" rel="noopener noreferrer" 
-             class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3.5 px-3 rounded-xl text-center shadow-md flex items-center justify-center gap-2 group transition text-sm">
+          <a href="https://mpay.gov.md/Invoice/SearchInvoice" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('অপশন ০২ (সাবমিশন স্লিপ চেক) লিঙ্কে ক্লিক করেছে')" class="w-full py-3.5 px-4 rounded-xl bg-[#e68a00] hover:bg-[#c97500] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-amber-900/20 transition">
             <span>সাবমিশন স্লিপ চেক করুন</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
 
-        <!-- Card 3: eVisa Check -->
-        <div class="bg-white rounded-3xl shadow-xl border border-slate-200/90 p-6 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300">
+        <!-- অপশন ০৩: ই-ভিসা চেক -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-2xl flex flex-col justify-between hover:shadow-emerald-500/10 hover:-translate-y-1 transition duration-200">
           <div>
-            <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm border border-emerald-100">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#00875a] flex items-center justify-center text-xl mb-4 shadow-sm">
               <i class="fa-solid fa-passport"></i>
             </div>
-            <span class="text-xs uppercase font-extrabold tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">অপশন ০৩</span>
-            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">ই-ভিসা চেক</h3>
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-              মলদোভা পররাষ্ট্র মন্ত্রণালয়ের অফিশিয়াল ডাটাবেজ থেকে সরাসরি আপনার ই-ভিসা স্ট্যাটাস চেক করুন।
+            <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-[#00875a] text-xs font-bold mb-3">
+              অপশন ০৩
+            </span>
+            <h3 class="text-xl font-black text-slate-900 mb-2">ই-ভিসা চেক</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium">
+              মলদোভা পররাষ্ট্র মন্ত্রণালয়ের অফিসিয়াল ডাটাবেজ থেকে সরাসরি আপনার ই-ভিসা স্ট্যাটাস চেক করুন।
             </p>
           </div>
-          <a href="https://www.evisa.gov.md/check-my-visa/" target="_blank" rel="noopener noreferrer" 
-             class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-3 rounded-xl text-center shadow-md flex items-center justify-center gap-2 group transition text-sm">
+          <a href="https://evisa.gov.md/check-my-visa/" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('অপশন ০৩ (ই-ভিসা চেক) লিঙ্কে ক্লিক করেছে')" class="w-full py-3.5 px-4 rounded-xl bg-[#00875a] hover:bg-[#006e49] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/20 transition">
             <span>ই-ভিসা চেক করুন</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
 
-        <!-- Card 4: BMET Check -->
-        <div class="bg-white rounded-3xl shadow-xl border border-slate-200/90 p-6 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300">
+        <!-- অপশন ০৪: বিএমইটি চেক -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-2xl flex flex-col justify-between hover:shadow-red-500/10 hover:-translate-y-1 transition duration-200">
           <div>
-            <div class="w-14 h-14 bg-red-50 text-mdRed rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm border border-red-100">
+            <div class="w-12 h-12 rounded-2xl bg-rose-50 text-[#c8102e] flex items-center justify-center text-xl mb-4 shadow-sm">
               <i class="fa-solid fa-users-gear"></i>
             </div>
-            <span class="text-xs uppercase font-extrabold tracking-wider text-red-700 bg-red-50 px-2.5 py-1 rounded-full border border-red-100">অপশন ০৪</span>
-            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">বিএমইটি চেক</h3>
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+            <span class="inline-block px-3 py-1 rounded-full bg-rose-50 text-[#c8102e] text-xs font-bold mb-3">
+              অপশন ০৪
+            </span>
+            <h3 class="text-xl font-black text-slate-900 mb-2">বিএমইটি চেক</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-6 font-medium">
               আজকে কয়টা ম্যানপাওয়ার হয়েছে, দেশভিত্তিক ক্লিয়ারেন্স রিপোর্ট ও অনুমোদনের পরিসংখ্যান সরাসরি দেখুন।
             </p>
           </div>
-          <a href="https://www.oep.gov.bd/reports/country-clearance" target="_blank" rel="noopener noreferrer" 
-             class="w-full bg-mdRed hover:bg-red-700 text-white font-bold py-3.5 px-3 rounded-xl text-center shadow-md flex items-center justify-center gap-2 group transition text-sm">
+          <a href="https://www.oep.gov.bd/reports/country-clearance" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('অপশন ০৪ (বিএমইটি ক্লিয়ারেন্স) লিঙ্কে ক্লিক করেছে')" class="w-full py-3.5 px-4 rounded-xl bg-[#c8102e] hover:bg-[#a60b24] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-lg shadow-rose-900/20 transition">
             <span>বিএমইটি চেক করুন</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
 
       </div>
     </section>
 
-    <!-- SECTION A: MOLDOVA GUIDE & VISA PROCESSING -->
-    <section id="about-moldova" class="bg-white py-16 border-t border-slate-200">
-      <div class="max-w-5xl mx-auto px-4 space-y-14">
-        
-        <!-- Section Title -->
-        <div class="text-center max-w-2xl mx-auto space-y-2">
-          <span class="text-xs font-bold text-blue-700 uppercase tracking-widest bg-blue-50 px-3.5 py-1 rounded-full border border-blue-100">
-            দেশ পরিচিতি ও অফিশিয়াল নির্দেশিকা
+    <!-- মলদোভা যেতে যা কিছু জানা প্রয়োজন -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="px-4 py-1.5 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-full text-xs font-bold uppercase tracking-wider">
+          দেশ পরিচিতি ও অফিশিয়াল নির্দেশিকা
+        </span>
+        <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mt-4 tracking-tight">
+          মলদোভা যেতে যা কিছু জানা প্রয়োজন
+        </h3>
+        <p class="text-sm text-slate-400 mt-2 font-medium">
+          বাংলাদেশ বা অন্য যেকোনো দেশ থেকে মলদোভা যাওয়ার প্রয়োজনীয় সকল কাগজপত্র ও সঠিক নিয়মাবলী।
+        </p>
+      </div>
+
+      <!-- ৩টি কার্ড: দেশ পরিচিতি, খাত, ভিসা ধরন -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-2xl flex flex-col justify-between hover:-translate-y-1 transition duration-200">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0033a0] flex items-center justify-center text-xl mb-5 shadow-sm">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <h4 class="text-lg font-black text-slate-900 mb-2.5">মলদোভা পরিচিতি</h4>
+            <p class="text-xs text-slate-600 leading-relaxed font-medium">
+              মলদোভা পূর্ব ইউরোপের একটি শান্তিময় রাষ্ট্র। রাজধানী চিশিনাউ (Chișinău)। মুদ্রা মলদোভান লিউ (MDL)। এটি ইউরোপীয় ইউনিয়নের প্রার্থী রাষ্ট্র এবং রোমানিয়া ও ইউক্রেনের সীমান্তে অবস্থিত।
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-2xl flex flex-col justify-between hover:-translate-y-1 transition duration-200">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-[#d97706] flex items-center justify-center text-xl mb-5 shadow-sm">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <h4 class="text-lg font-black text-slate-900 mb-2.5">কাজের প্রধান খাতসমূহ</h4>
+            <p class="text-xs text-slate-600 leading-relaxed font-medium">
+              নির্মাণ খাত (Construction), উৎপাদন ও টেক্সটাইল, খাদ্য প্রক্রিয়াজাতকরণ, ওয়্যারহাউস ও গুদামজাতকরণ এবং ড্রাইভিং সেক্টরে বর্তমানে নিয়মিত বিদেশি কর্মী নিয়োগ হচ্ছে।
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-2xl flex flex-col justify-between hover:-translate-y-1 transition duration-200">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-[#00875a] flex items-center justify-center text-xl mb-5 shadow-sm">
+              <i class="fa-solid fa-file-lines"></i>
+            </div>
+            <h4 class="text-lg font-black text-slate-900 mb-2.5">ভিসার ধরন (Type D)</h4>
+            <p class="text-xs text-slate-600 leading-relaxed font-medium">
+              কাজের উদ্দেশ্যে যেতে হলে 'লং-স্টে ডি/এস (Type D/AS - Work)' ভিসা প্রয়োজন হয়। এই ভিসার প্রাথমিক মেয়াদ ৯০ থেকে ৩৬০ দিন হয় এবং দেশটিতে পৌঁছানোর পর রেসিডেন্স পারমিট কার্ডে রূপান্তর করা যায়।
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- প্রয়োজনীয় ডকুমেন্টস চেকলিস্ট -->
+      <div class="bg-white/95 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200/80 mb-12 text-slate-900">
+        <h4 class="text-lg sm:text-xl font-black text-slate-900 mb-6 flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-sm shadow">
+            <i class="fa-solid fa-clipboard-check"></i>
           </span>
-          <h2 class="text-3xl font-black text-slate-900">
-            মলদোভা যেতে যা কিছু জানা প্রয়োজন
-          </h2>
-          <p class="text-slate-600 text-sm">
-            বাংলাদেশ বা অন্য যেকোনো দেশ থেকে মলদোভা যাওয়ার প্রয়োজনীয় সকল কাগজপত্র ও সঠিক নিয়মাবলী।
-          </p>
-        </div>
+          <span>মলদোভা ভিসার জন্য প্রয়োজনীয় ডকুমেন্টস</span>
+        </h4>
 
-        <!-- 3 Info Highlights -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200/80">
-            <div class="text-mdBlue text-2xl mb-3"><i class="fa-solid fa-map-location-dot"></i></div>
-            <h4 class="font-bold text-lg text-slate-900 mb-2">মলদোভা পরিচিতি</h4>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              মলদোভা পূর্ব ইউরোপের একটি শান্তিপ্রিয় রাষ্ট্র। রাজধানী চিশিনাউ (Chișinău)। মুদ্রা মলদোভান লিউ (MDL)। এটি ইউরোপীয় ইউনিয়নের প্রার্থী রাষ্ট্র এবং রোমানিয়া ও ইউক্রেনের সীমান্তে অবস্থিত।
-            </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5 shadow-sm">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900">মূল পাসপোর্ট (Original Passport)</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5">কমপক্ষে ৬ মাসের মেয়াদ এবং ন্যূনতম ২টি ফাঁকা পৃষ্ঠা থাকতে হবে।</p>
+            </div>
           </div>
 
-          <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200/80">
-            <div class="text-amber-500 text-2xl mb-3"><i class="fa-solid fa-briefcase"></i></div>
-            <h4 class="font-bold text-lg text-slate-900 mb-2">কাজের প্রধান খাতসমূহ</h4>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              নির্মাণ খাত (Construction), উৎপাদন ও টেক্সটাইল, খাদ্য প্রক্রিয়াজাতকরণ, ওয়্যারহাউস ও গুদামজাতকরণ এবং ড্রাইভিং সেক্টরে বর্তমানে নিয়মিত বিদেশি কর্মী নিয়োগ হচ্ছে।
-            </p>
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5 shadow-sm">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900">IGM ওয়ার্ক ইনভাইটেশন লেটার</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5">মলদোভার অভিবাসন কর্তৃপক্ষ (IGM) কর্তৃক ইস্যুকৃত অনুমোদিত অফিশিয়াল ইনভাইটেশন।</p>
+            </div>
           </div>
 
-          <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200/80">
-            <div class="text-emerald-600 text-2xl mb-3"><i class="fa-solid fa-file-contract"></i></div>
-            <h4 class="font-bold text-lg text-slate-900 mb-2">ভিসার ধরন (Type D)</h4>
-            <p class="text-slate-600 text-sm leading-relaxed">
-              কাজের উদ্দেশ্যে যেতে হলে 'লং-স্টে ডি/এএস (Type D/AS - Work)' ভিসা প্রয়োজন হয়। এই ভিসার প্রাথমিক মেয়াদ ৯০ থেকে ৩৬০ দিন হয় এবং দেশটিতে পৌঁছানোর পর রেসিডেন্স পারমিট কার্ডে রূপান্তর করা যায়।
-            </p>
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5 shadow-sm">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900">পুলিশ ক্লিয়ারেন্স সার্টিফিকেট</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5">আইন মন্ত্রণালয় ও পররাষ্ট্র মন্ত্রণালয় থেকে নোটারাইজড ও সত্যায়িত কপি।</p>
+            </div>
           </div>
-        </div>
 
-        <!-- Required Documents Checklist -->
-        <div class="bg-gradient-to-br from-slate-50 to-blue-50/50 rounded-3xl p-6 sm:p-8 border border-blue-100">
-          <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-            <i class="fa-solid fa-clipboard-check text-blue-600"></i>
-            <span>মলদোভা ভিসার জন্য প্রয়োজনীয় ডকুমেন্টস</span>
-          </h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
-            <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
-              <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">মূল পাসপোর্ট (Original Passport)</h5>
-                <p class="text-slate-600 text-xs mt-0.5">কমপক্ষে ১ বছরের মেয়াদ এবং ন্যূনতম ২টি ফাঁকা পৃষ্ঠা থাকতে হবে।</p>
-              </div>
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5 shadow-sm">
+              <i class="fa-solid fa-check"></i>
             </div>
-
-            <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
-              <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">IGM ওয়ার্ক ইনভাইটেশন লেটার</h5>
-                <p class="text-slate-600 text-xs mt-0.5">মলদোভার অভিবাসন কর্তৃপক্ষ (IGM) কর্তৃক ইস্যুকৃত অনুমোদিত অফিশিয়াল ইনভাইটেশন।</p>
-              </div>
+            <div>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900">চাকরির চুক্তিপত্র (Job Contract)</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5">মলদোভান নিয়োগকর্তা ও কর্মীর মধ্যে স্বাক্ষরিত দ্বিপাক্ষিক কর্মচুক্তি।</p>
             </div>
+          </div>
 
-            <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
-              <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">পুলিশ ক্লিয়ারেন্স সার্টিফিকেট</h5>
-                <p class="text-slate-600 text-xs mt-0.5">আইন মন্ত্রণালয় ও পররাষ্ট্র মন্ত্রণালয় থেকে নোটারাইজড ও সত্যায়িত কপি।</p>
-              </div>
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5 shadow-sm">
+              <i class="fa-solid fa-check"></i>
             </div>
-
-            <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
-              <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">চাকরির চুক্তিপত্র (Job Contract)</h5>
-                <p class="text-slate-600 text-xs mt-0.5">মলদোভান নিয়োগকর্তা ও কর্মীর মধ্যে স্বাক্ষরিত দ্বিপাক্ষিক কর্মচুক্তি।</p>
-              </div>
+            <div>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900">মেডিকেল ফিটনেস সার্টিফিকেট</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5">অনুমোদিত ডায়াগনস্টিক সেন্টার থেকে রক্ত ও স্বাস্থ্য পরীক্ষার সার্টিফিকেট।</p>
             </div>
+          </div>
 
-            <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
-              <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">মেডিকেল ফিটনেস সার্টিফিকেট</h5>
-                <p class="text-slate-600 text-xs mt-0.5">অনুমোদিত ডায়াগনস্টিক সেন্টার থেকে রক্ত ও স্বাস্থ্য পরীক্ষার সার্টিফিকেট।</p>
-              </div>
+          <div class="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200/70">
+            <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs flex-shrink-0 mt-0.5 shadow-sm">
+              <i class="fa-solid fa-check"></i>
             </div>
-
-            <div class="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
-              <span class="text-emerald-600 mt-1"><i class="fa-solid fa-circle-check text-lg"></i></span>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">ট্রাভেল ইন্স্যুরেন্স ও এয়ার টিকিট</h5>
-                <p class="text-slate-600 text-xs mt-0.5">ন্যূনতম ৩০,০০০ ইউরো কাভারেজযুক্ত আন্তর্জাতিক স্বাস্থ্যবীমা ও টিকিট বুকিং।</p>
-              </div>
+            <div>
+              <h5 class="text-xs sm:text-sm font-black text-slate-900">ট্রাভেল ইন্স্যুরেন্স ও টিকিট</h5>
+              <p class="text-[11px] text-slate-600 mt-0.5">ন্যূনতম ৩০,০০০ ইউরো কাভারেজযুক্ত আন্তর্জাতিক স্বাস্থ্যবীমা ও টিকিট বুকিং।</p>
             </div>
-
           </div>
         </div>
-
-        <!-- 5 Steps of Processing -->
-        <div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">
-            বাংলাদেশ থেকে মলদোভা যাওয়ার ধারাবাহিক ৫টি ধাপ
-          </h3>
-          <div class="space-y-3.5">
-            
-            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
-              <div class="w-10 h-10 rounded-xl bg-mdBlue text-white font-bold flex items-center justify-center shrink-0">১</div>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">কোম্পানি সিলেকশন ও অফার লেটার</h5>
-                <p class="text-slate-600 text-xs mt-0.5">মলদোভার অনুমোদিত কোনো প্রতিষ্ঠান থেকে চাকরির প্রস্তাব ও প্রাথমিক চুক্তি গ্রহণ করা।</p>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
-              <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-bold flex items-center justify-center shrink-0">২</div>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">IGM ওয়ার্ক পারমিট / ইনভাইটেশন অনুমোদন</h5>
-                <p class="text-slate-600 text-xs mt-0.5">নিয়োগকর্তা মলদোভা মাইগ্রেশন অফিসে আবেদন করে মূল ইনভাইটেশন লেটার সংগ্রহ করবেন।</p>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
-              <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0">৩</div>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">অনলাইনে ই-ভিসা (eVisa) আবেদন</h5>
-                <p class="text-slate-600 text-xs mt-0.5">মলদোভা পররাষ্ট্র মন্ত্রণালয়ের অফিশিয়াল পোর্টালে টাইপ-ডি ভিসার জন্য যাবতীয় ফাইল সাবমিট ও সরকারি ফি জমা দেওয়া।</p>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
-              <div class="w-10 h-10 rounded-xl bg-mdRed text-white font-bold flex items-center justify-center shrink-0">৪</div>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">ভিসা স্ট্যাম্পিং ও অনুমোদন সংগ্রহ</h5>
-                <p class="text-slate-600 text-xs mt-0.5">ই-ভিসা অনুমোদন শেষে নির্ধারিত কনস্যুলার বা ইলেকট্রনিক অনুমোদন কপি ও বারকোড পেজ সংগ্রহ।</p>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
-              <div class="w-10 h-10 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center shrink-0">৫</div>
-              <div>
-                <h5 class="font-bold text-slate-900 text-sm">BMET ম্যানপাওয়ার কার্ড ও ফ্লাইট</h5>
-                <p class="text-slate-600 text-xs mt-0.5">বাংলাদেশ জনশক্তি ব্যুরো (BMET) থেকে ইমিগ্রেশন ছাড়পত্র সংগ্রহ করে মলদোভার উদ্দেশ্যে যাত্রা।</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- SECTION B: FAMOUS PLACES OF MOLDOVA WITH REAL PHOTOGRAPHIC IMAGES -->
-    <section id="famous-places" class="py-16 bg-slate-100/90 border-t border-slate-300/80">
-      <div class="max-w-7xl mx-auto px-4 space-y-12">
-        
-        <!-- Header Banner with Moldova Flag Colors Gradient -->
-        <div class="bg-gradient-to-r from-[#0033a0] via-[#102a5c] to-[#d21034] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden">
-          <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-yellow-400/20 rounded-full blur-2xl pointer-events-none"></div>
-          
-          <div class="max-w-3xl relative z-10 space-y-3">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400 text-slate-950 text-xs font-bold shadow-sm">
-              <i class="fa-solid fa-camera"></i>
-              <span>মলদোভা হেরিটেজ ও ট্যুরিজম গ্যালারি</span>
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-black text-white">
-              মলদোভার বিখ্যাত দর্শনীয় ও ঐতিহাসিক স্থানসমূহ
-            </h2>
-            <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
-              মলদোভা পূর্ব ইউরোপের অপরূপ প্রাকৃতিক দৃশ্য ও প্রাচীন ইতিহাসের এক অনন্য মিলনমেলা। চুনাপাথরের পাহাড়ি গুহা আশ্রম, মধ্যযুগীয় দুর্গ এবং বিশ্বের সর্ববৃহৎ ভূগর্ভস্থ ওয়াইন নগরীসহ শীর্ষ দর্শনীয় স্থানসমূহ নিচে ছবির সাথে বিস্তারিত দেওয়া হলো:
-            </p>
+    <!-- বাংলাদেশের ৫টি এজেন্সি ও রিভিউ সেকশন -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-14">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-block mb-3">
+          <span class="px-6 py-2.5 bg-gradient-to-r from-blue-600/20 via-amber-500/20 to-blue-600/20 text-amber-300 border-2 border-amber-400/50 rounded-2xl text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-wider shadow-lg inline-flex items-center gap-2.5">
+            <i class="fa-solid fa-crown text-amber-400"></i>
+            <span>TOP 5 Agency in Bangladesh</span>
+            <i class="fa-solid fa-crown text-amber-400"></i>
+          </span>
+        </div>
+        <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mt-3">
+          বাংলাদেশের শীর্ষ ৫টি এজেন্সি ও ইউজার রিভিউ
+        </h3>
+        <p class="text-sm text-slate-300 mt-2 font-medium">
+          এজেন্সি সম্পর্কে অভিজ্ঞতা পর্যালোচনা করুন। আপনার জিমেইল দিয়ে সর্বোচ্চ ১০০ শব্দের রিভিউ ও রেটিং দিতে পারবেন।
+        </p>
+      </div>
+
+      <!-- প্রতি লাইনে ৩টি করে কম্প্যাক্ট গ্রিড -->
+      <div id="agenciesListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Javascript dynamically injects cards -->
+      </div>
+    </section>
+
+    <!-- কমিউনিটি ও হেল্পডেস্ক -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div class="rounded-3xl bg-gradient-to-r from-slate-900 via-[#0c1630] to-slate-900 border border-slate-800 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div class="text-center md:text-left space-y-1">
+          <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold">
+            <i class="fa-solid fa-users"></i>
+            <span>আমাদের কমিউনিটিতে যুক্ত থাকুন</span>
           </div>
+          <h4 class="text-xl font-black text-white">মলদোভা ভিসা ও ট্রাভেল হেল্পডেস্ক</h4>
+          <p class="text-xs sm:text-sm text-slate-400">যেকোনো প্রশ্ন, তথ্য আপডেট এবং সরাসরি আলোচনার জন্য আমাদের অফিসিয়াল গ্রুপগুলোতে যোগ দিন।</p>
         </div>
 
-        <!-- 8 Famous Places Cards Grid with Real Photos & Visible Badged Numbers -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href="https://www.facebook.com/groups/1275931528076368" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('কমিউনিটি সেকশন থেকে ফেসবুক গ্রুপে যোগ দিয়েছে')" class="px-5 py-3 rounded-2xl bg-[#0033a0] hover:bg-blue-600 text-white font-bold text-xs sm:text-sm flex items-center gap-2.5 shadow-lg transition transform hover:scale-105">
+            <i class="fa-brands fa-facebook text-lg text-blue-200"></i>
+            <span>ফেসবুক গ্রুপে জয়েন করুন</span>
+          </a>
+          <a href="https://chat.whatsapp.com/JnPsMhyR8oB4wXxW3UAzNn?s=cl&p=a&ilr=4&iam=0" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('কমিউনিটি সেকশন থেকে হোয়াটসঅ্যাপ গ্রুপে যুক্ত হয়েছে')" class="px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center gap-2.5 shadow-lg transition transform hover:scale-105">
+            <i class="fa-brands fa-whatsapp text-lg text-emerald-100"></i>
+            <span>হোয়াটসঅ্যাপ গ্রুপে যুক্ত হন</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-          <!-- Place 1: Orheiul Vechi -->
-          <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+    <!-- ওয়েবসাইটের জন্য পরামর্শ ও ফিডব্যাক বক্স -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14">
+      <div class="bg-gradient-to-r from-[#0b1736] via-[#0f1f4d] to-[#0b1736] border-2 border-amber-400/40 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center space-y-3 mb-6">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <i class="fa-regular fa-lightbulb"></i>
+            <span>পরামর্শ ও মতামত বক্স</span>
+          </span>
+          <h4 class="text-xl sm:text-2xl font-black text-white">
+            আমাদের ওয়েবসাইটটি আরও সুন্দর ও তথ্যবহুল করতে আপনার পরামর্শ দিন
+          </h4>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            কোন নতুন ফিচার যোগ করা প্রয়োজন বা সাইটের ডিজাইন কীভাবে আরও সহজ করা যায়? আপনার মতামত সরাসরি অ্যাডমিন এবং ভিআইপি প্যানেলে সংরক্ষিত হবে।
+          </p>
+        </div>
+
+        <div class="max-w-2xl mx-auto space-y-4 bg-slate-950/60 p-5 sm:p-6 rounded-2xl border border-slate-800">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=700&q=80" 
-                     alt="অর্হেইউল ভেচি (Orheiul Vechi)" 
-                     class="place-img w-full h-full object-cover transition-transform duration-500"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/700x500/0033a0/ffffff?text=Orheiul+Vechi';">
-                
-                <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
-                  <i class="fa-solid fa-location-pin text-[10px]"></i>
-                  <span>০১ নম্বর স্থান</span>
-                </div>
-                <div class="absolute top-3 right-3 bg-amber-500 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full shadow uppercase">
-                  ইউনেস্কো হেরিটেজ
-                </div>
-              </div>
-
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-slate-900 mb-1">
-                  ১. অর্হেইউল ভেচি (Orheiul Vechi)
-                </h3>
-                <p class="text-xs font-bold text-blue-700 mb-2">
-                  প্রাচীন গুহা মনেস্ট্রি ও পাহাড়ি উপত্যকা
-                </p>
-                <p class="text-slate-600 text-xs leading-relaxed">
-                  রাউত (Răut) নদীর গভীর বাঁক ও চুনপাথরের খাড়া পাহাড় কেটে খ্রিস্টীয় ত্রয়োদশ শতকে তৈরি এই গুহা মনেস্ট্রিটি মলদোভার প্রধান পরিচয় ও বিশ্বের অন্যতম অনন্য প্রত্নতাত্ত্বিক ল্যান্ডমার্ক।
-                </p>
-              </div>
+              <label class="block text-xs font-bold text-slate-300 mb-1.5 flex items-center gap-1.5">
+                <i class="fa-regular fa-envelope text-amber-400"></i>
+                <span>আপনার ইমেইল অ্যাড্রেস:</span>
+              </label>
+              <input type="email" id="feedbackSenderInput" placeholder="যেমন: yourname@gmail.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
             </div>
-            <div class="px-5 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-              <span><i class="fa-solid fa-map-pin text-amber-600 mr-1"></i> ট্রেবোঝেনি, অর্হেই</span>
-              <span class="text-blue-800 font-bold">চিশিনাউ থেকে ৬০ কিমি</span>
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-1.5">পরামর্শের ধরন:</label>
+              <select id="feedbackCategoryInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400 font-sans">
+                <option value="ডিজাইন ও লুক">🎨 ডিজাইন ও লুক উন্নত করা</option>
+                <option value="নতুন সরকারি লিংক">🔗 নতুন দরকারি লিংক বা ফিচার</option>
+                <option value="মোবাইল স্পিড">⚡ সাইটের গতি ও পারফরম্যান্স</option>
+                <option value="ভিসা তথ্য ও আপডেট">📄 ভিসা সংক্রান্ত অতিরিক্ত তথ্য</option>
+                <option value="অন্যান্য পরামর্শ">💡 অন্যান্য যেকোনো পরামর্শ</option>
+              </select>
             </div>
           </div>
 
-          <!-- Place 2: Cricova Underground City -->
-          <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=700&q=80" 
-                     alt="ক্রিকোভা ওয়াইন সিটি (Cricova)" 
-                     class="place-img w-full h-full object-cover transition-transform duration-500"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/700x500/d21034/ffffff?text=Cricova+Winery';">
-                
-                <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
-                  <i class="fa-solid fa-location-pin text-[10px]"></i>
-                  <span>০২ নম্বর স্থান</span>
-                </div>
-                <div class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow uppercase">
-                  ভূগর্ভস্থ শহর
-                </div>
-              </div>
-
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-slate-900 mb-1">
-                  ২. ক্রিকোভা ওয়াইন সেলার (Cricova)
-                </h3>
-                <p class="text-xs font-bold text-blue-700 mb-2">
-                  ১২০ কিমি দীর্ঘ ভূগর্ভস্থ ওয়াইন সাম্রাজ্য
-                </p>
-                <p class="text-slate-600 text-xs leading-relaxed">
-                  মাটির ৮০ থেকে ১০০ মিটার গভীরে অবস্থিত আস্ত এক শহর। এর সুড়ঙ্গগুলোতে গাড়ি চলাচলের সড়ক, ট্রাফিক সিগন্যাল ও বিশ্বের শীর্ষ নেতাদের সংগৃহীত প্রাচীন পানীয় সংরক্ষিত রয়েছে।
-                </p>
-              </div>
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-bold text-slate-300">আপনার মূল্যবান পরামর্শ:</label>
+              <span id="feedbackCharCount" class="text-[10px] text-slate-400 font-mono">০/৩০০ অক্ষর</span>
             </div>
-            <div class="px-5 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-              <span><i class="fa-solid fa-map-pin text-red-600 mr-1"></i> ক্রিকোভা, চিশিনাউ</span>
-              <span class="text-blue-800 font-bold">রাজধানী থেকে ১৫ কিমি</span>
-            </div>
+            <textarea id="feedbackMessageInput" oninput="handleFeedbackCharCount(this)" rows="3" placeholder="ওয়েবসাইটে কী পরিবর্তন বা সুবিধা আনলে এটি সবার জন্য আরও উপকারী হবে তা সংক্ষেপে লিখুন..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-sans"></textarea>
           </div>
 
-          <!-- Place 3: Soroca Fortress -->
-          <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=700&q=80" 
-                     alt="সোরোকা দুর্গ (Soroca Fortress)" 
-                     class="place-img w-full h-full object-cover transition-transform duration-500"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/700x500/0033a0/ffffff?text=Soroca+Fortress';">
-                
-                <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
-                  <i class="fa-solid fa-location-pin text-[10px]"></i>
-                  <span>০৩ নম্বর স্থান</span>
-                </div>
-                <div class="absolute top-3 right-3 bg-blue-700 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow uppercase">
-                  মধ্যযুগীয় দুর্গ
-                </div>
-              </div>
+          <div id="feedbackAlertMsg" class="hidden text-xs py-2 px-3 rounded-xl font-bold text-center"></div>
 
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-slate-900 mb-1">
-                  ৩. সোরোকা দুর্গ (Soroca Fortress)
-                </h3>
-                <p class="text-xs font-bold text-blue-700 mb-2">
-                  দিনিস্তার নদীর তীরে অবস্থিত মধ্যযুগীয় কেল্লা
-                </p>
-                <p class="text-slate-600 text-xs leading-relaxed">
-                  পঞ্চদশ শতকে স্টিফেন দ্য গ্রেট কর্তৃক নির্মিত অনন্য নিখুঁত গোলাকার সামরিক দুর্গ। উসমানীয় সাম্রাজ্য ও তাতারদের হামলা প্রতিহত করার জন্য এটি মলদোভার মূল প্রতিরক্ষা স্তম্ভ ছিল।
-                </p>
-              </div>
-            </div>
-            <div class="px-5 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-              <span><i class="fa-solid fa-map-pin text-blue-600 mr-1"></i> সোরোকা সিটি</span>
-              <span class="text-blue-800 font-bold">দিনিস্তার নদী সীমান্ত</span>
-            </div>
-          </div>
-
-          <!-- Place 4: Mileștii Mici -->
-          <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=700&q=80" 
-                     alt="মিলিয়েস্তিমিকি (Mileștii Mici)" 
-                     class="place-img w-full h-full object-cover transition-transform duration-500"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/700x500/7c3aed/ffffff?text=Milestii+Mici';">
-                
-                <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
-                  <i class="fa-solid fa-location-pin text-[10px]"></i>
-                  <span>০৪ নম্বর স্থান</span>
-                </div>
-                <div class="absolute top-3 right-3 bg-purple-700 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow uppercase">
-                  গিনেস রেকর্ড
-                </div>
-              </div>
-
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-slate-900 mb-1">
-                  ৪. মিলিয়েস্তিমিকি (Mileștii Mici)
-                </h3>
-                <p class="text-xs font-bold text-blue-700 mb-2">
-                  বিশ্বের সর্ববৃহৎ ভূগর্ভস্থ ওয়াইন সংরক্ষণাগার
-                </p>
-                <p class="text-slate-600 text-xs leading-relaxed">
-                  প্রায় ২০ লক্ষ বোতল ওয়াইনের সংগ্রহ নিয়ে এটি বিশ্বের বৃহত্তম ওয়াইন সেলার হিসেবে গিনেস বুকে স্থান পেয়েছে। এর দীর্ঘ ২০০ কিলোমিটার টানেল পর্যটকদের জন্য আকর্ষণীয়।
-                </p>
-              </div>
-            </div>
-            <div class="px-5 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-              <span><i class="fa-solid fa-map-pin text-purple-600 mr-1"></i> ইয়ালোভেনি জেলা</span>
-              <span class="text-blue-800 font-bold">গিনেস ওয়ার্ল্ড রেকর্ড</span>
-            </div>
-          </div>
-
-          <!-- Place 5: Chișinău Triumphal Arch -->
-          <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1549144511-f099e773c147?auto=format&fit=crop&w=700&q=80" 
-                     alt="ট্রায়াম্ফাল আর্চ (Arcul de Triumf)" 
-                     class="place-img w-full h-full object-cover transition-transform duration-500"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/700x500/059669/ffffff?text=Triumphal+Arch';">
-                
-                <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
-                  <i class="fa-solid fa-location-pin text-[10px]"></i>
-                  <span>০৫ নম্বর স্থান</span>
-                </div>
-                <div class="absolute top-3 right-3 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow uppercase">
-                  ঐতিহাসিক তোরণ
-                </div>
-              </div>
-
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-slate-900 mb-1">
-                  ৫. ট্রায়াম্ফাল আর্চ (Arcul de Triumf)
-                </h3>
-                <p class="text-xs font-bold text-blue-700 mb-2">
-                  চিশিনাউ সেন্ট্রাল পার্ক ও ভিক্টোরি আর্চ
-                </p>
-                <p class="text-slate-600 text-xs leading-relaxed">
-                  ১৮৪০ সালে নির্মিত ১৩ মিটার উঁচু এই ঐতিহাসিক বিজয় তোরণ এবং পেছনে অবস্থিত ক্যাথেড্রাল পার্ক মলদোভার জাতীয় পরিচয় ও শহরের মূল নান্দনিক কেন্দ্রস্থল।
-                </p>
-              </div>
-            </div>
-            <div class="px-5 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-              <span><i class="fa-solid fa-map-pin text-emerald-600 mr-1"></i> সিটি সেন্টার, চিশিনাউ</span>
-              <span class="text-blue-800 font-bold">জাতীয় উদ্যান স্কয়ার</span>
-            </div>
-          </div>
-
-          <!-- Place 6: Saharna Waterfall & Monastery -->
-          <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" 
-                     alt="সাহারনা মনেস্ট্রি ও ঝর্ণাধারা" 
-                     class="place-img w-full h-full object-cover transition-transform duration-500"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/700x500/0891b2/ffffff?text=Saharna+Waterfalls';">
-                
-                <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
-                  <i class="fa-solid fa-location-pin text-[10px]"></i>
-                  <span>০৬ নম্বর স্থান</span>
-                </div>
-                <div class="absolute top-3 right-3 bg-cyan-700 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow uppercase">
-                  প্রাকৃতিক জলপ্রপাত
-                </div>
-              </div>
-
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-slate-900 mb-1">
-                  ৬. সাহারনা মনেস্ট্রি ও ঝর্ণাধারা
-                </h3>
-                <p class="text-xs font-bold text-blue-700 mb-2">
-                  ২২টি প্রাকৃতিক ঝর্ণা ও শান্ত পাহাড়ি উপত্যকা
-                </p>
-                <p class="text-slate-600 text-xs leading-relaxed">
-                  পাহাড় আর বনের কোলে গড়ে ওঠা পবিত্র তীর্থস্থান। এখানে রয়েছে 'জিপসি হোল' নামের চোখজুড়ানো জলপ্রপাত এবং পাহাড়ি ট্রেকিংয়ের অসাধারণ মনোরম প্রাকৃতিক দৃশ্য।
-                </p>
-              </div>
-            </div>
-            <div class="px-5 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-              <span><i class="fa-solid fa-map-pin text-cyan-600 mr-1"></i> সাহারনা, রেজিনা</span>
-              <span class="text-blue-800 font-bold">২২টি জলপ্রপাত ট্রেইল</span>
-            </div>
-          </div>
-
-          <!-- Place 7: Tipova Monastery -->
-          <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80" 
-                     alt="টিপোভা গুহা কমপ্লেক্স (Țîpova)" 
-                     class="place-img w-full h-full object-cover transition-transform duration-500"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/700x500/0d9488/ffffff?text=Tipova+Caves';">
-                
-                <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
-                  <i class="fa-solid fa-location-pin text-[10px]"></i>
-                  <span>০৭ নম্বর স্থান</span>
-                </div>
-                <div class="absolute top-3 right-3 bg-teal-700 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow uppercase">
-                  ১০ম শতকের গুহা
-                </div>
-              </div>
-
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-slate-900 mb-1">
-                  ৭. টিপোভা গুহা কমপ্লেক্স (Țîpova)
-                </h3>
-                <p class="text-xs font-bold text-blue-700 mb-2">
-                  ইউরোপের প্রাচীনতম পাথুরে গুহা আশ্রম
-                </p>
-                <p class="text-slate-600 text-xs leading-relaxed">
-                  দিনিস্তার নদীর খাড়া পাহাড়ের খাজে খোদাই করা এই প্রাচীন মনেস্ট্রিতে রয়েছে তিনটি অংশ ও ১৮টি প্রকোষ্ঠ। এর রহস্যময় ইতিহাস ও ট্রেকিং অ্যাডভেঞ্চার দেশি-বিদেশি পর্যটকদের আকর্ষণ করে।
-                </p>
-              </div>
-            </div>
-            <div class="px-5 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-              <span><i class="fa-solid fa-map-pin text-teal-600 mr-1"></i> টিপোভা, দিনিস্তার</span>
-              <span class="text-blue-800 font-bold">পাহাড়ি গুহা কমপ্লেক্স</span>
-            </div>
-          </div>
-
-          <!-- Place 8: Dendrarium Park -->
-          <div class="place-card bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-200">
-                <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=700&q=80" 
-                     alt="দেন্দ্রারিয়াম পার্ক (Dendrarium)" 
-                     class="place-img w-full h-full object-cover transition-transform duration-500"
-                     loading="lazy"
-                     onerror="this.onerror=null; this.src='https://placehold.co/700x500/15803d/ffffff?text=Dendrarium+Park';">
-                
-                <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md text-yellow-300 px-3 py-1 rounded-full text-xs font-black shadow-lg border border-yellow-400/40">
-                  <i class="fa-solid fa-location-pin text-[10px]"></i>
-                  <span>০৮ নম্বর স্থান</span>
-                </div>
-                <div class="absolute top-3 right-3 bg-emerald-800 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow uppercase">
-                  বোটানিক্যাল গার্ডেন
-                </div>
-              </div>
-
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-slate-900 mb-1">
-                  ৮. দেন্দ্রারিয়াম পার্ক (Dendrarium)
-                </h3>
-                <p class="text-xs font-bold text-blue-700 mb-2">
-                  চিশিনাউয়ের ৮৩ হেক্টর আয়তনের সবুজ পার্ক
-                </p>
-                <p class="text-slate-600 text-xs leading-relaxed">
-                  রাজধানীর প্রাণকেন্দ্রে অবস্থিত বিশাল প্রাকৃতিক বোটানিক্যাল গার্ডেন। শত প্রজাতির গোলাপ বাগান, শান্ত লেক ও পাইন বনের মনোরম হাঁটার পথ নিয়ে এটি মলদোভার অন্যতম শান্ত সুন্দর স্থান।
-                </p>
-              </div>
-            </div>
-            <div class="px-5 pb-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-              <span><i class="fa-solid fa-map-pin text-emerald-700 mr-1"></i> বুইউকানি, চিশিনাউ</span>
-              <span class="text-blue-800 font-bold">৮৩ হেক্টর আয়তন</span>
-            </div>
-          </div>
-
+          <button onclick="submitWebsiteFeedback()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition transform hover:scale-[1.01]">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>পরামর্শ পাঠান</span>
+          </button>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer with Moldova Flag Colors -->
-  <footer class="bg-slate-950 text-slate-400 py-10 border-t border-slate-800 text-center text-xs">
-    <div class="max-w-7xl mx-auto px-4 space-y-3">
-      
-      <!-- Flag Mini Bar -->
-      <div class="flex justify-center mb-3">
-        <div class="w-24 h-1.5 rounded-full moldova-flag-bar"></div>
+  <!-- Footer -->
+  <footer class="bg-[#050a17] border-t border-slate-800/80 py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300">
+        <i class="fa-regular fa-envelope text-amber-400"></i>
+        <span>আমাদের সাথে যোগাযোগ করুন: <a href="mailto:tfbangla90@gmail.com" class="text-amber-400 font-bold hover:underline">tfbangla90@gmail.com</a></span>
       </div>
-
-      <div class="flex items-center justify-center gap-2 text-white font-extrabold text-sm sm:text-base tracking-wide">
-        <span>🇲🇩 REPUBLIC OF MOLDOVA OFFICIAL INFORMATION PORTAL</span>
-      </div>
-      
-      <p class="text-slate-400 max-w-2xl mx-auto">
-        এই পোর্টালটি সরকারি নির্দেশিকা, পর্যটন তথ্য ও মলদোভা এবং বাংলাদেশ সরকারের অফিশিয়াল ডাটাবেজে সরাসরি প্রবেশের গেটওয়ে সরবরাহ করে।
-      </p>
-      
-      <div class="text-slate-500 pt-2 border-t border-slate-900">
-        © ২০২৬ Moldova Information & Verification Portal. All rights reserved.
-      </div>
+      <p class="text-slate-400">Moldova Work Visa Bangladesh — সকল তথ্য মলদোভা সরকারের অফিসিয়াল ডেটাবেজ দ্বারা যাচাইকৃত।</p>
+      <p>© ২০২৬ সর্বস্বত্ব সংরক্ষিত। ভিসা প্রতারণা থেকে সতর্ক থাকুন এবং সবসময় সঠিক চ্যানেল ব্যবহার করুন।</p>
     </div>
   </footer>
 
+  <!-- 🕒 ফ্লোটিং ১-মিনিট কাউন্টডাউন উইজেট (স্ক্রিনের ডানদিকের কোণায় ভাসমান) -->
+  <div id="floatingSideTimerWidget" class="fixed bottom-5 right-5 z-40 bg-slate-950/95 border-2 border-amber-400 p-3 sm:p-4 rounded-2xl shadow-2xl backdrop-blur-md flex items-center gap-3 timer-ring-pulse">
+    <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-400 text-lg flex-shrink-0">
+      <i id="floatingClockIcon" class="fa-solid fa-stopwatch animate-pulse"></i>
+    </div>
+    <div>
+      <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+        <span>ফ্রি ট্রায়াল বাকি:</span>
+      </div>
+      <div id="sideTimerDisplay" class="font-mono text-xl sm:text-2xl font-black text-amber-400 leading-none mt-0.5">
+        ০১:০১
+      </div>
+      <div class="text-[9px] text-slate-400 mt-0.5">এরপর পেজ সম্পূর্ণ লক হবে</div>
+    </div>
+  </div>
+
+  <!-- 📡 এডমিন লাইভ ভিউয়ার ট্র্যাকার বার (Viewer Mode-এ ইউজার কী করছে তা লাইভ দেখার মনিটর) -->
+  <div id="adminLiveActivityMonitor" class="hidden fixed bottom-5 left-5 z-40 max-w-sm w-full bg-slate-950/95 border-2 border-blue-500 p-3 rounded-2xl shadow-2xl backdrop-blur-md text-xs">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
+      <div class="flex items-center gap-2 font-bold text-blue-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>লাইভ ভিউয়ার ট্র্যাকার (Admin HUD)</span>
+      </div>
+      <span id="trackerTotalActionBadge" class="text-[10px] px-2 py-0.5 bg-blue-950 text-blue-300 rounded-full font-mono">০ টি অ্যাকশন</span>
+    </div>
+    <div id="liveActivityFeedList" class="space-y-1.5 max-h-36 overflow-y-auto custom-scrollbar font-mono text-[11px] text-slate-300">
+      <div class="text-slate-500 italic text-[10px]">ভিউয়ার অ্যাক্টিভিটি ট্র্যাক হচ্ছে... বাটনে ক্লিক বা স্ক্রোল করলে এখানে দেখতে পাবেন।</div>
+    </div>
+  </div>
+
+  <!-- 🔒 ১ মিনিট পর স্বয়ংক্রিয় লক মডাল (Facebook, WhatsApp ও @gmail.com বাধ্যতামূলক) -->
+  <div id="oneMinuteLockModal" class="fixed inset-0 z-50 bg-[#070d1e]/95 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="bg-gradient-to-b from-[#0f172a] via-[#0b132b] to-[#070d1e] border-2 border-amber-400 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative text-center">
+      
+      <!-- Lock Header Icon -->
+      <div class="w-16 h-16 rounded-full bg-amber-400/20 border-2 border-amber-400 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4 animate-bounce">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+
+      <h3 class="text-xl sm:text-2xl font-black text-white mb-2">
+        ১:০১ সেকেন্ডের ফ্রি ভিজিট সময় শেষ!
+      </h3>
+      <p class="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
+        ওয়েবসাইটের সকল লিংক, ম্যানপাওয়ার ও এজেন্সি তথ্য ফ্রিতে নিয়মিত দেখতে আমাদের ফেসবুক ও হোয়াটসঅ্যাপ কমিউনিটিতে জয়েন করে আপনার <strong>@gmail.com</strong> দিয়ে প্রবেশ করুন।
+      </p>
+
+      <!-- ধাপসমূহ চেকলিস্ট -->
+      <div class="space-y-3 mb-6 text-left">
+        <!-- ধাপ ১: ফেসবুক গ্রুপ -->
+        <a id="btnLockFbJoin" href="https://www.facebook.com/groups/1275931528076368" target="_blank" rel="noopener noreferrer" onclick="markStepComplete('fb')" class="flex items-center justify-between p-3 rounded-2xl bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/50 transition group">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-sm shadow">
+              <i class="fa-brands fa-facebook-f"></i>
+            </span>
+            <div>
+              <span class="text-xs font-bold text-white block">১. ফেসবুক গ্রুপে জয়েন করুন</span>
+              <span class="text-[10px] text-blue-300">অফিসিয়াল আপডেট ও আলোচনার জন্য</span>
+            </div>
+          </div>
+          <span id="statusFbJoined" class="text-xs px-2.5 py-1 bg-blue-600 text-white rounded-lg font-bold group-hover:bg-blue-500 flex items-center gap-1">
+            <span>জয়েন করুন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- ধাপ ২: হোয়াটসঅ্যাপ গ্রুপ -->
+        <a id="btnLockWaJoin" href="https://chat.whatsapp.com/JnPsMhyR8oB4wXxW3UAzNn?s=cl&p=a&ilr=4&iam=0" target="_blank" rel="noopener noreferrer" onclick="markStepComplete('wa')" class="flex items-center justify-between p-3 rounded-2xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/50 transition group">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-sm shadow">
+              <i class="fa-brands fa-whatsapp"></i>
+            </span>
+            <div>
+              <span class="text-xs font-bold text-white block">২. হোয়াটসঅ্যাপ গ্রুপে জয়েন করুন</span>
+              <span class="text-[10px] text-emerald-300">সরাসরি নোটিফিকেশন ও সহায়তার জন্য</span>
+            </div>
+          </div>
+          <span id="statusWaJoined" class="text-xs px-2.5 py-1 bg-emerald-600 text-white rounded-lg font-bold group-hover:bg-emerald-500 flex items-center gap-1">
+            <span>যুক্ত হন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </span>
+        </a>
+      </div>
+
+      <!-- ধাপ ৩: শুধুমাত্র @gmail.com ইনপুট বক্স -->
+      <div class="bg-slate-900/90 border border-slate-700/80 p-4 rounded-2xl text-left space-y-3 mb-4">
+        <label class="block text-xs font-bold text-slate-200 flex items-center justify-between">
+          <span>৩. আপনার জিমেইল অ্যাকাউন্ট লিখুন:</span>
+          <span class="text-[10px] text-amber-400 font-mono">শুধুমাত্র @gmail.com</span>
+        </label>
+        <div class="relative">
+          <input type="email" id="userUnlockGmailInput" placeholder="যেমন: yourname@gmail.com" oninput="trackUserAction('লক স্ক্রিনে জিমেইল টাইপ করছে: ' + this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400">
+        </div>
+        <div id="unlockErrorMessage" class="hidden text-xs text-red-400 font-bold bg-red-950/40 p-2 rounded-lg border border-red-500/30"></div>
+      </div>
+
+      <!-- প্রবেশ / আনলক বাটন -->
+      <button onclick="handleUserUnlockSubmit()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/20 transition transform hover:scale-[1.02] flex items-center justify-center gap-2">
+        <i class="fa-solid fa-lock-open text-xs"></i>
+        <span>যাচাই করে ফ্রি এক্সেস আনলক করুন</span>
+      </button>
+
+      <p class="text-[10px] text-slate-400 mt-3">
+        * অন্য কোনো ডোমেন যেমন yahoo, hotmail বা ভুয়া ইমেইল দিলে প্রবেশ করা যাবে না।
+      </p>
+    </div>
+  </div>
+
+  <!-- ফুলস্ক্রিন VIP ও এডমিন অ্যানালিটিক্স মডাল -->
+  <div id="vipDashboardModal" class="fixed inset-0 z-50 bg-[#070d1e]/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="bg-[#0b132b] border-2 border-amber-500/50 rounded-3xl max-w-5xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] flex flex-col">
+      <button onclick="closeVipDashboardModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2 rounded-xl bg-slate-800 transition">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="border-b border-slate-700 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pr-10">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">👑</span>
+            <h3 class="text-xl sm:text-2xl font-black text-white">VIP ড্যাশবোর্ড ও বিস্তারিত ভিজিটর অ্যাক্টিভিটি</h3>
+            <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/40 flex items-center gap-1 font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> লাইভ
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">ভিউয়ারদের প্রতিটি ক্লিক, কাটানো সময়, আনলক স্ট্যাটাস ও গোপন পরামর্শের রেকর্ড।</p>
+        </div>
+        <button onclick="refreshVisitorTables()" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-xs font-bold text-slate-200 transition flex items-center gap-1.5 self-start sm:self-auto">
+          <i class="fa-solid fa-arrows-rotate"></i> ডাটা রিফ্রেশ
+        </button>
+      </div>
+
+      <!-- Stats Grid Inside Modal -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-eye text-blue-400"></i> মোট পেজ ভিউ</span>
+          <div id="modalStatViews" class="text-2xl font-black text-white mt-1">১,০২৫</div>
+          <span class="text-[10px] text-slate-500">শুরু থেকে ভিউ</span>
+        </div>
+        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-users text-amber-400"></i> মোট ইউজার</span>
+          <div id="modalStatUsers" class="text-2xl font-black text-amber-400 mt-1">১</div>
+          <span class="text-[10px] text-slate-500">ইউনিক ভিজিটর</span>
+        </div>
+        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-hourglass-half text-emerald-400"></i> বর্তমান সেশন</span>
+          <div id="modalStatCurrentSession" class="text-2xl font-black text-emerald-400 mt-1">০ মিনিট ০২ সে.</div>
+          <span class="text-[10px] text-slate-500">কাটানো সময়</span>
+        </div>
+        <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800">
+          <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-shield-halved text-purple-400"></i> ভিউয়ার অ্যাকশন</span>
+          <div id="modalStatActionCount" class="text-2xl font-black text-purple-400 mt-1">০ টি</div>
+          <span class="text-[10px] text-slate-500">লগ করা অ্যাক্টিভিটি</span>
+        </div>
+      </div>
+
+      <!-- ২ কলামে বিস্তারিত ডাটা: ইউজার তালিকা ও অ্যাক্টিভিটি লগ -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-grow overflow-hidden">
+        <!-- বাঁ দিকের টেবিল: ইউজার তালিকা -->
+        <div class="border border-slate-800 rounded-2xl overflow-y-auto custom-scrollbar">
+          <div class="p-2.5 bg-slate-800/90 text-xs font-bold text-slate-300 border-b border-slate-700 flex items-center justify-between">
+            <span>👥 নিবন্ধিত ভিজিটর ও আনলক করা জিমেইল</span>
+          </div>
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-slate-900 text-slate-400 uppercase font-bold sticky top-0 text-[10px]">
+              <tr>
+                <th class="py-2.5 px-3">জিমেইল</th>
+                <th class="py-2.5 px-3">স্ট্যাটাস</th>
+                <th class="py-2.5 px-3">কাটানো সময়</th>
+                <th class="py-2.5 px-3">সর্বশেষ</th>
+              </tr>
+            </thead>
+            <tbody id="modalVisitorLogTbody" class="divide-y divide-slate-800 bg-slate-900/60 font-medium">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ডান দিকের প্যানেল: সম্পূর্ণ ভিউয়ার অ্যাক্টিভিটি হিস্ট্রি -->
+        <div class="border border-slate-800 rounded-2xl overflow-y-auto custom-scrollbar flex flex-col">
+          <div class="p-2.5 bg-slate-800/90 text-xs font-bold text-amber-300 border-b border-slate-700 flex items-center justify-between">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> ভিউয়ারদের রিয়েল-টাইম কার্যকলাপ লগ</span>
+            <button onclick="clearActivityHistory()" class="text-[10px] text-red-400 hover:text-red-300 underline">লগ মুছুন</button>
+          </div>
+          <div id="modalAllActivityLogsList" class="p-3 space-y-2 bg-slate-950 flex-grow overflow-y-auto custom-scrollbar font-mono text-[11px]">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ভিআইপি ড্যাশবোর্ডে গোপন পরামর্শ লিস্ট -->
+      <div class="mt-4 pt-3 border-t border-slate-800">
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="text-xs font-bold text-amber-300 flex items-center gap-2">
+            <i class="fa-solid fa-envelopes-bulk"></i>
+            <span>ইউজারদের পাঠানো ওয়েবসাইটের উন্নতিমূলক পরামর্শ</span>
+          </h4>
+          <span id="feedbackTotalBadge" class="text-[10px] bg-slate-800 px-2.5 py-0.5 rounded-full text-slate-300 font-semibold border border-slate-700">০ টি পরামর্শ</span>
+        </div>
+        <div id="vipFeedbackList" class="space-y-1.5 max-h-28 overflow-y-auto custom-scrollbar">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- এজেন্সি রিভিউ লেখার পপ-আপ মডাল -->
+  <div id="agencyReviewModal" class="fixed inset-0 z-50 bg-[#070d1e]/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="bg-gradient-to-b from-[#0f172a] to-[#070d1e] border-2 border-slate-700 rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closeReviewModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <h3 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
+        <i class="fa-solid fa-star text-amber-400"></i>
+        <span>রিভিউ ও মতামত প্রদান</span>
+      </h3>
+      <p id="reviewTargetAgencyName" class="text-xs text-amber-400 font-semibold mb-4">এজেন্সির নাম</p>
+
+      <div class="mb-4">
+        <label class="block text-xs font-semibold text-slate-300 mb-2">রেটিং নির্বাচন করুন (১ - ৫ স্টার):</label>
+        <div class="flex items-center gap-2 text-2xl" id="starRatingSelector">
+          <button type="button" onclick="setSelectRating(1)" class="star-btn text-amber-400"><i class="fa-solid fa-star"></i></button>
+          <button type="button" onclick="setSelectRating(2)" class="star-btn text-amber-400"><i class="fa-solid fa-star"></i></button>
+          <button type="button" onclick="setSelectRating(3)" class="star-btn text-amber-400"><i class="fa-solid fa-star"></i></button>
+          <button type="button" onclick="setSelectRating(4)" class="star-btn text-amber-400"><i class="fa-solid fa-star"></i></button>
+          <button type="button" onclick="setSelectRating(5)" class="star-btn text-amber-400"><i class="fa-solid fa-star"></i></button>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="flex items-center justify-between mb-1">
+          <label class="text-xs font-semibold text-slate-300">আপনার মন্তব্য (সর্বোচ্চ ১০০ শব্দ):</label>
+          <span id="reviewWordCountBadge" class="text-[11px] font-bold text-slate-400">০/১০০ শব্দ</span>
+        </div>
+        <textarea id="reviewTextInput" oninput="handleReviewWordCount(this)" rows="4" placeholder="এজেন্সির সার্ভিস, প্রসেসিং সময় ও ব্যবহার সম্পর্কে আপনার সত্য মতামত লিখুন..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 font-sans"></textarea>
+      </div>
+
+      <div id="reviewErrorNotice" class="text-xs text-red-400 font-semibold mb-3 hidden"></div>
+
+      <button onclick="submitAgencyReview()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-sm transition">
+        রিভিউ সাবমিট করুন
+      </button>
+    </div>
+  </div>
+
+  <!-- কপি নোটিফিকেশন টোস্ট -->
+  <div id="customCopyToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-2xl flex items-center gap-2 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="customToastText">ইমেইল সফলভাবে কপি করা হয়েছে!</span>
+  </div>
+
+  <script>
+    const MASTER_ADMIN_EMAIL = "touhidul0454@gmail.com";
+    const VIP_ACCOUNTS = [
+      "touhidul0454@gmail.com",
+      "vip_partner1@gmail.com"
+    ];
+
+    const AGENCIES_DATA = [
+      {
+        id: "agency_1",
+        name: "১. Al Saafir Overseas",
+        badgeColor: "#0033a0",
+        logoType: "custom_logo",
+        rl: "RL-2305",
+        phone: "01967-226186",
+        email: "psalsaafir@gmail.com",
+        location: "৬৭/১, পল্টন চায়না টাউন পূর্ব সাইড (৮ম তলা), ভি আই পি রোড, নয়া পল্টন, ঢাকা",
+        details: "মলদোভা সহ ইউরোপীয় ও মধ্যপ্রাচ্যের দেশসমূহে কর্মী প্রেরণে সরকার অনুমোদিত (Govt. Approved Recruiting Agency) বিশ্বস্ত ও নির্ভরযোগ্য রিক্রুটিং এজেন্সি।"
+      },
+      {
+        id: "agency_2",
+        name: "২. Alliance Overseas",
+        badgeColor: "#dc2626",
+        logoType: "alliance_logo",
+        rl: "RL Approved",
+        phone: "01996334649, 01740620442",
+        email: "info@allianceoverseas.com",
+        location: "Tower Hemlet (Level 5), 16 Kamal Ataturk Avenue, Banani, Dhaka.",
+        details: "উচ্চমানের রিক্রুটমেন্ট সেবা ও আন্তর্জাতিক কর্মসংস্থানের জন্য বিশ্বস্ত সহযোগী। নীতিনিষ্ঠ, স্বচ্ছ ও কার্যকর ভিসা প্রসেসিং।"
+      },
+      {
+        id: "agency_3",
+        name: "৩. MILAD International Ltd.",
+        badgeColor: "#10b981",
+        logoType: "milad_logo",
+        rl: "RL-1927",
+        phone: "01709273773, 01939237726",
+        email: "info@miladinternational.com",
+        location: "1022 Madani Avenue, Vatara Dhaka",
+        details: "মলদোভা ও ইউরোপীয় দেশসমূহে কর্মী নিয়োগে সরকার অনুমোদিত রিক্রুটিং এজেন্সি (RL-1927)। দক্ষ সেবা ও সঠিক নির্দেশনা প্রদানকারী প্রতিষ্ঠান।"
+      },
+      {
+        id: "agency_4",
+        name: "৪. Fly Sure International",
+        badgeColor: "#0284c7",
+        logoType: "flysure_logo",
+        rl: "Govt. Approved",
+        phone: "01879241369",
+        email: "flysureintl@gmail.com",
+        location: "53, Baitul Abed (Lift 04), Purana Paltan, Dhaka.",
+        details: "আন্তর্জাতিক ফ্লাইট, ইউরোপীয় ওয়ার্ক পারমিট ফাইল প্রসেসিং এবং কর্মসংস্থান ভিসা নির্দেশিকায় নির্ভরযোগ্য কনসালটেন্সি।"
+      },
+      {
+        id: "agency_5",
+        name: "৫. Axis Visa International",
+        badgeColor: "#f97316",
+        logoType: "axis_logo",
+        rl: "Visa Consultancy",
+        phone: "01760162497",
+        email: "axisvisaintl@gmail.com",
+        location: "Asha Villa (GF), 1624 CDA Avenue, Chattogram 4000.",
+        details: "ইউরোপ ও মধ্যপ্রাচ্যের দেশসমূহে বৈধ ভিসা প্রসেসিং, ওয়ার্ক পারমিট ও ডকুমেন্টেশন সংক্রান্ত তথ্য ও বিশ্বস্ত সহায়তা।"
+      }
+    ];
+
+    let currentAdminViewMode = 'admin'; // 'admin' অথবা 'viewer'
+    let currentSelectedAgencyId = null;
+    let currentSelectedRating = 5;
+    let sessionSeconds = 0;
+    let sessionInterval = null;
+
+    // ১:০১ সেকেন্ডের (৬১ সেকেন্ড) প্রিভিউ কাউন্টডাউন ভেরিয়েবল
+    let previewSecondsRemaining = 61;
+    let previewTimerInterval = null;
+    let hasJoinedFb = false;
+    let hasJoinedWa = false;
+
+    // 🔔 সময় শেষ হলে সতর্কবার্তা সাউন্ড বাজানোর ইঞ্জিন (Web Audio API Synthesizer)
+    function playTimerEndAlarmSound() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+
+        // পরপর ৩টি সতর্ককারী চিম ও অ্যালার্ম টোন (Beep-Beep-Ding)
+        const notes = [
+          { freq: 523.25, time: 0.0, duration: 0.18, type: 'triangle' }, // C5
+          { freq: 659.25, time: 0.22, duration: 0.18, type: 'triangle' }, // E5
+          { freq: 783.99, time: 0.44, duration: 0.22, type: 'sine' },     // G5
+          { freq: 1046.50, time: 0.70, duration: 0.60, type: 'sine' }    // C6 (Final Alert Tone)
+        ];
+
+        notes.forEach(note => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+
+          osc.type = note.type;
+          osc.frequency.setValueAtTime(note.freq, ctx.currentTime + note.time);
+
+          gain.gain.setValueAtTime(0.35, ctx.currentTime + note.time);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + note.time + note.duration);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc.start(ctx.currentTime + note.time);
+          osc.stop(ctx.currentTime + note.time + note.duration);
+        });
+      } catch (err) {
+        console.warn('Audio playback error:', err);
+      }
+    }
+
+    // 📡 ভিউয়ার প্রতিটি কী অ্যাকশন নিচ্ছে তা রিয়েল-টাইম ট্র্যাক করার ইঞ্জিন
+    function trackUserAction(actionDescription) {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('bn-BD', { hour12: true });
+      const currentRole = currentAdminViewMode === 'admin' ? 'এডমিন (টেস্ট)' : 'সাধারণ ভিউয়ার';
+
+      const logItem = {
+        time: timeStr,
+        role: currentRole,
+        action: actionDescription
+      };
+
+      const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
+      activities.unshift(logItem);
+      if (activities.length > 100) activities.pop(); // সর্বোচ্চ ১০০টি লগ রাখা
+      localStorage.setItem('moldova_viewer_activities', JSON.stringify(activities));
+
+      // লাইভ স্ক্রিন HUD আপডেট
+      updateLiveHud();
+    }
+
+    function updateLiveHud() {
+      const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
+      const feed = document.getElementById('liveActivityFeedList');
+      const badge = document.getElementById('trackerTotalActionBadge');
+
+      if (badge) badge.textContent = `${activities.length} টি অ্যাকশন`;
+
+      if (feed) {
+        if (!activities.length) {
+          feed.innerHTML = '<div class="text-slate-500 italic text-[10px]">এখনো কোনো অ্যাক্টিভিটি নেই।</div>';
+          return;
+        }
+        feed.innerHTML = activities.slice(0, 5).map(a => `
+          <div class="bg-slate-900 border border-slate-800 px-2 py-1 rounded">
+            <span class="text-blue-400 font-bold">[${a.time}]</span>
+            <span class="text-amber-300 font-bold">(${a.role}):</span>
+            <span class="text-slate-200">${a.action}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    function clearActivityHistory() {
+      localStorage.removeItem('moldova_viewer_activities');
+      updateLiveHud();
+      renderModalActivityLogs();
+    }
+
+    function renderModalActivityLogs() {
+      const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
+      const container = document.getElementById('modalAllActivityLogsList');
+      const statBadge = document.getElementById('modalStatActionCount');
+
+      if (statBadge) statBadge.textContent = `${activities.length} টি`;
+
+      if (container) {
+        if (!activities.length) {
+          container.innerHTML = '<div class="text-slate-500 text-center py-6 text-xs">এখনো কোনো অ্যাক্টিভিটি রেকর্ড নেই।</div>';
+          return;
+        }
+        container.innerHTML = activities.map(a => `
+          <div class="bg-slate-900/90 border border-slate-800 p-2 rounded-xl flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 flex-shrink-0"></span>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-blue-400 font-bold">[${a.time}]</span>
+                <span class="text-[10px] px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-300 font-bold">${a.role}</span>
+              </div>
+              <div class="text-slate-200 text-xs mt-0.5">${a.action}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // ১ মিনিটের প্রিভিউ সিস্টেম ইনিশিয়ালাইজেশন
+    function startOneMinuteCountdown() {
+      if (previewTimerInterval) clearInterval(previewTimerInterval);
+
+      const widget = document.getElementById('floatingSideTimerWidget');
+      const sideDisplay = document.getElementById('sideTimerDisplay');
+      if (widget) widget.classList.remove('hidden');
+
+      function updateClock(sec) {
+        const mins = Math.floor(sec / 60).toString().padStart(2, '0');
+        const s = (sec % 60).toString().padStart(2, '0');
+        if (sideDisplay) {
+          sideDisplay.textContent = `${mins}:${s}`;
+          if (sec <= 15) {
+            sideDisplay.className = 'font-mono text-xl sm:text-2xl font-black text-red-500 leading-none mt-0.5 animate-pulse';
+          } else {
+            sideDisplay.className = 'font-mono text-xl sm:text-2xl font-black text-amber-400 leading-none mt-0.5';
+          }
+        }
+      }
+
+      updateClock(previewSecondsRemaining);
+
+      previewTimerInterval = setInterval(() => {
+        previewSecondsRemaining--;
+        updateClock(previewSecondsRemaining);
+
+        if (previewSecondsRemaining <= 0) {
+          clearInterval(previewTimerInterval);
+          // 🔔 সময় শেষ হওয়া মাত্রই সতর্কবার্তা সাউন্ড বাজবে
+          playTimerEndAlarmSound();
+          trackUserAction('⚠️ ১:০১ সেকেন্ড পূর্ণ হওয়ায় অ্যালার্ম বেজেছে এবং পেজ লক হয়ে গেছে');
+          if (widget) widget.classList.add('hidden');
+          openOneMinuteLockModal();
+        }
+      }, 1000);
+    }
+
+    function openOneMinuteLockModal() {
+      const lockModal = document.getElementById('oneMinuteLockModal');
+      if (lockModal) {
+        lockModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // স্ক্রোল সম্পূর্ণ বন্ধ
+      }
+    }
+
+    function markStepComplete(type) {
+      if (type === 'fb') {
+        hasJoinedFb = true;
+        trackUserAction('ফেসবুক গ্রুপ বাটনে ক্লিক করেছে ও জয়েন হয়েছে');
+        const status = document.getElementById('statusFbJoined');
+        if (status) {
+          status.className = 'text-xs px-2.5 py-1 bg-emerald-500 text-white rounded-lg font-bold flex items-center gap-1';
+          status.innerHTML = '<i class="fa-solid fa-check"></i> সম্পন্ন';
+        }
+      } else if (type === 'wa') {
+        hasJoinedWa = true;
+        trackUserAction('হোয়াটসঅ্যাপ গ্রুপ বাটনে ক্লিক করেছে ও জয়েন হয়েছে');
+        const status = document.getElementById('statusWaJoined');
+        if (status) {
+          status.className = 'text-xs px-2.5 py-1 bg-emerald-500 text-white rounded-lg font-bold flex items-center gap-1';
+          status.innerHTML = '<i class="fa-solid fa-check"></i> সম্পন্ন';
+        }
+      }
+    }
+
+    function handleUserUnlockSubmit() {
+      const emailInput = document.getElementById('userUnlockGmailInput');
+      const errorMsg = document.getElementById('unlockErrorMessage');
+      const email = emailInput.value.trim().toLowerCase();
+
+      trackUserAction(`আনলক করার জন্য জিমেইল সাবমিট করেছে: ${email || '(ফাঁকা)'}`);
+
+      // ফেসবুক ও হোয়াটসঅ্যাপ জয়েনিং নিশ্চিতকরণ
+      if (!hasJoinedFb || !hasJoinedWa) {
+        errorMsg.textContent = 'দয়া করে ফেসবুক গ্রুপ এবং হোয়াটসঅ্যাপ গ্রুপে প্রথমে যুক্ত হোন!';
+        errorMsg.classList.remove('hidden');
+        trackUserAction('❌ শর্ত পূরণ না করে আনলক করার চেষ্টা করেছে (FB/WA বাকি)');
+        return;
+      }
+
+      // কঠোরভাবে শুধুমাত্র @gmail.com যাচাই
+      const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      if (!gmailRegex.test(email)) {
+        errorMsg.textContent = 'ভুল ইমেইল! শুধুমাত্র সক্রিয় @gmail.com ইমেইল গ্রহণযোগ্য (অন্য কোনো ডোমেন নয়)।';
+        errorMsg.classList.remove('hidden');
+        trackUserAction('❌ ভুল বা অন্য ডোমেনের ইমেইল দিয়ে আনলক করার চেষ্টা করেছে: ' + email);
+        return;
+      }
+
+      // লোকাল স্টোরেজে সংরক্ষণ
+      localStorage.setItem('moldova_verified_user_email', email);
+      trackUserAction(`✅ জিমেইল ভেরিফাই হয়েছে এবং সাইট সম্পূর্ণ আনলক হয়েছে: ${email}`);
+
+      // সফল বার্তা প্রদর্শন
+      errorMsg.className = 'text-xs text-emerald-400 font-bold bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-500/30';
+      errorMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i> আপনার জিমেইল সফলভাবে ভেরিফাই হয়েছে! আনলক হচ্ছে...';
+      errorMsg.classList.remove('hidden');
+
+      setTimeout(() => {
+        document.getElementById('oneMinuteLockModal').classList.add('hidden');
+        document.body.style.overflow = 'auto'; // স্ক্রোল চালু
+
+        // ব্যাজে ইউজারের জিমেইল আপডেট
+        const badgeText = document.getElementById('badgeEmailText');
+        if (badgeText) badgeText.textContent = `ইউজার: ${email}`;
+
+        // ভিজিটর তালিকায় যুক্ত করা
+        const visitors = JSON.parse(localStorage.getItem('moldova_visitor_list') || '[]');
+        visitors.unshift({
+          email: email,
+          isVip: false,
+          visits: 1,
+          durationSec: 60,
+          lastSeen: 'এইমাত্র'
+        });
+        localStorage.setItem('moldova_visitor_list', JSON.stringify(visitors));
+      }, 1200);
+    }
+
+    // এডমিন ও ভিউয়ার মোড পরিবর্তনের প্রধান ফাংশন
+    function setAdminViewMode(mode) {
+      currentAdminViewMode = mode;
+      
+      const btnViewer = document.getElementById('btnViewAsViewer');
+      const btnAdmin = document.getElementById('btnViewAsAdmin');
+      const noticeBar = document.getElementById('viewerModeNoticeBar');
+      const vipBtn = document.getElementById('vipDashboardBtn');
+      const emailBadge = document.getElementById('verifiedUserEmailBadge');
+      const badgeEmailText = document.getElementById('badgeEmailText');
+      const liveHud = document.getElementById('adminLiveActivityMonitor');
+
+      if (mode === 'viewer') {
+        trackUserAction('এডমিন Viewer Mode সক্রিয় করেছেন এবং ভিউয়ার দৃষ্টিভঙ্গি পরীক্ষা শুরু করেছেন');
+
+        if (btnViewer) {
+          btnViewer.className = 'px-2.5 py-1 rounded-lg bg-blue-600 text-white font-black text-xs flex items-center gap-1.5 shadow-sm transition';
+        }
+        if (btnAdmin) {
+          btnAdmin.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition';
+        }
+
+        if (vipBtn) vipBtn.classList.add('hidden');
+        if (noticeBar) noticeBar.classList.remove('hidden');
+        if (liveHud) liveHud.classList.remove('hidden'); // এডমিনের জন্য লাইভ HUD প্রদর্শন
+
+        if (emailBadge && badgeEmailText) {
+          badgeEmailText.textContent = 'সাধারণ ভিউয়ার (১ মি. ফ্রি প্রিভিউ)';
+          emailBadge.className = 'text-xs bg-slate-800/90 border border-slate-700 text-slate-300 px-3 py-1.5 rounded-xl font-medium flex items-center shadow whitespace-nowrap';
+          emailBadge.innerHTML = '<i class="fa-solid fa-eye text-blue-400 mr-1.5"></i> <span id="badgeEmailText">সাধারণ ভিউয়ার (১ মি. ফ্রি প্রিভিউ)</span>';
+        }
+
+        // ভিউয়ারের জন্য ১ মিনিটের টাইমার চালু
+        simulateFreshViewerTrial();
+      } else {
+        trackUserAction('Admin Mode-এ ফিরে এসেছেন');
+
+        if (btnAdmin) {
+          btnAdmin.className = 'px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-sm transition';
+        }
+        if (btnViewer) {
+          btnViewer.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition';
+        }
+
+        if (vipBtn) {
+          vipBtn.classList.remove('hidden');
+          vipBtn.classList.add('flex');
+        }
+        if (noticeBar) noticeBar.classList.add('hidden');
+        if (liveHud) liveHud.classList.add('hidden');
+
+        // মডাল ও টাইমার বন্ধ
+        document.getElementById('oneMinuteLockModal')?.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        if (previewTimerInterval) clearInterval(previewTimerInterval);
+        document.getElementById('floatingSideTimerWidget')?.classList.add('hidden');
+
+        if (emailBadge) {
+          emailBadge.className = 'text-xs bg-amber-950/80 border border-amber-400 text-amber-300 px-3 py-1.5 rounded-xl font-bold flex items-center shadow-md whitespace-nowrap';
+          emailBadge.innerHTML = '<i class="fa-solid fa-crown text-amber-400 mr-1.5"></i> <span id="badgeEmailText">VIP: touhidul0454@gmail.com</span>';
+        }
+      }
+    }
+
+    function simulateFreshViewerTrial() {
+      previewSecondsRemaining = 61;
+      hasJoinedFb = false;
+      hasJoinedWa = false;
+      document.getElementById('oneMinuteLockModal')?.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+
+      const fbStatus = document.getElementById('statusFbJoined');
+      if (fbStatus) {
+        fbStatus.className = 'text-xs px-2.5 py-1 bg-blue-600 text-white rounded-lg font-bold group-hover:bg-blue-500 flex items-center gap-1';
+        fbStatus.innerHTML = '<span>জয়েন করুন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>';
+      }
+      const waStatus = document.getElementById('statusWaJoined');
+      if (waStatus) {
+        waStatus.className = 'text-xs px-2.5 py-1 bg-emerald-600 text-white rounded-lg font-bold group-hover:bg-emerald-500 flex items-center gap-1';
+        waStatus.innerHTML = '<span>যুক্ত হন</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>';
+      }
+      const err = document.getElementById('unlockErrorMessage');
+      if (err) err.classList.add('hidden');
+
+      startOneMinuteCountdown();
+      trackUserAction('নতুন ভিউয়ার হিসেবে ৬০ সেকেন্ডের ফ্রি ট্রায়াল শুরু হয়েছে');
+    }
+
+    // ক্লিপবোর্ড কপি হেল্পার
+    function copyToClipboard(text, btnElement) {
+      trackUserAction(`ইমেইল কপি করার জন্য বাটনে ক্লিক করেছে: ${text}`);
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast('ইমেইল সফলভাবে কপি করা হয়েছে!');
+        if (btnElement) {
+          const label = btnElement.querySelector('.copy-label');
+          if (label) {
+            const original = label.textContent;
+            label.textContent = 'কপি হয়েছে!';
+            setTimeout(() => label.textContent = original, 2000);
+          }
+        }
+      } catch (err) {}
+      document.body.removeChild(textArea);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('customCopyToast');
+      const text = document.getElementById('customToastText');
+      if (toast && text) {
+        text.textContent = message;
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        setTimeout(() => {
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          toast.classList.add('translate-y-20', 'opacity-0');
+        }, 2500);
+      }
+    }
+
+    function toggleTheme() {
+      const isLight = document.documentElement.classList.contains('light-theme');
+      const root = document.documentElement;
+      const text = document.getElementById('themeToggleText');
+      const icon = document.getElementById('themeToggleIcon');
+
+      if (isLight) {
+        root.classList.remove('light-theme');
+        if (text) text.textContent = 'ডার্ক';
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-moon text-amber-300"></i>';
+        trackUserAction('থিম পরিবর্তন করে ডার্ক মোড করেছে');
+      } else {
+        root.classList.add('light-theme');
+        if (text) text.textContent = 'লাইট';
+        if (icon) icon.innerHTML = '<i class="fa-solid fa-sun text-amber-500"></i>';
+        trackUserAction('থিম পরিবর্তন করে লাইট মোড করেছে');
+      }
+    }
+
+    let currentLanguage = 'bn';
+    function toggleLanguage() {
+      currentLanguage = (currentLanguage === 'bn') ? 'en' : 'bn';
+      const langText = document.getElementById('langToggleText');
+      const heroTitle = document.getElementById('txtHeroTitle');
+      const heroSubtitle = document.getElementById('txtHeroSubtitle');
+      const heroBadge = document.getElementById('txtHeroBadge');
+
+      if (currentLanguage === 'en') {
+        if (langText) langText.textContent = 'EN | বাং';
+        if (heroTitle) heroTitle.textContent = 'Welcome to Moldova Work Visa Bangladesh';
+        if (heroSubtitle) heroSubtitle.textContent = 'How can we assist your Moldova journey today?';
+        if (heroBadge) heroBadge.textContent = 'Official Services & Database Verification';
+        trackUserAction('ভাষা পরিবর্তন করে ইংরেজি (English) করেছে');
+      } else {
+        if (langText) langText.textContent = 'বাং | EN';
+        if (heroTitle) heroTitle.textContent = 'পরিবারে আপনাকে স্বাগত';
+        if (heroSubtitle) heroSubtitle.textContent = 'আমরা আপনাকে কীভাবে সাহায্য করতে পারি?';
+        if (heroBadge) heroBadge.textContent = 'অফিসিয়াল সার্ভিসেস ও ডেটাবেজ লিংক';
+        trackUserAction('ভাষা পরিবর্তন করে বাংলা (Bengali) করেছে');
+      }
+    }
+
+    function formatDuration(sec) {
+      if (!sec || sec < 60) return (sec || 0) + ' সে.';
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return m + ' মি. ' + s + ' সে.';
+    }
+
+    function renderAgenciesSection() {
+      const container = document.getElementById('agenciesListContainer');
+      if (!container) return;
+
+      const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || '{}');
+
+      container.innerHTML = AGENCIES_DATA.map(agency => {
+        const agencyReviews = allReviews[agency.id] || [];
+        const hasReviews = agencyReviews.length > 0;
+        const avgRatingNum = hasReviews
+          ? (agencyReviews.reduce((sum, r) => sum + r.rating, 0) / agencyReviews.length)
+          : 5.0;
+        const avgRatingText = avgRatingNum.toFixed(1);
+        const roundedStars = Math.round(avgRatingNum);
+
+        let starsHtml = '';
+        for (let i = 1; i <= 5; i++) {
+          if (i <= roundedStars) {
+            starsHtml += `<span class="text-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.85)]"><i class="fa-solid fa-star"></i></span>`;
+          } else {
+            starsHtml += `<span class="text-slate-300 opacity-60"><i class="fa-solid fa-star"></i></span>`;
+          }
+        }
+
+        return `
+          <div class="relative pt-8 flex flex-col h-full">
+            <div class="bg-white text-slate-900 rounded-[28px] p-5 pt-8 shadow-xl border border-slate-100 relative flex flex-col justify-between h-full hover:shadow-2xl hover:-translate-y-1 transition duration-200">
+              
+              <!-- ছবির ওপরের গোলাকার লাল বর্ডারযুক্ত লোগো ফ্রেম -->
+              <div class="absolute -top-8 left-1/2 -translate-x-1/2 z-20">
+                <div class="w-16 h-16 rounded-full p-1 bg-gradient-to-b from-red-500 to-rose-600 shadow-lg shadow-red-500/30">
+                  <div class="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-white shadow-inner">
+                    ${agency.logoType === 'custom_logo' ? `
+                      <div class="w-full h-full bg-[#0033a0] flex items-center justify-center text-amber-400 font-black text-sm">
+                        <svg viewBox="0 0 100 100" class="w-11 h-11">
+                          <circle cx="50" cy="50" r="46" fill="#003594" stroke="#38bdf8" stroke-width="3"/>
+                          <ellipse cx="50" cy="50" rx="30" ry="12" fill="none" stroke="#facc15" stroke-width="4.5" transform="rotate(-15 50 50)"/>
+                          <path d="M 50 15 L 28 82 M 50 15 L 72 82 M 35 60 L 65 60" stroke="#facc15" stroke-width="6" stroke-linecap="round" fill="none"/>
+                        </svg>
+                      </div>
+                    ` : agency.logoType === 'alliance_logo' ? `
+                      <div class="w-full h-full bg-white flex items-center justify-center p-1">
+                        <svg viewBox="0 0 100 100" class="w-11 h-11">
+                          <circle cx="50" cy="50" r="46" fill="#f8fafc" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="3 2"/>
+                          <circle cx="50" cy="50" r="30" fill="#ef4444"/>
+                          <text x="50" y="58" font-size="26" font-weight="900" fill="#ffffff" text-anchor="middle">A</text>
+                        </svg>
+                      </div>
+                    ` : agency.logoType === 'milad_logo' ? `
+                      <div class="w-full h-full bg-white flex items-center justify-center p-0.5">
+                        <svg viewBox="0 0 100 100" class="w-11 h-11">
+                          <circle cx="50" cy="50" r="46" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+                          <circle cx="50" cy="24" r="10" fill="#ef4444"/>
+                          <path d="M 50 38 C 45 48 30 45 22 36 C 20 52 35 62 46 60 L 46 76 L 24 76 L 24 84 L 76 84 L 76 76 L 54 76 L 54 60 C 65 62 80 52 78 36 C 70 45 55 48 50 38 Z" fill="#00875a"/>
+                        </svg>
+                      </div>
+                    ` : agency.logoType === 'flysure_logo' ? `
+                      <div class="w-full h-full bg-[#f0f7ff] flex items-center justify-center p-0.5">
+                        <svg viewBox="0 0 100 100" class="w-11 h-11">
+                          <circle cx="50" cy="50" r="46" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2"/>
+                          <circle cx="50" cy="46" r="26" fill="#0284c7"/>
+                          <text x="50" y="82" font-size="9" font-weight="900" fill="#003594" text-anchor="middle">FLY SURE</text>
+                        </svg>
+                      </div>
+                    ` : `
+                      <div class="w-full h-full bg-white flex items-center justify-center p-0.5">
+                        <svg viewBox="0 0 100 100" class="w-11 h-11">
+                          <circle cx="50" cy="50" r="46" fill="#ffffff" stroke="#0ea5e9" stroke-width="2"/>
+                          <path d="M 30 35 L 42 47 L 34 55 L 22 43 Z" fill="#f97316"/>
+                          <path d="M 42 32 L 60 50 L 52 58 L 34 40 Z" fill="#0284c7"/>
+                          <text x="50" y="76" font-size="10" font-weight="900" fill="#0284c7" text-anchor="middle">AXIS VISA</text>
+                        </svg>
+                      </div>
+                    `}
+                  </div>
+                </div>
+              </div>
+
+              <!-- কার্ড তথ্য -->
+              <div class="text-center mt-3 flex-grow flex flex-col justify-between">
+                <div>
+                  <h4 class="text-base sm:text-lg font-black text-slate-900 tracking-tight mb-1 leading-snug">
+                    ${agency.name}
+                  </h4>
+
+                  <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold mb-3">
+                    <i class="fa-solid fa-shield-halved text-blue-600 text-[10px]"></i>
+                    <span>লাইসেন্স: <strong>${agency.rl}</strong></span>
+                  </div>
+
+                  <p class="text-xs text-slate-600 leading-relaxed font-medium mb-4 line-clamp-3">
+                    ${agency.details}
+                  </p>
+
+                  <div class="space-y-1.5 text-left mb-4 bg-slate-50 border border-slate-200/80 p-3 rounded-xl text-xs">
+                    <div class="flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center flex-shrink-0 text-[10px]">
+                        <i class="fa-solid fa-phone"></i>
+                      </span>
+                      <a href="tel:${agency.phone}" onclick="trackUserAction('এজেন্সির ফোনে ক্লিক করেছে: ${agency.phone}')" class="text-[11px] font-bold text-slate-800 hover:text-blue-600 truncate">${agency.phone}</a>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 text-[10px]">
+                        <i class="fa-solid fa-envelope"></i>
+                      </span>
+                      <a href="mailto:${agency.email}" onclick="trackUserAction('এজেন্সির ইমেইলে ক্লিক করেছে: ${agency.email}')" class="text-[11px] font-bold text-slate-800 hover:text-emerald-600 truncate">${agency.email}</a>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0 text-[10px]">
+                        <i class="fa-solid fa-location-dot"></i>
+                      </span>
+                      <span class="text-[11px] font-bold text-slate-800 truncate">${agency.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- লাইভ ৫-স্টার পিল -->
+                <div class="my-2">
+                  <div class="inline-flex items-center justify-center px-4 py-1.5 rounded-full border-2 border-red-500 bg-white shadow-md gap-2">
+                    <div class="flex items-center gap-1 text-sm">
+                      ${starsHtml}
+                    </div>
+                    <div class="h-3 w-px bg-slate-200"></div>
+                    <div class="text-left font-black text-slate-800 text-xs flex items-center gap-1">
+                      <span>${avgRatingText}</span>
+                      <span class="text-[10px] text-slate-400 font-normal">(${agencyReviews.length})</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-2 mb-3">
+                  <button onclick="openReviewModal('${agency.id}', '${agency.name}')" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-600 hover:to-indigo-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition">
+                    <i class="fa-solid fa-pen-nib text-amber-300 text-[11px]"></i>
+                    <span>রিভিউ দিন (১০০ শব্দ)</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- উন্মুক্ত পাবলিক রিভিউ তালিকা -->
+              <div class="pt-3 border-t border-slate-100">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[11px] font-bold text-slate-700 flex items-center gap-1">
+                    <i class="fa-regular fa-comments text-blue-600"></i>
+                    <span>পাবলিক রিভিউ</span>
+                  </span>
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                    ${agencyReviews.length} টি
+                  </span>
+                </div>
+
+                <div class="space-y-2 max-h-32 overflow-y-auto custom-scrollbar pr-1">
+                  ${agencyReviews.length ? agencyReviews.map(r => `
+                    <div class="bg-slate-50 border border-slate-200/70 p-2.5 rounded-xl text-left text-xs">
+                      <div class="flex items-center justify-between mb-1">
+                        <span class="font-bold text-[11px] text-slate-800 truncate max-w-[130px]">${r.userEmail}</span>
+                        <div class="flex items-center gap-0.5 text-amber-500 text-[10px]">
+                          ${Array.from({length: 5}, (_, i) => i < r.rating ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star text-slate-300"></i>').join('')}
+                        </div>
+                      </div>
+                      <p class="text-[11px] text-slate-600 leading-snug line-clamp-2">"${r.comment}"</p>
+                    </div>
+                  `).join('') : `
+                    <div class="text-center py-2 bg-slate-50 rounded-xl border border-dashed border-slate-200">
+                      <p class="text-[10px] text-slate-400">এখনো কোনো রিভিউ নেই। প্রথম রিভিউ দিন!</p>
+                    </div>
+                  `}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function handleFeedbackCharCount(el) {
+      const len = el.value.length;
+      const countEl = document.getElementById('feedbackCharCount');
+      if (countEl) {
+        countEl.textContent = `${len}/৩০০ অক্ষর`;
+        if (len > 300) el.value = el.value.substring(0, 300);
+      }
+    }
+
+    function submitWebsiteFeedback() {
+      const emailInput = document.getElementById('feedbackSenderInput');
+      const catInput = document.getElementById('feedbackCategoryInput');
+      const msgInput = document.getElementById('feedbackMessageInput');
+      const alertBox = document.getElementById('feedbackAlertMsg');
+
+      const senderEmail = emailInput.value.trim().toLowerCase();
+      const category = catInput.value;
+      const message = msgInput.value.trim();
+
+      trackUserAction(`পরামর্শ সাবমিট করার চেষ্টা: ${senderEmail}`);
+
+      const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      if (!senderEmail || !gmailRegex.test(senderEmail)) {
+        alertBox.textContent = 'অনুগ্রহ করে শুধুমাত্র সক্রিয় @gmail.com ইমেইল অ্যাড্রেস লিখুন!';
+        alertBox.className = 'text-xs py-2 px-3 rounded-xl font-bold text-center bg-red-500/20 text-red-300 border border-red-500/40 block';
+        trackUserAction('❌ পরামর্শ দিতে গিয়ে ভুল জিমেইল দিয়েছে');
+        return;
+      }
+
+      if (!message) {
+        alertBox.textContent = 'অনুগ্রহ করে ওয়েবসাইট সম্পর্কিত আপনার পরামর্শটি লিখুন!';
+        alertBox.className = 'text-xs py-2 px-3 rounded-xl font-bold text-center bg-red-500/20 text-red-300 border border-red-500/40 block';
+        return;
+      }
+
+      const feedbacks = JSON.parse(localStorage.getItem('moldova_site_feedbacks') || '[]');
+      feedbacks.unshift({
+        sender: senderEmail,
+        category,
+        message,
+        time: new Date().toLocaleString('bn-BD', { dateStyle: 'medium', timeStyle: 'short' })
+      });
+
+      localStorage.setItem('moldova_site_feedbacks', JSON.stringify(feedbacks));
+      trackUserAction(`💡 সফলভাবে নতুন পরামর্শ জমা দিয়েছে (${category}): "${message.substring(0, 30)}..."`);
+
+      alertBox.textContent = 'ধন্যবাদ! আপনার মূল্যবান পরামর্শটি এডমিন প্যানেলে সংরক্ষিত হয়েছে।';
+      alertBox.className = 'text-xs py-2 px-3 rounded-xl font-bold text-center bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 block';
+      emailInput.value = '';
+      msgInput.value = '';
+
+      setTimeout(() => alertBox.className = 'hidden', 3500);
+    }
+
+    function openReviewModal(id, name) {
+      currentSelectedAgencyId = id;
+      trackUserAction(`এজেন্সি রিভিউ দেওয়ার জন্য মডাল খুলেছে: ${name}`);
+      document.getElementById('reviewTargetAgencyName').textContent = name;
+      document.getElementById('reviewTextInput').value = '';
+      document.getElementById('reviewWordCountBadge').textContent = '০/১০০ শব্দ';
+      document.getElementById('reviewErrorNotice').classList.add('hidden');
+      setSelectRating(5);
+      document.getElementById('agencyReviewModal')?.classList.remove('hidden');
+    }
+
+    function closeReviewModal() {
+      document.getElementById('agencyReviewModal')?.classList.add('hidden');
+    }
+
+    function setSelectRating(stars) {
+      currentSelectedRating = stars;
+      trackUserAction(`রেটিং পরিবর্তন করে ${stars} স্টার নির্বাচন করেছে`);
+      const buttons = document.querySelectorAll('#starRatingSelector .star-btn');
+      buttons.forEach((btn, idx) => {
+        btn.className = (idx < stars) 
+          ? 'star-btn text-amber-400 transition transform hover:scale-125' 
+          : 'star-btn text-slate-600 transition transform hover:scale-125';
+      });
+    }
+
+    function handleReviewWordCount(el) {
+      const words = el.value.trim() ? el.value.trim().split(/\s+/) : [];
+      const badge = document.getElementById('reviewWordCountBadge');
+      if (words.length > 100) {
+        el.value = words.slice(0, 100).join(' ');
+        badge.textContent = '১০০/১০০ শব্দ (সীমা পূর্ণ)';
+      } else {
+        badge.textContent = `${words.length}/১০০ শব্দ`;
+      }
+    }
+
+    function submitAgencyReview() {
+      if (!currentSelectedAgencyId) return;
+      const input = document.getElementById('reviewTextInput');
+      const err = document.getElementById('reviewErrorNotice');
+      const text = input.value.trim();
+
+      if (!text) {
+        err.textContent = 'অনুগ্রহ করে আপনার মূল্যবান মতামতটি লিখুন!';
+        err.classList.remove('hidden');
+        return;
+      }
+
+      const verifiedEmail = localStorage.getItem('moldova_verified_user_email') || 'ইউজার';
+      const allReviews = JSON.parse(localStorage.getItem('moldova_agencies_reviews') || '{}');
+      if (!allReviews[currentSelectedAgencyId]) allReviews[currentSelectedAgencyId] = [];
+
+      allReviews[currentSelectedAgencyId].unshift({
+        userEmail: verifiedEmail,
+        rating: currentSelectedRating,
+        comment: text,
+        date: new Date().toLocaleDateString('bn-BD')
+      });
+
+      localStorage.setItem('moldova_agencies_reviews', JSON.stringify(allReviews));
+      trackUserAction(`⭐ এজেন্সির জন্য ${currentSelectedRating} স্টার রিভিউ জমা দিয়েছে: "${text.substring(0, 25)}..."`);
+
+      closeReviewModal();
+      renderAgenciesSection();
+    }
+
+    function openVipDashboardModal() {
+      refreshVisitorTables();
+      renderVipFeedbackList();
+      renderModalActivityLogs();
+      document.getElementById('vipDashboardModal')?.classList.remove('hidden');
+      trackUserAction('এডমিন VIP অ্যানালিটিক্স ড্যাশবোর্ড খুলেছেন');
+    }
+
+    function closeVipDashboardModal() {
+      document.getElementById('vipDashboardModal')?.classList.add('hidden');
+    }
+
+    function refreshVisitorTables() {
+      const visitors = JSON.parse(localStorage.getItem('moldova_visitor_list') || 'null') || [
+        { email: "touhidul0454@gmail.com", isVip: true, visits: 24, durationSec: 1250, lastSeen: "আজ, ১২:০০ অপরাহ্ন" },
+        { email: "kamal.bd@gmail.com", isVip: false, visits: 4, durationSec: 180, lastSeen: "আজ, ১১:৪০ পূর্বাহ্ন" },
+        { email: "shakil.dhaka@gmail.com", isVip: false, visits: 9, durationSec: 55, lastSeen: "গতকাল, ১০:১৫ অপরাহ্ন" }
+      ];
+
+      const tbody = document.getElementById('modalVisitorLogTbody');
+      if (tbody) {
+        tbody.innerHTML = visitors.map(v => `
+          <tr class="hover:bg-slate-800/50 transition">
+            <td class="py-2.5 px-3 font-bold text-slate-200 text-xs">${v.email}</td>
+            <td class="py-2.5 px-3">${v.isVip ? '<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold text-[9px]">👑 VIP</span>' : '<span class="text-emerald-400 font-bold text-[10px]">আনলকড</span>'}</td>
+            <td class="py-2.5 px-3 font-mono text-emerald-400 text-xs">${formatDuration(v.durationSec)}</td>
+            <td class="py-2.5 px-3 text-slate-400 text-[10px]">${v.lastSeen}</td>
+          </tr>
+        `).join('');
+      }
+
+      renderModalActivityLogs();
+    }
+
+    function renderVipFeedbackList() {
+      const container = document.getElementById('vipFeedbackList');
+      const feedbacks = JSON.parse(localStorage.getItem('moldova_site_feedbacks') || '[]');
+      const badge = document.getElementById('feedbackTotalBadge');
+      if (badge) badge.textContent = `${feedbacks.length} টি পরামর্শ`;
+
+      if (container) {
+        if (!feedbacks.length) {
+          container.innerHTML = '<div class="text-center py-3 text-xs text-slate-500">এখনো কোনো পরামর্শ জমা হয়নি।</div>';
+          return;
+        }
+        container.innerHTML = feedbacks.map(f => `
+          <div class="bg-slate-900 border border-slate-800 p-2 rounded-xl text-xs">
+            <div class="flex justify-between items-center text-amber-300 font-bold text-[11px]">
+              <span>${f.sender}</span>
+              <span class="text-[10px] text-slate-400">${f.category} • ${f.time}</span>
+            </div>
+            <p class="text-slate-300 mt-1 text-[11px]">"${f.message}"</p>
+          </div>
+        `).join('');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAgenciesSection();
+      setAdminViewMode('admin'); // শুরুতে এডমিন মোড সক্রিয়
+
+      sessionInterval = setInterval(() => {
+        sessionSeconds++;
+        const stat = document.getElementById('modalStatCurrentSession');
+        if (stat) stat.textContent = formatDuration(sessionSeconds);
+      }, 1000);
+
+      updateLiveHud();
+    });
+  </script>
 </body>
 </html>
