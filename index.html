@@ -98,15 +98,15 @@
     </button>
   </div>
 
-  <!-- Viewer মোড সক্রিয় থাকলে শীর্ষে বিশেষ কন্ট্রোল বার -->
+  <!-- Viewer মোড সক্রিয় থাকলে শীর্ষে বিশেষ কন্ট্রোল বার (শুধুমাত্র এডমিন টেস্ট করার সময় দেখবে) -->
   <div id="viewerModeNoticeBar" class="hidden bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white px-4 py-2 text-xs font-semibold text-center border-b border-blue-400/40 flex flex-wrap items-center justify-center gap-3 shadow-md z-50 sticky top-0">
     <span class="flex items-center gap-1.5">
       <i class="fa-solid fa-eye text-amber-300"></i>
-      <span><strong>ভিউয়ার মোড পরীক্ষা চলছে:</strong> সাধারণ মানুষ ১ মিনিট যেভাবে দেখে এবং লক হয়, আপনি তা লাইভ দেখছেন।</span>
+      <span><strong>এডমিন টেস্ট মোড:</strong> সাধারণ মানুষ ১:০১ সেকেন্ড যেভাবে দেখে ও লক হয়, আপনি তা লাইভ দেখছেন।</span>
     </span>
     <div class="flex items-center gap-2">
       <button onclick="simulateFreshViewerTrial()" class="px-2.5 py-1 bg-blue-900 hover:bg-blue-950 text-white rounded-lg text-[11px] font-bold border border-blue-400/50 flex items-center gap-1">
-        <i class="fa-solid fa-arrows-rotate"></i> ১ মিনিট ট্রায়াল রিসেট
+        <i class="fa-solid fa-arrows-rotate"></i> ১:০১ ট্রায়াল রিসেট
       </button>
       <button onclick="setAdminViewMode('admin')" class="px-3 py-1 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black rounded-lg text-[11px] shadow transition">
         👑 এডমিন ভিউতে ফিরুন
@@ -118,8 +118,8 @@
   <header class="sticky top-0 z-30 bg-[#070d1e]/95 backdrop-blur-md border-b border-slate-800 shadow-xl transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- Brand Logo / Emblem -->
-      <a href="https://www.facebook.com/groups/1275931528076368" target="_blank" rel="noopener noreferrer" onclick="trackUserAction('লোগো লিঙ্কে ক্লিক করে ফেসবুক গ্রুপে যেতে চেয়েছে')" class="flex items-center gap-3 group">
+      <!-- Brand Logo / Emblem (লোগোতে ৩ বার ক্লিক করলে সিক্রেট এডমিন লগইন প্রম্পট আসবে) -->
+      <div class="flex items-center gap-3 group cursor-pointer" onclick="handleSecretAdminTrigger()">
         <div class="w-11 h-8 rounded-lg overflow-hidden border-2 border-amber-400/50 shadow-md flex-shrink-0 relative">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Flag_of_Moldova.svg/120px-Flag_of_Moldova.svg.png" 
                alt="Moldova Flag" 
@@ -134,13 +134,13 @@
           </div>
           <p class="text-[11px] text-slate-400 hidden sm:block">তথ্য, সরকারি ভেরিফিকেশন ও ট্রাভেল সাপোর্ট</p>
         </div>
-      </a>
+      </div>
 
-      <!-- কন্ট্রোল প্যানেল: Viewer & Admin সুইচার, ভাষা, থিম এবং ড্যাশবোর্ড বাটন -->
+      <!-- কন্ট্রোল প্যানেল: ভাষা, থিম এবং শুধুমাত্র এডমিনের জন্য Viewer/Admin বাটন -->
       <div class="flex items-center flex-wrap gap-2 ml-auto">
         
-        <!-- 🔥 এডমিন ও ভিউয়ার মোড সুইচ বাটন -->
-        <div id="adminViewModeToggleContainer" class="flex items-center bg-slate-900 border-2 border-amber-400/60 rounded-xl p-1 shadow-lg shadow-amber-500/10">
+        <!-- 🔥 এডমিন ও ভিউয়ার মোড সুইচ বাটন (ডিফল্টভাবে সবার জন্য হিডেন থাকবে; শুধু এডমিন লগইন থাকলে দেখাবে) -->
+        <div id="adminViewModeToggleContainer" class="hidden items-center bg-slate-900 border-2 border-amber-400/60 rounded-xl p-1 shadow-lg shadow-amber-500/10">
           <button id="btnViewAsViewer" onclick="setAdminViewMode('viewer')" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-eye text-blue-400"></i>
             <span>Viewer</span>
@@ -163,14 +163,14 @@
           <span id="langToggleText" class="text-[11px]">বাং | EN</span>
         </button>
 
-        <!-- Verified User / Admin Email Badge -->
-        <div id="verifiedUserEmailBadge" class="text-xs bg-amber-950/80 border border-amber-400 text-amber-300 px-3 py-1.5 rounded-xl font-bold flex items-center shadow-md whitespace-nowrap">
+        <!-- Verified User / Admin Email Badge (সাধারণ ইউজারের কাছে হাইড থাকবে বা আনলকড ইমেইল দেখাবে) -->
+        <div id="verifiedUserEmailBadge" class="hidden text-xs bg-amber-950/80 border border-amber-400 text-amber-300 px-3 py-1.5 rounded-xl font-bold items-center shadow-md whitespace-nowrap">
           <i class="fa-solid fa-crown text-amber-400 mr-1.5"></i>
           <span id="badgeEmailText">VIP: touhidul0454@gmail.com</span>
         </div>
 
-        <!-- VIP ড্যাশবোর্ড বাটন (এডমিন মোডে দৃশ্যমান) -->
-        <button id="vipDashboardBtn" onclick="openVipDashboardModal()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs shadow-md shadow-amber-500/20 transition-all transform hover:scale-105 flex items-center gap-1.5 whitespace-nowrap">
+        <!-- VIP ড্যাশবোর্ড বাটন (সাধারণ মানুষের কাছে সম্পূর্ণরূপে লুকানো থাকবে) -->
+        <button id="vipDashboardBtn" onclick="openVipDashboardModal()" class="hidden px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs shadow-md shadow-amber-500/20 transition-all transform hover:scale-105 items-center gap-1.5 whitespace-nowrap">
           <i class="fa-solid fa-chart-line text-xs"></i>
           <span>VIP ড্যাশবোর্ড</span>
         </button>
@@ -526,7 +526,7 @@
     </div>
   </footer>
 
-  <!-- 🕒 ফ্লোটিং ১-মিনিট কাউন্টডাউন উইজেট (স্ক্রিনের ডানদিকের কোণায় ভাসমান) -->
+  <!-- 🕒 ফ্লোটিং ১:০১ মিনিট কাউন্টডাউন উইজেট (স্ক্রিনের ডানদিকের কোণায় ভাসমান) -->
   <div id="floatingSideTimerWidget" class="fixed bottom-5 right-5 z-40 bg-slate-950/95 border-2 border-amber-400 p-3 sm:p-4 rounded-2xl shadow-2xl backdrop-blur-md flex items-center gap-3 timer-ring-pulse">
     <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center text-amber-400 text-lg flex-shrink-0">
       <i id="floatingClockIcon" class="fa-solid fa-stopwatch animate-pulse"></i>
@@ -543,7 +543,7 @@
     </div>
   </div>
 
-  <!-- 📡 এডমিন লাইভ ভিউয়ার ট্র্যাকার বার (Viewer Mode-এ ইউজার কী করছে তা লাইভ দেখার মনিটর) -->
+  <!-- 📡 এডমিন লাইভ ভিউয়ার ট্র্যাকার বার (Viewer Mode-এ এডমিন ইউজার অ্যাক্টিভিটি লাইভ দেখার মনিটর) -->
   <div id="adminLiveActivityMonitor" class="hidden fixed bottom-5 left-5 z-40 max-w-sm w-full bg-slate-950/95 border-2 border-blue-500 p-3 rounded-2xl shadow-2xl backdrop-blur-md text-xs">
     <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
       <div class="flex items-center gap-2 font-bold text-blue-400">
@@ -557,7 +557,7 @@
     </div>
   </div>
 
-  <!-- 🔒 ১ মিনিট পর স্বয়ংক্রিয় লক মডাল (Facebook, WhatsApp ও @gmail.com বাধ্যতামূলক) -->
+  <!-- 🔒 ১:০১ মিনিট পর স্বয়ংক্রিয় লক মডাল (Facebook, WhatsApp ও @gmail.com বাধ্যতামূলক) -->
   <div id="oneMinuteLockModal" class="fixed inset-0 z-50 bg-[#070d1e]/95 backdrop-blur-md flex items-center justify-center p-4 hidden">
     <div class="bg-gradient-to-b from-[#0f172a] via-[#0b132b] to-[#070d1e] border-2 border-amber-400 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative text-center">
       
@@ -632,7 +632,7 @@
     </div>
   </div>
 
-  <!-- ফুলস্ক্রিন VIP ও এডমিন অ্যানালিটিক্স মডাল -->
+  <!-- ফুলস্ক্রিন VIP ও এডমিন অ্যানালিটিক্স ড্যাশবোর্ড মডাল -->
   <div id="vipDashboardModal" class="fixed inset-0 z-50 bg-[#070d1e]/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
     <div class="bg-[#0b132b] border-2 border-amber-500/50 rounded-3xl max-w-5xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] flex flex-col">
       <button onclick="closeVipDashboardModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2 rounded-xl bg-slate-800 transition">
@@ -840,54 +840,117 @@
       }
     ];
 
-    let currentAdminViewMode = 'admin'; // 'admin' অথবা 'viewer'
+    let currentAdminViewMode = 'viewer'; // সাধারণ ইউজারদের জন্য ডিফল্ট ভিউয়ার
     let currentSelectedAgencyId = null;
     let currentSelectedRating = 5;
     let sessionSeconds = 0;
     let sessionInterval = null;
 
-    // ১:০১ সেকেন্ডের (৬১ সেকেন্ড) প্রিভিউ কাউন্টডাউন ভেরিয়েবল
+    // ১:০১ সেকেন্ডের (৬১ সেকেন্ড) প্রিভিউ কাউন্টডাউন
     let previewSecondsRemaining = 61;
     let previewTimerInterval = null;
     let hasJoinedFb = false;
     let hasJoinedWa = false;
+    let secretClickCount = 0;
+    let secretClickTimer = null;
 
-    // 🔔 সময় শেষ হলে সতর্কবার্তা সাউন্ড বাজানোর ইঞ্জিন (Web Audio API Synthesizer)
+    // 🔒 এডমিন কিনা যাচাইকরণ
+    function isCurrentUserAdmin() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('admin') === '1' || urlParams.get('admin') === 'true') {
+        localStorage.setItem('moldova_admin_authenticated', 'true');
+        return true;
+      }
+      if (localStorage.getItem('moldova_admin_authenticated') === 'true') {
+        return true;
+      }
+      const verifiedEmail = localStorage.getItem('moldova_verified_user_email');
+      if (verifiedEmail && VIP_ACCOUNTS.includes(verifiedEmail.toLowerCase())) {
+        localStorage.setItem('moldova_admin_authenticated', 'true');
+        return true;
+      }
+      return false;
+    }
+
+    // লোগোতে ৩ বার দ্রুত ক্লিক করলে এডমিন অথেন্টিকেশন প্রম্পট
+    function handleSecretAdminTrigger() {
+      secretClickCount++;
+      clearTimeout(secretClickTimer);
+      secretClickTimer = setTimeout(() => {
+        secretClickCount = 0;
+      }, 1500);
+
+      if (secretClickCount >= 3) {
+        secretClickCount = 0;
+        const enteredEmail = prompt("👑 এডমিন ভেরিফিকেশন: আপনার এডমিন ইমেইল লিখুন:");
+        if (enteredEmail && VIP_ACCOUNTS.includes(enteredEmail.trim().toLowerCase())) {
+          localStorage.setItem('moldova_admin_authenticated', 'true');
+          localStorage.setItem('moldova_verified_user_email', enteredEmail.trim().toLowerCase());
+          alert("অভিনন্দন! এডমিন এক্সেস সক্রিয় করা হয়েছে।");
+          initAdminInterface();
+          setAdminViewMode('admin');
+        } else if (enteredEmail) {
+          alert("ভুল এডমিন ইমেইল!");
+        }
+      }
+    }
+
+    function initAdminInterface() {
+      const toggleContainer = document.getElementById('adminViewModeToggleContainer');
+      const vipBtn = document.getElementById('vipDashboardBtn');
+      const badge = document.getElementById('verifiedUserEmailBadge');
+
+      if (isCurrentUserAdmin()) {
+        // শুধু এডমিন হলেই এই অপশনটি দৃশ্যমান হবে
+        if (toggleContainer) {
+          toggleContainer.classList.remove('hidden');
+          toggleContainer.classList.add('flex');
+        }
+        if (vipBtn) {
+          vipBtn.classList.remove('hidden');
+          vipBtn.classList.add('flex');
+        }
+        if (badge) {
+          badge.classList.remove('hidden');
+          badge.classList.add('flex');
+        }
+      } else {
+        // সাধারণ ভিজিটরদের জন্য সম্পূর্ণ লুকানো থাকবে
+        if (toggleContainer) toggleContainer.classList.add('hidden');
+        if (vipBtn) vipBtn.classList.add('hidden');
+        if (badge) badge.classList.add('hidden');
+      }
+    }
+
+    // 🔔 সময় শেষ হলে সতর্কবার্তা সাউন্ড (Beep-Beep-Ding)
     function playTimerEndAlarmSound() {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtx) return;
         const ctx = new AudioCtx();
-        if (ctx.state === 'suspended') {
-          ctx.resume();
-        }
+        if (ctx.state === 'suspended') ctx.resume();
 
-        // পরপর ৩টি সতর্ককারী চিম ও অ্যালার্ম টোন (Beep-Beep-Ding)
         const notes = [
-          { freq: 523.25, time: 0.0, duration: 0.18, type: 'triangle' }, // C5
-          { freq: 659.25, time: 0.22, duration: 0.18, type: 'triangle' }, // E5
-          { freq: 783.99, time: 0.44, duration: 0.22, type: 'sine' },     // G5
-          { freq: 1046.50, time: 0.70, duration: 0.60, type: 'sine' }    // C6 (Final Alert Tone)
+          { freq: 523.25, time: 0.0, duration: 0.18, type: 'triangle' },
+          { freq: 659.25, time: 0.22, duration: 0.18, type: 'triangle' },
+          { freq: 783.99, time: 0.44, duration: 0.22, type: 'sine' },
+          { freq: 1046.50, time: 0.70, duration: 0.60, type: 'sine' }
         ];
 
         notes.forEach(note => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
-
           osc.type = note.type;
           osc.frequency.setValueAtTime(note.freq, ctx.currentTime + note.time);
-
           gain.gain.setValueAtTime(0.35, ctx.currentTime + note.time);
           gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + note.time + note.duration);
-
           osc.connect(gain);
           gain.connect(ctx.destination);
-
           osc.start(ctx.currentTime + note.time);
           osc.stop(ctx.currentTime + note.time + note.duration);
         });
       } catch (err) {
-        console.warn('Audio playback error:', err);
+        console.warn('Audio error:', err);
       }
     }
 
@@ -895,20 +958,14 @@
     function trackUserAction(actionDescription) {
       const now = new Date();
       const timeStr = now.toLocaleTimeString('bn-BD', { hour12: true });
-      const currentRole = currentAdminViewMode === 'admin' ? 'এডমিন (টেস্ট)' : 'সাধারণ ভিউয়ার';
+      const currentRole = (currentAdminViewMode === 'admin') ? 'এডমিন (টেস্ট)' : 'সাধারণ ভিউয়ার';
 
-      const logItem = {
-        time: timeStr,
-        role: currentRole,
-        action: actionDescription
-      };
-
+      const logItem = { time: timeStr, role: currentRole, action: actionDescription };
       const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
       activities.unshift(logItem);
-      if (activities.length > 100) activities.pop(); // সর্বোচ্চ ১০০টি লগ রাখা
+      if (activities.length > 100) activities.pop();
       localStorage.setItem('moldova_viewer_activities', JSON.stringify(activities));
 
-      // লাইভ স্ক্রিন HUD আপডেট
       updateLiveHud();
     }
 
@@ -916,7 +973,6 @@
       const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
       const feed = document.getElementById('liveActivityFeedList');
       const badge = document.getElementById('trackerTotalActionBadge');
-
       if (badge) badge.textContent = `${activities.length} টি অ্যাকশন`;
 
       if (feed) {
@@ -944,7 +1000,6 @@
       const activities = JSON.parse(localStorage.getItem('moldova_viewer_activities') || '[]');
       const container = document.getElementById('modalAllActivityLogsList');
       const statBadge = document.getElementById('modalStatActionCount');
-
       if (statBadge) statBadge.textContent = `${activities.length} টি`;
 
       if (container) {
@@ -967,7 +1022,7 @@
       }
     }
 
-    // ১ মিনিটের প্রিভিউ সিস্টেম ইনিশিয়ালাইজেশন
+    // ১:০১ মিনিটের প্রিভিউ কাউন্টডাউন
     function startOneMinuteCountdown() {
       if (previewTimerInterval) clearInterval(previewTimerInterval);
 
@@ -996,7 +1051,6 @@
 
         if (previewSecondsRemaining <= 0) {
           clearInterval(previewTimerInterval);
-          // 🔔 সময় শেষ হওয়া মাত্রই সতর্কবার্তা সাউন্ড বাজবে
           playTimerEndAlarmSound();
           trackUserAction('⚠️ ১:০১ সেকেন্ড পূর্ণ হওয়ায় অ্যালার্ম বেজেছে এবং পেজ লক হয়ে গেছে');
           if (widget) widget.classList.add('hidden');
@@ -1009,7 +1063,7 @@
       const lockModal = document.getElementById('oneMinuteLockModal');
       if (lockModal) {
         lockModal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // স্ক্রোল সম্পূর্ণ বন্ধ
+        document.body.style.overflow = 'hidden';
       }
     }
 
@@ -1040,7 +1094,24 @@
 
       trackUserAction(`আনলক করার জন্য জিমেইল সাবমিট করেছে: ${email || '(ফাঁকা)'}`);
 
-      // ফেসবুক ও হোয়াটসঅ্যাপ জয়েনিং নিশ্চিতকরণ
+      // যদি মাস্টার এডমিন ইমেইল দেওয়া হয়, তবে সরাসরি এডমিন হিসেবে আনলক হবে
+      if (VIP_ACCOUNTS.includes(email)) {
+        localStorage.setItem('moldova_admin_authenticated', 'true');
+        localStorage.setItem('moldova_verified_user_email', email);
+        errorMsg.className = 'text-xs text-amber-300 font-bold bg-amber-950/40 p-2.5 rounded-lg border border-amber-500/40';
+        errorMsg.innerHTML = '<i class="fa-solid fa-crown text-amber-400"></i> মাস্টার এডমিন হিসেবে স্বীকৃত! সম্পূর্ণ সাইট আনলক হচ্ছে...';
+        errorMsg.classList.remove('hidden');
+
+        setTimeout(() => {
+          document.getElementById('oneMinuteLockModal').classList.add('hidden');
+          document.body.style.overflow = 'auto';
+          initAdminInterface();
+          setAdminViewMode('admin');
+        }, 1200);
+        return;
+      }
+
+      // সাধারণ ভিজিটরদের জন্য ফেসবুক ও হোয়াটসঅ্যাপ জয়েনিং নিশ্চিতকরণ
       if (!hasJoinedFb || !hasJoinedWa) {
         errorMsg.textContent = 'দয়া করে ফেসবুক গ্রুপ এবং হোয়াটসঅ্যাপ গ্রুপে প্রথমে যুক্ত হোন!';
         errorMsg.classList.remove('hidden');
@@ -1057,30 +1128,23 @@
         return;
       }
 
-      // লোকাল স্টোরেজে সংরক্ষণ
       localStorage.setItem('moldova_verified_user_email', email);
       trackUserAction(`✅ জিমেইল ভেরিফাই হয়েছে এবং সাইট সম্পূর্ণ আনলক হয়েছে: ${email}`);
 
-      // সফল বার্তা প্রদর্শন
       errorMsg.className = 'text-xs text-emerald-400 font-bold bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-500/30';
       errorMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i> আপনার জিমেইল সফলভাবে ভেরিফাই হয়েছে! আনলক হচ্ছে...';
       errorMsg.classList.remove('hidden');
 
       setTimeout(() => {
         document.getElementById('oneMinuteLockModal').classList.add('hidden');
-        document.body.style.overflow = 'auto'; // স্ক্রোল চালু
+        document.body.style.overflow = 'auto';
 
-        // ব্যাজে ইউজারের জিমেইল আপডেট
-        const badgeText = document.getElementById('badgeEmailText');
-        if (badgeText) badgeText.textContent = `ইউজার: ${email}`;
-
-        // ভিজিটর তালিকায় যুক্ত করা
         const visitors = JSON.parse(localStorage.getItem('moldova_visitor_list') || '[]');
         visitors.unshift({
           email: email,
           isVip: false,
           visits: 1,
-          durationSec: 60,
+          durationSec: 61,
           lastSeen: 'এইমাত্র'
         });
         localStorage.setItem('moldova_visitor_list', JSON.stringify(visitors));
@@ -1089,8 +1153,12 @@
 
     // এডমিন ও ভিউয়ার মোড পরিবর্তনের প্রধান ফাংশন
     function setAdminViewMode(mode) {
+      if (!isCurrentUserAdmin()) {
+        // যদি সে এডমিন না হয়, তাহলে সুইচ করার কোনো সুযোগ নেই
+        return;
+      }
+
       currentAdminViewMode = mode;
-      
       const btnViewer = document.getElementById('btnViewAsViewer');
       const btnAdmin = document.getElementById('btnViewAsAdmin');
       const noticeBar = document.getElementById('viewerModeNoticeBar');
@@ -1100,36 +1168,27 @@
       const liveHud = document.getElementById('adminLiveActivityMonitor');
 
       if (mode === 'viewer') {
-        trackUserAction('এডমিন Viewer Mode সক্রিয় করেছেন এবং ভিউয়ার দৃষ্টিভঙ্গি পরীক্ষা শুরু করেছেন');
+        trackUserAction('এডমিন Viewer Mode সক্রিয় করেছেন এবং সাধারণ ভিউয়ারদের ১:০১ ট্রায়াল টেস্ট করছেন');
 
-        if (btnViewer) {
-          btnViewer.className = 'px-2.5 py-1 rounded-lg bg-blue-600 text-white font-black text-xs flex items-center gap-1.5 shadow-sm transition';
-        }
-        if (btnAdmin) {
-          btnAdmin.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition';
-        }
+        if (btnViewer) btnViewer.className = 'px-2.5 py-1 rounded-lg bg-blue-600 text-white font-black text-xs flex items-center gap-1.5 shadow-sm transition';
+        if (btnAdmin) btnAdmin.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition';
 
         if (vipBtn) vipBtn.classList.add('hidden');
         if (noticeBar) noticeBar.classList.remove('hidden');
-        if (liveHud) liveHud.classList.remove('hidden'); // এডমিনের জন্য লাইভ HUD প্রদর্শন
+        if (liveHud) liveHud.classList.remove('hidden');
 
         if (emailBadge && badgeEmailText) {
-          badgeEmailText.textContent = 'সাধারণ ভিউয়ার (১ মি. ফ্রি প্রিভিউ)';
+          badgeEmailText.textContent = 'টেস্টিং ভিউয়ার (১:০১ ফ্রি ট্রায়াল)';
           emailBadge.className = 'text-xs bg-slate-800/90 border border-slate-700 text-slate-300 px-3 py-1.5 rounded-xl font-medium flex items-center shadow whitespace-nowrap';
-          emailBadge.innerHTML = '<i class="fa-solid fa-eye text-blue-400 mr-1.5"></i> <span id="badgeEmailText">সাধারণ ভিউয়ার (১ মি. ফ্রি প্রিভিউ)</span>';
+          emailBadge.innerHTML = '<i class="fa-solid fa-eye text-blue-400 mr-1.5"></i> <span id="badgeEmailText">টেস্টিং ভিউয়ার (১:০১ ফ্রি ট্রায়াল)</span>';
         }
 
-        // ভিউয়ারের জন্য ১ মিনিটের টাইমার চালু
         simulateFreshViewerTrial();
       } else {
         trackUserAction('Admin Mode-এ ফিরে এসেছেন');
 
-        if (btnAdmin) {
-          btnAdmin.className = 'px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-sm transition';
-        }
-        if (btnViewer) {
-          btnViewer.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition';
-        }
+        if (btnAdmin) btnAdmin.className = 'px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-sm transition';
+        if (btnViewer) btnViewer.className = 'px-2.5 py-1 rounded-lg text-slate-400 hover:text-white text-xs font-bold flex items-center gap-1.5 transition';
 
         if (vipBtn) {
           vipBtn.classList.remove('hidden');
@@ -1138,7 +1197,6 @@
         if (noticeBar) noticeBar.classList.add('hidden');
         if (liveHud) liveHud.classList.add('hidden');
 
-        // মডাল ও টাইমার বন্ধ
         document.getElementById('oneMinuteLockModal')?.classList.add('hidden');
         document.body.style.overflow = 'auto';
         if (previewTimerInterval) clearInterval(previewTimerInterval);
@@ -1172,10 +1230,9 @@
       if (err) err.classList.add('hidden');
 
       startOneMinuteCountdown();
-      trackUserAction('নতুন ভিউয়ার হিসেবে ৬০ সেকেন্ডের ফ্রি ট্রায়াল শুরু হয়েছে');
+      trackUserAction('১:০১ সেকেন্ডের ফ্রি ট্রায়াল শুরু হয়েছে');
     }
 
-    // ক্লিপবোর্ড কপি হেল্পার
     function copyToClipboard(text, btnElement) {
       trackUserAction(`ইমেইল কপি করার জন্য বাটনে ক্লিক করেছে: ${text}`);
       const textArea = document.createElement("textarea");
@@ -1400,7 +1457,7 @@
                 </div>
               </div>
 
-              <!-- উন্মুক্ত পাবলিক রিভিউ তালিকা -->
+              <!-- পাবলিক রিভিউ তালিকা -->
               <div class="pt-3 border-t border-slate-100">
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-[11px] font-bold text-slate-700 flex items-center gap-1">
@@ -1617,7 +1674,24 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       renderAgenciesSection();
-      setAdminViewMode('admin'); // শুরুতে এডমিন মোড সক্রিয়
+
+      const userIsAdmin = isCurrentUserAdmin();
+
+      if (userIsAdmin) {
+        // আপনি এডমিন হলে এডমিন কন্ট্রোল দৃশ্যমান হবে এবং এডমিন মোড সক্রিয় থাকবে
+        initAdminInterface();
+        setAdminViewMode('admin');
+      } else {
+        // সাধারণ ভিজিটর হলে সুইচার বাটন ও ভিআইপি বাটন ১০০% লুকানো থাকবে
+        initAdminInterface();
+        // চেক করা হবে সে কি আগে থেকে আনলক করা কিনা
+        const unlockedEmail = localStorage.getItem('moldova_verified_user_email');
+        if (!unlockedEmail) {
+          startOneMinuteCountdown(); // নতুন ভিজিটরের জন্য ১:০১ কাউন্টডাউন শুরু
+        } else {
+          document.getElementById('floatingSideTimerWidget')?.classList.add('hidden');
+        }
+      }
 
       sessionInterval = setInterval(() => {
         sessionSeconds++;
